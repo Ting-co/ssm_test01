@@ -18,4 +18,50 @@
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
+    <!--开启AspectJ生成代理对象-->
+    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+
+
+    <!--Spring整合Mybatisl框架-->
+    <!-- 配置C3P0的连接池对象 -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="com.mysql.jdbc.Driver"/>
+        <property name="jdbcUrl" value="jdbc:mysql:///ssm?useSSL=false"/>
+        <property name="user" value="root"/>
+        <property name="password" value="123456"/>
+    </bean>
+    <!-- 配置SqlSession的工厂 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <!-- 配置扫描dao的包 -->
+    <bean id="mapperScanner" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.ssmtest01.dao"/>
+    </bean>
+
+    <!--SqlMapConfig.xml和jdbcConfig.properties可以删除了-->
+
+
+    <!--配置Spring框架声明式事务管理-->
+    <!--配置事务管理器-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+    <!-- 配置事务的通知 -->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="find*" propagation="SUPPORTS" read-only="true"/>
+            <tx:method name="*" isolation="DEFAULT"/>
+        </tx:attributes>
+    </tx:advice>
+    <!-- 配置AOP增强 -->
+    <aop:config>
+        <!--<aop:advisor advice-ref="txAdvice" pointcut="execution(* com.keafmd.service.impl.*.*(..))"/>-->
+        <!-- 配置切入点表达式 -->
+        <aop:pointcut expression="execution(* com.ssmtest01.service.impl.*.*(..))" id="pt1"/>
+        <!-- 建立通知和切入点表达式的关系 -->
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="pt1"/>
+    </aop:config>
+
+
 </beans>
