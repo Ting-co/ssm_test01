@@ -16,7 +16,7 @@
     <title>mindex</title>
     <base href="<%=basePath%>">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" href="static/layui/css/layui.css"  media="all">
+    <link rel="stylesheet" href="static/layui/css/layui.css" media="all">
     <script src="static/layui/layui.js" charset="utf-8"></script>
 </head>
 <body>
@@ -41,18 +41,18 @@
 
 <table id="demo" lay-filter="test"></table>
 <script>
-    layui.use('table', function(){
+    layui.use('table', function () {
         var table = layui.table;
         //第一个实例
         table.render({
             elem: '#demo'
-            ,height: 312
-            ,url: '/account/findAll' //数据接口
+            , height: 312
+            , url: '/account/findAll' //数据接口
             // ,page: true //开启分页
-            ,cols: [[ //表头
-                {field: 'id', title: 'ID', width:80, sort: true, fixed: 'left'}
-                ,{field: 'name', title: '用户名', width:80}
-                ,{field: 'money', title: '性别', width:80,}
+            , cols: [[ //表头
+                {field: 'id', title: 'ID', width: 80, sort: true, fixed: 'left'}
+                , {field: 'name', title: '用户名', width: 80}
+                , {field: 'money', title: '性别', width: 80,}
 
             ]]
         });

@@ -17,7 +17,7 @@
     <title>mindex</title>
     <base href="<%=basePath%>">
     <script src="static/js/jquery.min.js"></script>
-    <link rel="stylesheet" href="static/layui/css/user/style.css"  media="all">
+    <link rel="stylesheet" href="static/layui/css/user/style.css" media="all">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>注册</title>
@@ -29,12 +29,12 @@
 
     <div class="signup">
         <h2 class="form-title" id="signup"><span>或</span>登录</h2>
-        <form id="toregister" action="usermanager/tologin">
-        <div class="form-holder">
-            <input type="email" class="input" name="email" placeholder="邮箱" />
-            <input type="password" class="input" name="password" placeholder="密码" />
-        </div>
-        <input  type="submit" class="submit-btn" value="登录"/>
+        <form id="toregister" action="usermanager/tologin" >
+            <div class="form-holder">
+                <input type="email" class="input" name="email" placeholder="邮箱"/>
+                <input type="password" class="input" name="password" placeholder="密码"/>
+            </div>
+            <input type="submit" class="submit-btn" value="登录"/>
         </form>
         <div class="reg-bar">
             <a class="forget" href="#" target="_blank">忘记密码</a>
@@ -43,13 +43,13 @@
     <div class="login slide-up">
         <div class="center">
             <h2 class="form-title" id="login"><span>或</span>注册</h2>
-            <form  id="tologin" action="usermanager/toregister"  method="post">
-            <div class="form-holder">
-                <input type="text" class="input" name="username" placeholder="用户名" />
-                <input type="email" class="input" name="email" placeholder="邮箱" />
-                <input type="password" class="input"  name="password" placeholder="密码" />
-            </div>
-                <input  type="submit" class="submit-btn"  value="注册"/>
+            <form id="tologin" action="usermanager/toregister" method="post">
+                <div class="form-holder">
+                    <input type="text" class="input" name="username" placeholder="用户名"/>
+                    <input type="email" class="input" name="email" placeholder="邮箱"/>
+                    <input type="password" class="input" name="password" placeholder="密码"/>
+                </div>
+                <input type="submit" class="submit-btn" value="注册"/>
             </form>
         </div>
     </div>
@@ -63,9 +63,9 @@
     loginBtn.addEventListener('click', (e) => {
         let parent = e.target.parentNode.parentNode;
         Array.from(e.target.parentNode.parentNode.classList).find((element) => {
-            if(element !== "slide-up") {
+            if (element !== "slide-up") {
                 parent.classList.add('slide-up')
-            }else{
+            } else {
                 signupBtn.parentNode.classList.add('slide-up')
                 parent.classList.remove('slide-up')
             }
@@ -75,9 +75,9 @@
     signupBtn.addEventListener('click', (e) => {
         let parent = e.target.parentNode;
         Array.from(e.target.parentNode.classList).find((element) => {
-            if(element !== "slide-up") {
+            if (element !== "slide-up") {
                 parent.classList.add('slide-up')
-            }else{
+            } else {
                 loginBtn.parentNode.parentNode.classList.add('slide-up')
                 parent.classList.remove('slide-up')
             }

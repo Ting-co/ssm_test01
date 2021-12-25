@@ -13,16 +13,17 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
     @Override
-    public User selBynameAndEmail(String username,String email){
-        return userDao.selBynameAndEmail(username,email);
+    public User selBynameAndEmail(String username, String email) {
+        return userDao.selBynameAndEmail(username, email);
     }
 
     @Override
-    public void  insertuser(User user){
-         userDao.insertuser(user);
+    public void insertuser(User user) {
+        userDao.insertuser(user);
     }
+
     @Override
-    public User selByemail(String email){
+    public User selByemail(String email) {
         return userDao.selByemail(email);
     }
 }

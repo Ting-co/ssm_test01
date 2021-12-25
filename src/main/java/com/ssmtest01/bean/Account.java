@@ -1,7 +1,6 @@
 package com.ssmtest01.bean;
 
 
-
 import java.io.Serializable;
 
 /**

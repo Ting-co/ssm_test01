@@ -1,0 +1,62 @@
+/*
+.mybottom {
+    color: #fbfbfb;
+    height: 126px;
+    background-color: #777;
+    text-align: center;
+}
+.mybottom-ul{
+    background-color:#eee;
+    height:70px
+
+
+}
+.mybottom-text{
+    background-color:#822828;
+    height:56px
+
+}
+
+
+.mybottom-p{
+    padding-top:20px;
+}*/
+.footer-bg{
+    background-color: #333333;
+    padding: 70px 0;
+    text-align: center;
+}
+.footer-bg .logo-title{
+    margin: 20px 0;
+    font-size: 30px;
+}
+.social-icons a {
+    font-size: 20px;
+}
+.footer a{
+    color: #fff;
+
+}
+.footer-bg li{
+    margin: 0 15px;
+    text-transform: uppercase;
+}
+.footer a:hover{
+    color: #666666;
+}
+.copy-rights-bg {
+    background-color: #000000;
+    padding: 15px 0;
+    text-align: center;
+}
+.copy-rights {
+    margin: 0;
+    color: #fff;
+}
+
+/*这里的padding-left控制页面的文字*/
+.hover-color {
+    float :left;
+    padding-left:320px;
+    list-style:none;
+}

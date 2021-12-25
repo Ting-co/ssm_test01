@@ -17,12 +17,12 @@
     <title>mindex</title>
     <base href="<%=basePath%>">
     <script src="static/js/jquery.min.js"></script>
-    <link rel="stylesheet" href="static/layui/css/user/tologin.css"  media="all">
+    <link rel="stylesheet" href="static/layui/css/user/tologin.css" media="all">
 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-        <title>演示：清爽简洁的登录页面</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>演示：清爽简洁的登录页面</title>
 
-    </head>
+</head>
 <body>
 <div class="dowebok">
     <div class="logo"></div>
@@ -34,9 +34,11 @@
         <input id="password" type="password" autocomplete="off" placeholder="登录密码">
         <p class="tip">邮箱或密码不正确</p>
     </div>
-    <div class="form-item"><button id="submit">登 录</button></div>
+    <div class="form-item">
+        <button id="submit">登 录</button>
+    </div>
     <div class="reg-bar">
-        <a class="reg" href="pagerto/register" target="_blank" >立即注册</a>
+        <a class="reg" href="pagerto/register" target="_blank">立即注册</a>
         <a class="forget" href="#" target="_blank">忘记密码</a>
     </div>
 </div>

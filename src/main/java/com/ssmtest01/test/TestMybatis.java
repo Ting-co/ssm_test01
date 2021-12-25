@@ -30,7 +30,7 @@ public class TestMybatis {
     private AccountDao accountDao;
 
     @Before
-    public void init() throws Exception{
+    public void init() throws Exception {
         //加载配置文件
         in = Resources.getResourceAsStream("SqlMapConfig.xml");
         //创建SqlSessionFactory对象
@@ -42,7 +42,7 @@ public class TestMybatis {
     }
 
     @After
-    public void destory() throws Exception{
+    public void destory() throws Exception {
         session.commit();
         session.close();
         in.close();
@@ -52,17 +52,18 @@ public class TestMybatis {
      * 查询所有
      */
     @Test
-    public void run1(){
+    public void run1() {
         List<Account> accounts = accountDao.findAll();
         for (Account account : accounts) {
             System.out.println(account);
         }
     }
+
     /**
      * 查询所有
      */
     @Test
-    public void run2(){
+    public void run2() {
         List<Account> accounts = accountDao.findAll();
         for (Account account : accounts) {
             System.out.println(account);
@@ -73,7 +74,7 @@ public class TestMybatis {
      * 测试保存
      */
     @Test
-    public void saveAccount(){
+    public void saveAccount() {
         Account account = new Account();
         account.setName("毛利郎");
         account.setMoney(800.00);

@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
-  User: Keafmd
-  Date: 2021/2/17
-  Time: 23:20
+  User: Administrator
+  Date: 2021/12/19
+  Time: 14:06
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -18,16 +18,13 @@
     <base href="<%=basePath%>">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="static/layui/css/layui.css" media="all">
-    <%--    <link rel="stylesheet" href="static/layui/css/user/global.css" media="all">--%>
     <script src="static/layui/layui.js" charset="utf-8"></script>
+    <script src="static/jquery/jquery.js"></script>
 </head>
 <body>
+<%--<div class="layui-layout layui-layout-admin">--%>
+
 <div class="layui-header">
-<%--    <div class="mylayui-index-header">--%>
-    <%--头部--%>
-    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-        <legend>水平导航菜单</legend>
-    </fieldset>
     <div class="layui-logo layui-hide-xs layui-bg-black">二手商城</div>
     <!-- 头部区域（可配合layui 已有的水平导航） -->
     <ul class="layui-nav layui-layout-left">
@@ -36,8 +33,7 @@
             <i class="layui-icon layui-icon-spread-left"></i>
         </li>
 
-        <li class="layui-nav-item layui-hide-xs"><a href="pagerto/homeindex">返回首页</a></li>
-        <li class="layui-nav-item layui-hide-xs"><a href="pagerto/message">求物留言区</a></li>
+        <li class="layui-nav-item layui-hide-xs"><a href="pagerto/mindex">返回首页</a></li>
     </ul>
 
 
@@ -52,32 +48,71 @@
                     未登录,点击登录
                 </c:if>
                 <c:if test="${sessionScope.user != null}">
-                    欢迎用户：[ ${sessionScope.user.username} ]登录
+                    欢迎管理员：[ ${sessionScope.user.username} ]登录
                 </c:if>
             </a>
             <c:if test="${sessionScope.user != null}">
                 <dl class="layui-nav-child">
-                    <dd><a href="pagerto/toindex">个人主页</a></dd>
+                    <dd><a href="pagerto/mindex">个人主页</a></dd>
                     <dd><a href="usermanager/tologout">注销</a></dd>
                 </dl>
             </c:if>
         </li>
     </ul>
+
 </div>
 
+<div class="layui-side layui-bg-black">
+    <div class="layui-side-scroll">
+        <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+        <ul class="layui-nav layui-nav-tree" lay-filter="test">
+            <li class="layui-nav-item"><a href="javascript:;">修改个人资料</a></li>
+            <li class="layui-nav-item"><a href="">管理商品</a></li>
+            <li class="layui-nav-item"><a href="">留言区</a></li>
+        </ul>
+    </div>
+</div>
 
+<%-- <div class="layui-body">
+     <!-- 内容主体区域 -->
+     <div style="padding: 15px;">内容主体区域。记得修改 layui.css 和 js 的路径</div>
+ </div>--%>
+
+<!-- 底部固定区域 -->
+<%-- <div class="layui-footer">
+
+ </div>--%>
+
+<%--</div>--%>
 <script>
+    //JS
+    layui.use(['element', 'layer', 'util'], function () {
+        var element = layui.element
+            , layer = layui.layer
+            , util = layui.util
+            , $ = layui.$;
 
-
-    layui.use('element', function () {
-        var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
-
-        //监听导航点击
-        element.on('nav(demo)', function (elem) {
-            //console.log(elem)
-            layer.msg(elem.text());
+        //头部事件
+        util.event('lay-header-event', {
+            //左侧菜单事件
+            menuLeft: function (othis) {
+                layer.msg('展开左侧菜单的操作', {icon: 0});
+            }
+            , menuRight: function () {
+                layer.open({
+                    type: 1
+                    , content: '<div style="padding: 15px;">处理右侧面板的操作</div>'
+                    , area: ['260px', '100%']
+                    , offset: 'rt' //右上角
+                    , anim: 5
+                    , shadeClose: true
+                });
+            }
         });
+
     });
+
+
 </script>
 </body>
 </html>

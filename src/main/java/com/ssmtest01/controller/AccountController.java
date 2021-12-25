@@ -23,24 +23,27 @@ public class AccountController {
 
     @Autowired
     private AccountServiceImpl accountService;
+
     /**
      * 查询所有
+     *
      * @param
      * @return
      */
     @RequestMapping("/findAll")
-    public String findAll(){
+    public String findAll() {
         System.out.println("表现层，查询所有账户信息。。。");
         //调用service的方法
         List<Account> list = accountService.findAll();
         JSONObject jsonObject = new JSONObject();
         System.out.println(list);
-        jsonObject.put("list",list);
+        jsonObject.put("list", list);
         return jsonObject.toString();
     }
 
     /**
      * 保存
+     *
      * @param account
      * @param request
      * @param response
@@ -53,7 +56,6 @@ public class AccountController {
 //        response.sendRedirect(request.getContextPath()+"/account/findAll");
         return "list";
     }
-
 
 
 }
