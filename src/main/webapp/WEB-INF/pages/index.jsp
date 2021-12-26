@@ -88,7 +88,7 @@
                 <input type="submit" value="登录">
             </form>
             <a href="pagerto/register">ss</a>
-            <a href="pagerto/test">ss</a>
+            <a href="usermanager/test">ss</a>
         </div>
         <form action="usermanager/test">
             <input type="hidden" name="username" value="${sessionScope.tt}">
@@ -99,15 +99,15 @@
             <legend>拖拽上传</legend>
         </fieldset>
 
-        <div class="layui-upload-drag" id="test10">
-            <i class="layui-icon"></i>
-            <p>点击上传，或将文件拖拽到此处</p>
-            <div class="layui-hide" id="uploadDemoView">
-                <hr>
-                <img src="" alt="上传成功后渲染" style="max-width: 196px">
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">上传按钮</label>
+            <div class="layui-input-block">
+                <button type="button" class="layui-btn" id="test1">
+                    <i class="layui-icon">&#xe67c;</i>上传图片
+                </button>
             </div>
         </div>
-
+        <img id="image" src="static/images/headImg/1576635039_7.jpg" style="width:70px; height:70px; border-radius:50%; ">
 
     </div>
 
@@ -128,19 +128,36 @@
             //console.log(elem)
             layer.msg(elem.text());
         });
-//拖拽上传
-        upload.render({
-            elem: '#test10'
-            , url: 'usermanager/headImg' //此处用的是第三方的 http 请求演示，实际使用时改成您自己的上传接口即可。
-            , type: 'POST'
-            , processData: false // 告诉jQuery不要去处理发送的数据
-            , contentType: false // 告诉jQuery不要去设置Content-Type请求头
+
+
+        //常规使用 - 普通图片上传
+        let uploadInst = upload.render({
+            elem: '#test1'
+            , url: 'usermanager/image' //改成您自己的上传接口
+            ,dataType:"json"
+            , before: function (obj) {
+                //预读本地文件示例，不支持ie8
+                obj.preview(function (index, file, result) {
+                    $('#image').attr('src', result); //图片链接（base64）
+                    alert(result);
+                });
+            }
             , done: function (res) {
-                layer.msg('上传成功');
-                layui.$('#uploadDemoView').removeClass('layui-hide').find('img').attr('src', res.files.file);
-                console.log(res)
+
+                //如果上传失败
+                if (res.code>0) {
+                    return layer.msg('上传失败!!!');
+                }
+                alert("成功");
+
+            }
+            , error: function () {
+                alert("上传失败");
             }
         });
+
+
+
 
 
     });

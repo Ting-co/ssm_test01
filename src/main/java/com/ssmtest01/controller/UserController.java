@@ -1,29 +1,20 @@
 package com.ssmtest01.controller;
 
 
+import com.ssmtest01.bean.DataJson;
 import com.ssmtest01.bean.User;
 import com.ssmtest01.service.UserService;
 
-import com.ssmtest01.util.format;
+import com.ssmtest01.util.UploadUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.Map;
 
 @Controller
 @RequestMapping("usermanager")
@@ -99,7 +90,7 @@ public class UserController {
     }
 
     /**
-     *
+     *注销
      * @param session
      * @return
      */
@@ -121,55 +112,34 @@ public class UserController {
      * 个人信息上传
      * @return {Result}
      */
-    @RequestMapping(value = "/headImg", method = {RequestMethod.POST})
-    @ResponseBody
-    public Object headImg(@RequestParam(value="file",required=false) MultipartFile file, HttpServletRequest request, HttpServletResponse response) throws Exception {
-        /*if (SecurityUtils.getSubject().isAuthenticated() == false) {
-            return "redirect:/backEnd/login";
-        }*/
-       /* String prefix="";
-        String dateStr="";
-        String uploadDir="/headImg/";
-        //保存上传
-        OutputStream out = null;
-        InputStream fileInput=null;
-        try{
-            if(file!=null){
-                String originalName = file.getOriginalFilename();
-                prefix=originalName.substring(originalName.lastIndexOf(".")+1);
-                dateStr = format.format(new Date());
-                String filepath = request.getSession().getServletContext().getRealPath("/static") + uploadDir + dateStr + "." + prefix;
-                filepath = filepath.replace("\\", "/");
-                File files=new File(filepath);
-                //打印查看上传路径
-                System.out.println(filepath);
-                if(!files.getParentFile().exists()){
-                    files.getParentFile().mkdirs();
-                }
-                file.transferTo(files);
-            }
-        }catch (Exception e){
-        }finally{
-            try {
-                if(out!=null){
-                    out.close();
-                }
-                if(fileInput!=null){
-                    fileInput.close();
-                }
-            } catch (IOException e) {
-            }
-        }*/
-        Map<String,Object> map=new HashMap<>();
-        /*Map<String,Object> map2=new HashMap<>();
-        map.put("code",0);
-        map.put("msg","");
-        map.put("data",map2);
-        map2.put("src","../../../static"+uploadDir + dateStr + "." + prefix);*/
 
-        System.out.println("图片已上传");
-        return map;
-    }
+        @RequestMapping("/image")
+        @ResponseBody
+        public DataJson image(MultipartFile file,HttpServletRequest request){
+            //调用工具类完成文件上传
+            String imagePath = UploadUtils.upload(file,request);
+            System.out.println(imagePath);
+            DataJson dataJson = new DataJson();
+            if (imagePath != null){
+                //创建一个HashMap用来存放图片路径
+                HashMap hashMap = new HashMap();
+                hashMap.put("src",imagePath);
+                dataJson.setCode(0);
+                dataJson.setMsg("上传成功");
+                dataJson.setData(hashMap);
+                System.out.println("成功！！！！！！！");
+            }else{
+                dataJson.setCode(1);
+                dataJson.setMsg("上传失败");
+                System.out.println("失败！！！！！！！！");
+            }
+            return dataJson;
+        }
+
+
+
+
+
 
     // session.setAttribute("tt","/file/kk");
     @RequestMapping("/test")
@@ -177,7 +147,6 @@ public class UserController {
         String username = request.getParameter("username");
         System.out.println(username);
         return "index";
-
 
     }
 
