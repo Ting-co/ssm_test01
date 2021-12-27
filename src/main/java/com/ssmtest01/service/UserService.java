@@ -9,4 +9,7 @@ public interface UserService {
 
     public User selByemail(String email);
 
+    void updataUser(User user);
+
+    public User selByidname(String uuidname);
 }

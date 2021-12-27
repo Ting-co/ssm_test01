@@ -90,8 +90,9 @@
             <a href="pagerto/register">ss</a>
             <a href="usermanager/test">ss</a>
         </div>
-        <form action="usermanager/test">
-            <input type="hidden" name="username" value="${sessionScope.tt}">
+<%--        <form action="usermanager/test">--%>
+        <form action="pagerto/test">
+<%--            <input type="hidden" name="username" value="${sessionScope.tt}">--%>
             <input type="submit" value="测试">
         </form>
 
@@ -110,6 +111,7 @@
         <img id="image" src="static/images/headImg/1576635039_7.jpg" style="width:70px; height:70px; border-radius:50%; ">
 
     </div>
+
 
     <%--尾页--%>
     <div class="mylayui-index-bottom">
@@ -139,7 +141,7 @@
                 //预读本地文件示例，不支持ie8
                 obj.preview(function (index, file, result) {
                     $('#image').attr('src', result); //图片链接（base64）
-                    alert(result);
+                    // alert(result);
                 });
             }
             , done: function (res) {
@@ -148,7 +150,7 @@
                 if (res.code>0) {
                     return layer.msg('上传失败!!!');
                 }
-                alert("成功");
+                alert("上传头像成功");
 
             }
             , error: function () {

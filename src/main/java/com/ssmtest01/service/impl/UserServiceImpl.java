@@ -26,4 +26,13 @@ public class UserServiceImpl implements UserService {
     public User selByemail(String email) {
         return userDao.selByemail(email);
     }
+
+    @Override
+    public void  updataUser(User user){userDao.updataUser(user);}
+
+    @Override
+    public User selByidname(String uuidname){
+        return userDao.selByidname(uuidname);
+    }
+
 }

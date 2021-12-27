@@ -46,38 +46,30 @@
     <%--用户头像--%>
     <ul class="layui-nav layui-layout-right">
         <li class="layui-nav-item layui-hide layui-show-md-inline-block">
-            <a href="pagerto/register" >
-                <cite class="layui-hide-xs" style="color: #fff;margin-left: 5px;"></cite>
-                <c:if test="${sessionScope.user == null}">
-                    未登录,点击登录
-                </c:if>
-                <c:if test="${sessionScope.user != null}">
-                    欢迎用户：[ ${sessionScope.user.username} ]登录
-                </c:if>
-            </a>
+            <c:if test="${sessionScope.user == null}">
+                <a href="javascript:;">
+                    <img src="static/images/password.png" class="layui-nav-img" >
+                    未登录
+                </a>
+                <dl class="layui-nav-child layui-anim layui-anim-upbit">
+                    <dd><a href="pagerto/register">去登录或注册</a></dd>
+                </dl>
+            </c:if>
             <c:if test="${sessionScope.user != null}">
-                <dl class="layui-nav-child">
+                <a href="javascript:;">
+                    <img src="static/images/headImg/${sessionScope.user.himage}" class="layui-nav-img" >
+                    欢迎用户：[ ${sessionScope.user.username} ]登录
+                </a>
+                <dl class="layui-nav-child layui-anim layui-anim-upbit">
                     <dd><a href="pagerto/toindex">个人主页</a></dd>
                     <dd><a href="usermanager/tologout">注销</a></dd>
                 </dl>
             </c:if>
         </li>
     </ul>
+
 </div>
 
 
-<script>
-
-
-    layui.use('element', function () {
-        var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
-
-        //监听导航点击
-        element.on('nav(demo)', function (elem) {
-            //console.log(elem)
-            layer.msg(elem.text());
-        });
-    });
-</script>
 </body>
 </html>

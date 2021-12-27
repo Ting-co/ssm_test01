@@ -74,6 +74,10 @@
         <property name="maxUploadSize">
             <value>52428800</value>
         </property>
+        <!--将此值设置为需要的大小即可,上传图片超过该值，就不在内存中操作，在临时空间操作-->
+        <property name="maxInMemorySize">
+            <value>12428800</value>
+        </property>
         <property name="defaultEncoding">
             <value>utf-8</value>
         </property>

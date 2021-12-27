@@ -7,7 +7,7 @@
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%
+<%--<%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
@@ -21,7 +21,7 @@
     <script src="static/layui/layui.js" charset="utf-8"></script>
     <script src="static/jquery/jquery.js"></script>
 </head>
-<body>
+<body>--%>
 <%--<div class="layui-layout layui-layout-admin">--%>
 
 <div class="layui-header">
@@ -42,18 +42,22 @@
     <%--用户头像--%>
     <ul class="layui-nav layui-layout-right">
         <li class="layui-nav-item layui-hide layui-show-md-inline-block">
-            <a href="pagerto/register" >
-                <cite class="layui-hide-xs" style="color: #fff;margin-left: 5px;"></cite>
-                <c:if test="${sessionScope.user == null}">
-                    未登录,点击登录
-                </c:if>
-                <c:if test="${sessionScope.user != null}">
-                    欢迎管理员：[ ${sessionScope.user.username} ]登录
-                </c:if>
-            </a>
+            <c:if test="${sessionScope.user == null}">
+                <a href="javascript:;">
+                    <img src="static/images/password.png" class="layui-nav-img" >
+                    未登录
+                </a>
+                <dl class="layui-nav-child layui-anim layui-anim-upbit">
+                    <dd><a href="pagerto/register">去登录或注册</a></dd>
+                </dl>
+            </c:if>
             <c:if test="${sessionScope.user != null}">
-                <dl class="layui-nav-child">
-                    <dd><a href="pagerto/mindex">个人主页</a></dd>
+                <a href="javascript:;">
+                    <img src="static/images/headImg/${sessionScope.user.himage}" class="layui-nav-img" >
+                    欢迎用户：[ ${sessionScope.user.username} ]登录
+                </a>
+                <dl class="layui-nav-child layui-anim layui-anim-upbit">
+                    <dd><a href="pagerto/uindex">个人主页</a></dd>
                     <dd><a href="usermanager/tologout">注销</a></dd>
                 </dl>
             </c:if>
@@ -84,6 +88,7 @@
  </div>--%>
 
 <%--</div>--%>
+<%--
 <script>
     //JS
     layui.use(['element', 'layer', 'util'], function () {
@@ -116,3 +121,4 @@
 </script>
 </body>
 </html>
+--%>

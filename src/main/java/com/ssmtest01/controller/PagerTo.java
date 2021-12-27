@@ -63,8 +63,12 @@ public class PagerTo {
     @RequestMapping("/test")
     public String totest() {
 
-        return "/manager/test";
+//        return "/manager/test";
+//        return "/user/wallet";
+        return "/common/uheader";
+
     }
+
 
     /**
      * 跳转到home首页
@@ -99,6 +103,16 @@ public class PagerTo {
         if (user.getRole()==1)
         return "/manager/mindex";
         return "/user/uindex";
+    }
+
+
+    /**
+     * 用户页面跳转
+     */
+
+    @RequestMapping("/urecompose")
+    public String urecompose() {
+        return "/user/urecompose";
     }
 
 }

@@ -7,6 +7,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
+import java.util.Random;
 import java.util.UUID;
 
 public class TestSpring {
@@ -27,15 +28,26 @@ public class TestSpring {
     }
 
     @Test
-    public void run2(HttpServletRequest request) {
+    public void run2() {
 //        System.out.println(randomUUID());
-//        Date date = new Date();
-//        String dateStr=""+date.getTime();
+        Date date = new Date();
+        String dateStr=""+date.getTime();
 //        System.out.println(dateStr);
 //        Date date1 = new Date(1640418383241L);
-        String realPath = request.getSession().getServletContext().getRealPath("/static");
-        System.out.println(realPath);
+        /*String realPath = request.getSession().getServletContext().getRealPath("/static");
+        System.out.println(realPath);*/
 
+
+        /*int  num = (int)(Math.random()*9999+1000);
+        for (int i=0;i<100;i++){
+
+            System.out.println(num);
+        }*/
+        Random r = new Random();
+        for (int i = 0; i < 500; i++) {
+            int ran1 = r.nextInt(800);
+            System.out.println(ran1+100);
+        }
 
     }
 

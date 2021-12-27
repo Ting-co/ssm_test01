@@ -5,12 +5,18 @@ package com.ssmtest01.bean;
  */
 public class User {
     private int u_id;
+    private String uuidname;
     private String username;
     private String password;
     private String himage;
     private String phone;
     private String email;
     private int role;
+    private String address;
+    private double money;
+    private String sex;
+    private String text;
+
 
     public int getU_id() {
         return u_id;
@@ -18,6 +24,14 @@ public class User {
 
     public void setU_id(int u_id) {
         this.u_id = u_id;
+    }
+
+    public String getUuidname() {
+        return uuidname;
+    }
+
+    public void setUuidname(String uuidname) {
+        this.uuidname = uuidname;
     }
 
     public String getUsername() {
@@ -68,16 +82,53 @@ public class User {
         this.role = role;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public double getMoney() {
+        return money;
+    }
+
+    public void setMoney(double money) {
+        this.money = money;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "u_id=" + u_id +
+                ", uuidname='" + uuidname + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", himage='" + himage + '\'' +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
                 ", role=" + role +
+                ", address='" + address + '\'' +
+                ", money=" + money +
+                ", sex='" + sex + '\'' +
+                ", text='" + text + '\'' +
                 '}';
     }
 }
