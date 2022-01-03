@@ -37,8 +37,10 @@ public class UserController {
 
 
     @RequestMapping("/tologin")
-    public String tologin(User user, HttpSession session) {
+    public String tologin(User user, HttpServletRequest req,HttpServletResponse resp,HttpSession session) throws IOException {
         System.out.println(user);
+    /*    String realPath = session.getServletContext().getRealPath("/static/images");
+        System.out.println("测试"+realPath);//测试C:\Users\Administrator\IdeaProjects\ssm_test03\target\ssm_test01\static\images*/
         User user1 = userServiceImpl.selByemail(user.getEmail());
         System.out.println(user1);
         if (!user.getEmail().isEmpty()) {
@@ -53,7 +55,7 @@ public class UserController {
 //                            return "manager/home";
 
 
-                        return "index";
+                        resp.sendRedirect(req.getContextPath()+"/pagerto/homeindex");
                     }
 
                 }
@@ -73,31 +75,36 @@ public class UserController {
      */
 
     @RequestMapping("/toregister")
-    public String register(User user) {
+    @ResponseBody
+    public HashMap register(User user) {
         System.out.println(user);
         User user1 = userServiceImpl.selBynameAndEmail(user.getUsername(), user.getEmail());
+        HashMap hashMap = new HashMap();
 
-
-        if (user.getUsername() == "" && user.getUsername() == null) {
+        if (user.getUsername() == "" || user.getUsername() == null) {
             System.out.println("Username is null");
-            return "user/register";
+            hashMap.put("msg","用户名为空");
+            return hashMap;
         } else if (user1 != null) {
 
             if (user.getUsername().equals(user1.getUsername())) {
                 System.out.println("Username is t");
-                return "user/register";
+                hashMap.put("msg","用户名重复");
+                return hashMap;
             }
 
             if (user1.getEmail() == user.getEmail()) {
                 System.out.println("email is t");
-                return "user/register";
+                hashMap.put("msg","邮件重复");
+                return hashMap;
             }
         }
         Date date = new Date();
         Random random = new Random();
         user.setUuidname("C_" + date.getTime() + random.nextInt(800) + 100);
         userServiceImpl.insertuser(user);
-        return "user/login";
+        hashMap.put("msg","注册成功");
+        return hashMap;
 
 
     }
@@ -165,7 +172,7 @@ public class UserController {
         if (user.getHimage() == "")
             user.setHimage(sessionUser.getHimage());
 
-        user.setU_id(sessionUser.getU_id());
+        user.setUid(sessionUser.getUid());
 
         userServiceImpl.updataUser(user);
         System.out.println(sessionUser.getUuidname());

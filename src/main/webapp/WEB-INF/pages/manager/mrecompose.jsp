@@ -24,7 +24,7 @@
 <body>
 <div class="layui-layout layui-layout-admin">
 
-    <jsp:include page="../common/uheader.jsp"/>
+    <jsp:include page="../common/mheader.jsp"/>
 
 
 
@@ -37,7 +37,7 @@
                 <legend>始终等比例水平排列</legend>
             </fieldset>
         </div>
-        <div style="border:0px solid #eee ;margin: 0 auto;max-width: 1140px;padding-top: 10px;">
+        <div style="border:1px solid #eee ;margin: 0 auto;max-width: 1140px;padding-top: 10px;">
 
             <img id="image" src="static/images/headImg/${sessionScope.user.himage}" style="width:70px; height:70px; border-radius:50%; ">
             <div class="layui-form-item layui-form-text">
@@ -87,17 +87,17 @@
                     </div>
                 </div>
 
-<%--                <div class="layui-form-item">--%>
-<%--                    <label class="layui-form-label">密码</label>--%>
-<%--                    <div class="layui-input-inline">--%>
-<%--                        <input type="password" name="password" placeholder="请输入密码" autocomplete="off" class="layui-input">--%>
-<%--                    </div>--%>
-<%--                    <div class="layui-form-mid layui-word-aux">请务必填写用户名</div>--%>
-<%--                </div>--%>
+                <%--                <div class="layui-form-item">--%>
+                <%--                    <label class="layui-form-label">密码</label>--%>
+                <%--                    <div class="layui-input-inline">--%>
+                <%--                        <input type="password" name="password" placeholder="请输入密码" autocomplete="off" class="layui-input">--%>
+                <%--                    </div>--%>
+                <%--                    <div class="layui-form-mid layui-word-aux">请务必填写用户名</div>--%>
+                <%--                </div>--%>
 
 
 
-                <div class="layui-form-item">
+               <%-- <div class="layui-form-item">
                     <label class="layui-form-label">收货地址</label>
                     <div class="layui-input-inline">
                         <select name="address"  >
@@ -113,12 +113,12 @@
                             <option value="3A">3A203</option>
                         </select>
                     </div>
-                </div>
+                </div>--%>
 
                 <div class="layui-form-item layui-form-text">
                     <label class="layui-form-label">留言</label>
                     <div class="layui-input-block">
-                        <textarea   name="text" placeholder="${sessionScope.user.text}"  class="layui-textarea"  ></textarea>
+                        <textarea   name="text" placeholder="${sessionScope.user.text}" class="layui-textarea"  ></textarea>
                     </div>
                 </div>
 

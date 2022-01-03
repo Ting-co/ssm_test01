@@ -1,6 +1,7 @@
 package com.ssmtest01.test;
 
 import com.ssmtest01.service.AccountService;
+import com.ssmtest01.util.DataUtils;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -50,5 +51,18 @@ public class TestSpring {
         }
 
     }
+    @Test
+    public void run3() {
+        String str="123";
+        System.out.println(DataUtils.isInteger(str));
+        int i = Integer.parseInt(str);
+        System.out.println();
+        System.out.println(i);
+
+
+    }
+
+
+
 
 }

@@ -21,7 +21,8 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>注册</title>
-
+    <link rel="stylesheet" href="static/layui/css/layui.css" media="all">
+    <script src="static/layui/layui.js" charset="utf-8"></script>
 </head>
 <body>
 
@@ -29,10 +30,10 @@
 
     <div class="signup">
         <h2 class="form-title" id="signup"><span>或</span>登录</h2>
-        <form id="toregister" action="usermanager/tologin" >
+        <form id="toregister" action="usermanager/tologin" method="post" >
             <div class="form-holder">
-                <input type="email" class="input" name="email" placeholder="邮箱"/>
-                <input type="password" class="input" name="password" placeholder="密码"/>
+                <input type="email" class="input" lay-verify="email" name="email" placeholder="邮箱"/>
+                <input type="password" class="input" lay-verify="required" name="password" placeholder="密码"/>
             </div>
             <input type="submit" class="submit-btn" value="登录"/>
         </form>
@@ -43,13 +44,13 @@
     <div class="login slide-up">
         <div class="center">
             <h2 class="form-title" id="login"><span>或</span>注册</h2>
-            <form id="tologin" action="usermanager/toregister" method="post">
+            <form id="tologin"  >
                 <div class="form-holder">
-                    <input type="text" class="input" name="username" placeholder="用户名"/>
-                    <input type="email" class="input" name="email" placeholder="邮箱"/>
-                    <input type="password" class="input" name="password" placeholder="密码"/>
+                    <input type="text" class="input" lay-verify="required" name="username" placeholder="用户名"/>
+                    <input type="email" class="input" lay-verify="email" name="email" placeholder="邮箱"/>
+                    <input type="password" class="input" lay-verify="required" name="password" placeholder="密码"/>
                 </div>
-                <input type="submit" class="submit-btn" value="注册"/>
+                <input id="submit" type="submit" class="submit-btn" value="注册"/>
             </form>
         </div>
     </div>
@@ -83,6 +84,16 @@
             }
         });
     });
+
+    $("#submit").click(function () {
+        var data =$("#tologin").serialize();
+        $.post("usermanager/toregister",data,function (date) {
+                alert(date.msg)
+            }
+
+        )
+    })
+
 </script>
 
 </body>

@@ -23,6 +23,29 @@ public class PagerTo {
 //        return "/common/uheader";
     }
 
+    @RequestMapping("/mrecompose")
+    public String mrecompose() {
+
+        return "/manager/mrecompose";
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * 跳转到user的主页uindex
      *
@@ -111,8 +134,20 @@ public class PagerTo {
      */
 
     @RequestMapping("/urecompose")
-    public String urecompose() {
+    public String urecompose(HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if (user.getRole()==0)
         return "/user/urecompose";
+        return "/manager/mrecompose";
     }
+
+    @RequestMapping("/commoditys")
+    public String commoditys() {
+
+        return "/user/commoditys";
+    }
+
+
+
 
 }

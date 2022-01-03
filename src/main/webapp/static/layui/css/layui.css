@@ -3404,10 +3404,11 @@ a cite {
     border-top-color: #000
 }
 
+/*修改*/
 .layui-table-cell {
-    height: 28px;
+    /*height: 28px;*/
     line-height: 28px;
-    padding: 0 15px;
+    /*padding: 0 15px;*/
     position: relative;
     box-sizing: border-box
 }
@@ -5881,3 +5882,4 @@ body .layui-util-face .layui-layer-content {
 
 
 /*--------------------------*/
+/*追加*/

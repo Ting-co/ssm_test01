@@ -36,6 +36,7 @@
         </li>
 
         <li class="layui-nav-item layui-hide-xs"><a href="pagerto/homeindex">返回首页</a></li>
+        <li class="layui-nav-item layui-hide-xs"><a href="pagerto/message">求物留言区</a></li>
     </ul>
 
 
@@ -57,7 +58,7 @@
                     欢迎用户：[ ${sessionScope.user.username} ]登录
                 </a>
                 <dl class="layui-nav-child layui-anim layui-anim-upbit">
-                    <dd><a href="pagerto/uindex">个人主页</a></dd>
+                    <dd><a href="pagerto/toindex">个人主页</a></dd>
                     <dd><a href="usermanager/tologout">注销</a></dd>
                 </dl>
             </c:if>
@@ -82,7 +83,7 @@
                 </dl>
             </li>
             <li class="layui-nav-item"><a href="">购物车</a></li>
-            <li class="layui-nav-item"><a href="">管理商品</a></li>
+            <li class="layui-nav-item"><a href="commoditys/all">管理商品</a></li>
             <li class="layui-nav-item"><a href="">留言区</a></li>
         </ul>
     </div>

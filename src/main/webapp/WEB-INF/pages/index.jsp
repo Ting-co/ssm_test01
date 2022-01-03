@@ -90,9 +90,9 @@
             <a href="pagerto/register">ss</a>
             <a href="usermanager/test">ss</a>
         </div>
-<%--        <form action="usermanager/test">--%>
+        <%--        <form action="usermanager/test">--%>
         <form action="pagerto/test">
-<%--            <input type="hidden" name="username" value="${sessionScope.tt}">--%>
+            <%--            <input type="hidden" name="username" value="${sessionScope.tt}">--%>
             <input type="submit" value="测试">
         </form>
 
@@ -100,30 +100,67 @@
             <legend>拖拽上传</legend>
         </fieldset>
 
-        <div class="layui-form-item layui-form-text">
+        <div class="layui-form-item layui-form-text" id="ss" style="display: none">
             <label class="layui-form-label">上传按钮</label>
             <div class="layui-input-block">
                 <button type="button" class="layui-btn" id="test1">
                     <i class="layui-icon">&#xe67c;</i>上传图片
                 </button>
             </div>
+            <img id="image" src="static/images/headImg/1576635039_7.jpg"
+                 style="width:70px; height:70px; border-radius:50%; ">
         </div>
-        <img id="image" src="static/images/headImg/1576635039_7.jpg" style="width:70px; height:70px; border-radius:50%; ">
+
+        <div id="layerDemo" style="margin-bottom: 0;">
+            <div class="layui-btn-container">
+                <button data-method="offset" data-type="auto" class="layui-btn layui-btn-normal">居中弹出</button>
+            </div>
+        </div>
+        <div id="pager" style="margin-bottom: 0;">
+            <div class="daf">
+
+                <div class="layui-bg-gray" style="padding: 30px;">
+                    <div class="layui-row layui-col-space15">
+                        <div class="layui-col-md6">
+                            <div class="layui-panel">
+                                <div style="padding: 50px 30px;">一个面板</div>
+                            </div>
+                        </div>
+                        <div class="layui-col-md6">
+                            <div class="layui-panel">
+                                <div style="padding: 50px 30px;">一个面板</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="demo7"></div>
+            </div>
+        </div>
+
+<%--        <ul class="layui-fixbar" style="right: 50px; bottom: 100px;">--%>
+<%--            <li class="layui-icon" lay-type="bar1" style="background-color:#393D49">&#xe61f;</li>--%>
+<%--            <li class="layui-icon" lay-type="bar2" style="background-color:#393D49">&#xe604;</li>--%>
+<%--            <li class="layui-icon layui-fixbar-top" lay-type="top"--%>
+<%--                style="background-color: rgb(57, 61, 73); display: none;">--%>
+<%--            </li>--%>
+<%--        </ul>--%>
+
 
     </div>
-
-
     <%--尾页--%>
     <div class="mylayui-index-bottom">
         <jsp:include page="common/bottom.jsp"/>
     </div>
 </div>
 <script>
-    layui.use(['upload', 'element', 'layer'], function () {
+    layui.use(['util','upload', 'element', 'laypage', 'layer'], function () {
         var $ = layui.jquery
             , upload = layui.upload
             , element = layui.element
+            , laypage = layui.laypage
+            , util = layui.util
             , layer = layui.layer;
+
 
         //监听导航点击
         element.on('nav(demo)', function (elem) {
@@ -131,12 +168,33 @@
             layer.msg(elem.text());
         });
 
+        //json数据的测试
+        /*  var jj={
+              "kk":1,
+              "ss":"ss"
+          }
+
+          alert(jj)
+          alert("json字符串"+JSON.stringify(jj))
+          */
+
+
+        //分页
+
+        laypage.render({
+            elem: 'demo7'
+            , count: 100
+            , layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
+            , jump: function (obj) {
+                console.log(obj)
+            }
+        });
 
         //常规使用 - 普通图片上传
         let uploadInst = upload.render({
             elem: '#test1'
             , url: 'usermanager/image' //改成您自己的上传接口
-            ,dataType:"json"
+            , dataType: "json"
             , before: function (obj) {
                 //预读本地文件示例，不支持ie8
                 obj.preview(function (index, file, result) {
@@ -147,10 +205,10 @@
             , done: function (res) {
 
                 //如果上传失败
-                if (res.code>0) {
+                if (res.code > 0) {
                     return layer.msg('上传失败!!!');
                 }
-                alert("上传头像成功");
+                alert("上传头像成功" + res.data.src);
 
             }
             , error: function () {
@@ -159,10 +217,47 @@
         });
 
 
+        //弹窗触发事件
+        var active = {
+            offset: function (othis) {
+                var type = othis.data('type')
+                    , text = othis.text();
 
+                layer.open({
+                    type: 1
+                    , offset: type //具体配置参考：https://www.layui.site/doc/modules/layer.html#offset
+                    , id: 'layerDemo' + type //防止重复弹出
+                    , content: $("#ss")
+                    , success: function () {
+                        alert("你好")
+                    }
+                });
+            }
+        };
 
+        $('#layerDemo .layui-btn').on('click', function () {
+            var othis = $(this), method = othis.data('method');
+            active[method] ? active[method].call(this, othis) : '';
+        });
+
+        //固定块
+        util.fixbar({
+            bar1: '&#xe61f;'
+            ,bar2: '&#xe604;'
+            ,css: {right: 50, bottom: 100}
+            ,bgcolor: '#393D49'
+            ,click: function(type){
+                if(type === 'bar1'){
+                    layer.msg('icon 是可以随便换的')
+                } else if(type === 'bar2') {
+                    layer.msg('两个 bar 都可以设定是否开启')
+                }
+            }
+        });
 
     });
+
+
 </script>
 </body>
 </html>

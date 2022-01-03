@@ -4,7 +4,7 @@ package com.ssmtest01.bean;
  * 用户bean
  */
 public class User {
-    private int u_id;
+    private int uid;
     private String uuidname;
     private String username;
     private String password;
@@ -18,12 +18,12 @@ public class User {
     private String text;
 
 
-    public int getU_id() {
-        return u_id;
+    public int getUid() {
+        return uid;
     }
 
-    public void setU_id(int u_id) {
-        this.u_id = u_id;
+    public void setUid(int uid) {
+        this.uid = uid;
     }
 
     public String getUuidname() {
@@ -117,7 +117,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "u_id=" + u_id +
+                "uid=" + uid +
                 ", uuidname='" + uuidname + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +

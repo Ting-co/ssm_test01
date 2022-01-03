@@ -37,7 +37,7 @@
         </li>
 
         <li class="layui-nav-item layui-hide-xs"><a href="pagerto/homeindex">返回首页</a></li>
-        <li class="layui-nav-item layui-hide-xs"><a href="pagerto/message">求物留言区</a></li>
+        <li class="layui-nav-item layui-hide-xs"><a href="messages/all">求物留言区</a></li>
     </ul>
 
 
@@ -57,6 +57,7 @@
             </c:if>
             <c:if test="${sessionScope.user != null}">
                 <a href="javascript:;">
+
                     <img src="static/images/headImg/${sessionScope.user.himage}" class="layui-nav-img" >
                     欢迎用户：[ ${sessionScope.user.username} ]登录
                 </a>
