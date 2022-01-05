@@ -439,6 +439,7 @@
                 }
             });
 
+
             //表单的行内操作
             //表格行操作按钮点击事件
             table.on('tool(demo)', function (obj) {
