@@ -5,7 +5,8 @@
   Time: 23:20
   To change this template use File | Settings | File Templates.
 --%>
-
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
@@ -119,31 +120,37 @@
         <div id="pager" style="margin-bottom: 0;">
             <div class="daf">
 
-                <div class="layui-bg-gray" style="padding: 30px;">
-                    <div class="layui-row layui-col-space15">
-                        <div class="layui-col-md6">
-                            <div class="layui-panel">
-                                <div style="padding: 50px 30px;">一个面板</div>
+
+                <c:forEach items="${commoditys.list}" var="commoditys">
+
+                    <div class="layui-bg-gray" style="padding: 30px;">
+                        <div class="layui-row layui-col-space15">
+                            <div class="layui-col-md6">
+                                <div class="layui-panel">
+                                    <div style="padding: 50px 30px;">${commoditys.sid}</div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="layui-col-md6">
-                            <div class="layui-panel">
-                                <div style="padding: 50px 30px;">一个面板</div>
+                            <div class="layui-col-md6">
+                                <div class="layui-panel">
+                                    <div style="padding: 50px 30px;">${commoditys.commodity}</div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </c:forEach>
+
                 <div id="demo7"></div>
             </div>
         </div>
 
-<%--        <ul class="layui-fixbar" style="right: 50px; bottom: 100px;">--%>
-<%--            <li class="layui-icon" lay-type="bar1" style="background-color:#393D49">&#xe61f;</li>--%>
-<%--            <li class="layui-icon" lay-type="bar2" style="background-color:#393D49">&#xe604;</li>--%>
-<%--            <li class="layui-icon layui-fixbar-top" lay-type="top"--%>
-<%--                style="background-color: rgb(57, 61, 73); display: none;">--%>
-<%--            </li>--%>
-<%--        </ul>--%>
+        <%--        <ul class="layui-fixbar" style="right: 50px; bottom: 100px;">--%>
+        <%--            <li class="layui-icon" lay-type="bar1" style="background-color:#393D49">&#xe61f;</li>--%>
+        <%--            <li class="layui-icon" lay-type="bar2" style="background-color:#393D49">&#xe604;</li>--%>
+        <%--            <li class="layui-icon layui-fixbar-top" lay-type="top"--%>
+        <%--                style="background-color: rgb(57, 61, 73); display: none;">--%>
+        <%--            </li>--%>
+        <%--        </ul>--%>
+
 
 
     </div>
@@ -153,7 +160,10 @@
     </div>
 </div>
 <script>
-    layui.use(['util','upload', 'element', 'laypage', 'layer'], function () {
+
+
+
+    layui.use(['util', 'upload', 'element', 'laypage', 'layer'], function () {
         var $ = layui.jquery
             , upload = layui.upload
             , element = layui.element
@@ -177,16 +187,31 @@
           alert(jj)
           alert("json字符串"+JSON.stringify(jj))
           */
+        var curr;
+if (${commoditys.pageNum==null}){
+    curr=1;
+}else {
+    curr=${commoditys.pageNum};
+}
 
 
         //分页
 
         laypage.render({
             elem: 'demo7'
-            , count: 100
+            , count: ${commoditys.total}
+            ,limit:${commoditys.pageSize}
+            ,curr:curr
             , layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
-            , jump: function (obj) {
-                console.log(obj)
+            , jump: function (obj, first) {
+
+                if (!first) {
+                    var curr = obj.curr;
+                    $.get("index/toPage", {"pageNum": curr}, function () {
+                            location.replace("index/toindex?pageNum="+curr);
+
+                    })
+                }
             }
         });
 
@@ -243,13 +268,13 @@
         //固定块
         util.fixbar({
             bar1: '&#xe61f;'
-            ,bar2: '&#xe604;'
-            ,css: {right: 50, bottom: 100}
-            ,bgcolor: '#393D49'
-            ,click: function(type){
-                if(type === 'bar1'){
+            , bar2: '&#xe604;'
+            , css: {right: 50, bottom: 100}
+            , bgcolor: '#393D49'
+            , click: function (type) {
+                if (type === 'bar1') {
                     layer.msg('icon 是可以随便换的')
-                } else if(type === 'bar2') {
+                } else if (type === 'bar2') {
                     layer.msg('两个 bar 都可以设定是否开启')
                 }
             }

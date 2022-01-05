@@ -18,9 +18,24 @@ public interface MessagesDao {
             @Result(column = "message",property = "message"),
             @Result(column = "mdate",property = "mdate"),
             @Result(column = "good",property = "good"),
-            @Result(column = "uid",property = "user", one = @One( select="com.ssmtest01.dao.finById"
+            @Result(column = "uid",property = "user", one = @One( select="com.ssmtest01.dao.UserDao.finById"
                     ,fetchType=FetchType.LAZY))
 
     })
      List<Messages> getall();
+
+    @Insert("insert into messages (uid,message,mdate) value (#{uid},#{message},#{mdate})")
+    void addM(Messages messages);
+
+
+    @Select("select * from messages")
+    List<Messages> getallmessages();
+
+
+    @Delete("delete from messages where mid=#{mid} ")
+     int delBysId(int mid);
+
+    @Select("<script>select * from messages where mid=#{mid} or uid=#{uid} or" +
+            "<when test='#{message} !=null '>  message like concat ('%',#{message,jdbcType=VARCHAR},'%')</when></script>")
+    List<Messages> selByIdOrName(@Param("mid") int mid, @Param("message") String message, @Param("uid") int uid);
 }

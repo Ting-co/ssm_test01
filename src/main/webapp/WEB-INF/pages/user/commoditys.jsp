@@ -39,7 +39,7 @@
                     <label class="layui-form-label">搜索</label>
                     <div class="layui-input-inline">
                         <input type="text" name="commodity" placeholder="请输入商品名字或商品uuid" value=""
-                               autocomplete="" class="layui-input"/>
+                               autocomplete=""   class="layui-input"/>
                         <input type="submit" class="layui-btn" value="搜索">
                     </div>
                 </div>
@@ -100,7 +100,7 @@
                                 <c:when test="${obj.state == '4'}">
                                     售卖中
                                 </c:when>
-                                </c:choose>
+                            </c:choose>
                             </td>
                             <td>${obj.message}</td>
                             <td>
@@ -165,7 +165,7 @@
 
         <%--添加表单--%>
         <div style="border:1px solid #eee ;margin: 0 auto;max-width: 1140px;padding-top: 10px;display: none;"
-             id="addCommoditys">
+             id="addCommoditys" class=".layui-layer-shade">
             <img id="image" src="/static/images/commoditys/${sessionScope.commoditys.simage}"
                  style="width:70px; height:70px; border-radius:50%; ">
             <div class="layui-form-item layui-form-text">
@@ -371,6 +371,12 @@
                             , title: '添加商品'
                             , area: ['700px', '720px']
                             , content: $("#addCommoditys")
+                            ,success: function (layero) {
+                                //把内容放到遮罩层里
+                                var mask = $(".layui-layer-shade");
+                                mask.appendTo(layero.parent());
+                            }
+                            ,anim:3
                             , end: function () {
                                 $("#addCommoditys").css({"display": "none"})
                             }
@@ -467,7 +473,7 @@
                         , area: ['700px', '720px']
 
                         , content: $("#updateCommoditys")
-                        , success: function () {
+                        , success: function (layero) {
                             /*//根据选择的类型获取分类
                             layerForm.on('select(type3)', function () {
                                 //获取选中的类型id
@@ -492,6 +498,9 @@
                                     })
                                 }
                             });*/
+                            //把内容放到遮罩层里
+                            var mask = $(".layui-layer-shade");
+                            mask.appendTo(layero.parent());
 
                             $.ajax({
                                 url: 'commoditys/getBysId'

@@ -73,7 +73,7 @@
         <ul class="layui-nav layui-nav-tree" lay-filter="test">
             <li class="layui-nav-item"><a href="pagerto/mrecompose">修改个人资料</a></li>
             <li class="layui-nav-item"><a href="Mcommoditys/all">管理商品</a></li>
-            <li class="layui-nav-item"><a href="">留言区</a></li>
+            <li class="layui-nav-item"><a href="messages/mall">留言区</a></li>
         </ul>
     </div>
 </div>

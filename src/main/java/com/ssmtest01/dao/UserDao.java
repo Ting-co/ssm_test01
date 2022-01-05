@@ -7,6 +7,24 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserDao {
 
+    @Results(id = "userMap" ,value = {
+            @Result(id = true ,column = "uid",property = "uid"),
+            @Result(column = "uuidname",property = "uuidname"),
+            @Result(column = "username",property = "username"),
+            @Result(column = "password",property = "password"),
+            @Result(column = "himage",property = "himage"),
+            @Result(column = "phone",property = "phone"),
+            @Result(column = "email",property = "email"),
+            @Result(column = "role",property = "role"),
+            @Result(column = "address",property = "address"),
+            @Result(column = "money",property = "money"),
+            @Result(column = "sex",property = "sex"),
+            @Result(column = "text",property = "text")
+
+    })
+
+
+
     @Select("select * from user WHERE username= #{username} or email=#{email} ")
     public User selBynameAndEmail(@Param("username") String username, @Param("email") String email);
 
@@ -27,20 +45,8 @@ public interface UserDao {
     @Select("select * from user WHERE uuidname=#{uuidname} ")
     public User selByidname(String uuidname);
 
-    @Results(id = "userMap" ,value = {
-            @Result(id = true ,column = "uid",property = "uid"),
-            @Result(column = "uuidname",property = "uuidname"),
-            @Result(column = "username",property = "password"),
-            @Result(column = "himage",property = "himage"),
-            @Result(column = "phone",property = "phone"),
-            @Result(column = "email",property = "email"),
-            @Result(column = "role",property = "role"),
-            @Result(column = "address",property = "address"),
-            @Result(column = "money",property = "money"),
-            @Result(column = "sex",property = "sex"),
-            @Result(column = "text",property = "text")
 
-    })
-    @Select("select * from user WHERE uid=#{uid}")
-    public  User finById(int uid);
+    @Select("select * from user WHERE uid=#{u_id}")
+    @ResultMap(value = "userMap")
+    public  User finById(int u_id);
 }

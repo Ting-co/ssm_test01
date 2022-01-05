@@ -144,8 +144,6 @@ public class McommoditysController {
     public String select(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String commodity = request.getParameter("commodity");
 
-
-
         if (commodity!=null||commodity!="") {
         int sid;
         int uid;

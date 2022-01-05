@@ -140,6 +140,7 @@
             ,layer = layui.layer
             ,util = layui.util
             ,$ = layui.$
+
             ,upload = layui.upload;
 
 
@@ -150,6 +151,7 @@
                 layer.msg('展开左侧菜单的操作', {icon: 0});
             }
         });
+
 
 
 

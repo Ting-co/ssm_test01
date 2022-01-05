@@ -22,6 +22,38 @@
     <link rel="stylesheet" href="static/layui/css/layui.css" media="all">
     <script src="static/layui/layui.js" charset="utf-8"></script>
     <script src="static/jquery/jquery.js"></script>
+    <style>
+
+        .ds-post-main {
+            position: relative;
+            width: 500px;
+        }
+
+        .ds-avatar {
+            position: absolute;
+            top: 20px;
+            width: 31px;
+            height: 31px;
+            padding: 5px;
+            background: #fff;
+            border-radius: 50%;
+        }
+
+        .ds-avatar img {
+            display: block;
+            width: 31px;
+            height: 31px;
+            background: #98c4dc;
+            border-radius: 50%;
+        }
+
+        .ds-comment-body {
+            margin-left: 20px;
+            padding: 10px 10px 10px 30px;
+            height: 80px;
+            background: #a19f9f;
+        }
+    </style>
 </head>
 <body>
 <div class="layui-layout layui-layout-admin">
@@ -38,51 +70,89 @@
             </fieldset>
         </div>
         <div style="margin: 0 auto; max-width: 1000px; padding-top: 10px">
-        <%--留言模拟--%>
-        <div style="border: #beb9b0 solid 1px;margin-top: 30px;border-radius: 5px;">
-            <div style="border-bottom: #beb9b0 solid 1px;height:40px;">
-                <h2 style="margin:10px 0 10px 15px;">商品列表</h2>
-            </div>
-            <div style="padding:20px;">
-                <table id="demo" lay-filter="demo" style="border:0px ">
-                    <thead>
-                    <tr>
-                        <th lay-data="{field:'sid',align: 'center'}"></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <c:forEach items="${messages}" var="obj">
+            <%--留言模拟--%>
+            <div style="border: #beb9b0 solid 1px;margin-top: 30px;border-radius: 5px;">
+                <div style="border-bottom: #beb9b0 solid 1px;height:40px;">
+                    <h2 style="margin:10px 0 10px 15px;">商品列表</h2>
+                </div>
+                <div style="padding:20px;">
+                    <table id="demo" lay-filter="demo" style="border:0px ">
+                        <thead>
                         <tr>
-                            <td>
-                                <div id="message">
+                            <th lay-data="{field:'sid',align: 'center'}"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach items="${messages}" var="obj">
+                            <tr>
+                                <td>
+                                    <div id="message" style="height: 100px">
 
-                                    <div class="layui-bg-gray" style="padding: 30px;">
-                                        <div class="layui-row layui-col-space15">
-                                            <div class="layui-col-md6">
-                                                <div class="layui-card">
-                                                    <div class="layui-card-header">卡片面板${obj.commodity}</div>
-                                                    <div class="layui-card-body">
-                                                        卡片式面板面板通常用于非白色背景色的主体内${obj.commodity}<br>
-                                                        从而映衬出边框投影
-                                                    </div>
+                                            <%-- <div class="layui-bg-gray" style="padding: 30px;">
+                                                 <div class="layui-row layui-col-space15">
+                                                     <div class="layui-col-md6">
+                                                         <div class="layui-card">
+                                                             <div class="layui-card-header"><img
+                                                                     src="static/images/headImg/${obj.user.himage}"
+                                                                     style="width:70px; height:70px; border-radius:50%; ">${obj.user.username}
+                                                             </div>
+                                                             <div class="layui-card-body">
+                                                                     ${obj.message}<br>
+                                                             </div>
+                                                         </div>
+                                                     </div>
+                                                 </div>
+                                             </div>--%>
+                                        <div class="ds-post-main">
+                                            <div class="ds-avatar">
+                                                <img src="static/images/headImg/${obj.user.himage}">
+                                            </div>
+                                            <div class="ds-comment-body">
+                                                <div>${obj.user.username} ${obj.mdate}  </div>
+                                                <br>
+                                                <div>
+                                                        ${obj.message}
                                                 </div>
                                             </div>
                                         </div>
+
                                     </div>
+                                </td>
+                            </tr>
+                        </c:forEach>
 
-                                </div>
-                            </td>
-                        </tr>
-                    </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
 
-                    </tbody>
-                </table>
             </div>
-
-        </div>
         </div>
     </div>
 
+    <div style="border:1px solid #eee ;margin: 0 auto;max-width: 1140px;padding-top: 10px;display: none;"
+         id="addCommoditys">
+
+
+
+        <form class="layui-form layui-form-pane" id="addmessage" action="">
+
+
+
+
+            <div class="layui-form-item layui-form-text">
+
+                <div class="layui-input-block">
+                    <textarea name="message" class="layui-textarea" placeholder="写下你的留言.."></textarea>
+                </div>
+            </div>
+
+
+            <div class="layui-form-item">
+                <input type="submit" class="layui-btn" value="添加">
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </form>
+    </div>
 
 
     <%--尾页--%>
@@ -92,11 +162,14 @@
 </div>
 <script>
 
+    <%--alert("${messages}");--%>
 
-    layui.use('laypage','element', function () {
-        var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
-        var laypage = layui.laypage;
-
+    layui.use(['util','laypage', 'element'], function () {
+        var element = layui.element //导航的hover效果、二级菜单等功能，需要依赖element模块
+            , laypage = layui.laypage
+            , table = layui.table
+            , util = layui.util
+            , $ = layui.jquery;
         //监听导航点击
         element.on('nav(demo)', function (elem) {
             //console.log(elem)
@@ -106,7 +179,13 @@
         //执行一个laypage实例
         /*laypage.render({
             elem: 'message' //注意，这里的 test1 是 ID，不用加 # 号
-            ,count: ${fn:length(commoditys)} //数据总数，从服务端得到
+            ,count:
+
+
+
+
+
+        ${fn:length(commoditys)} //数据总数，从服务端得到
         });*/
 
         /**
@@ -121,6 +200,48 @@
             // ,skin:'nob'
             // , defaultToolbar: []
         });
+
+        $(".layui-btn").click(function () {
+            var data =$("#addmessage").serialize();
+            $.post("messages/add",data,function (date) {
+                if (date.msg!=null)
+                {
+                    alert(date.msg);
+                }
+
+                location.reload();
+                }
+
+            )
+        })
+
+
+
+        //固定块
+        util.fixbar({
+            bar1: '&#xe61f;'
+            ,bar2: '&#xe604;'
+            ,css: {right: 50, bottom: 100}
+            ,bgcolor: '#393D49'
+            ,click: function(type){
+                if(type === 'bar1'){
+                    layer.open({
+                        type: 1
+                        , title: '添加留言'
+                        , area: ['400px', '220px']
+                        ,offset: '300px'
+                        , content: $("#addCommoditys")
+                        , end: function () {
+                            $("#addCommoditys").css({"display": "none"})
+                        }
+
+                    });
+                } else if(type === 'bar2') {
+                    layer.msg('两个 bar 都可以设定是否开启')
+                }
+            }
+        });
+
     });
 </script>
 </body>
