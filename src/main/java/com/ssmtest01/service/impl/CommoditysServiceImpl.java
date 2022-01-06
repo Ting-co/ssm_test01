@@ -63,5 +63,17 @@ public class CommoditysServiceImpl implements CommoditysService {
     public void updPass(String message, int state,int sid){
         commoditysDao.updPass(message,state,sid);
     }
+
+    @Override
+    public List<Commoditys> getByName(String commodity) {
+        return commoditysDao.getByName(commodity);
+    }
+
+    @Override
+    public List<Commoditys> getBySort(String sort) {
+        return commoditysDao.getBySort(sort);
+    }
+
+
 }
 

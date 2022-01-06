@@ -148,6 +148,11 @@ public class PagerTo {
     }
 
 
+    @RequestMapping("/shopping")
+    public String shopping() {
+
+        return "/user/shopping";
+    }
 
 
 }

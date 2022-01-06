@@ -1,5 +1,6 @@
 package com.ssmtest01.dao;
 
+import com.ssmtest01.bean.Commoditys;
 import com.ssmtest01.bean.Messages;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.mapping.FetchType;
@@ -38,4 +39,6 @@ public interface MessagesDao {
     @Select("<script>select * from messages where mid=#{mid} or uid=#{uid} or" +
             "<when test='#{message} !=null '>  message like concat ('%',#{message,jdbcType=VARCHAR},'%')</when></script>")
     List<Messages> selByIdOrName(@Param("mid") int mid, @Param("message") String message, @Param("uid") int uid);
+
+
 }

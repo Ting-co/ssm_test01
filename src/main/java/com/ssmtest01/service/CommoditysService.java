@@ -29,4 +29,11 @@ public interface CommoditysService {
      void updateMessage( Commoditys commoditys);
 
     void updPass(String message, int state,int sid);
+
+
+
+    List<Commoditys> getByName(String commodity);
+
+    List<Commoditys> getBySort(String sort);
+
 }

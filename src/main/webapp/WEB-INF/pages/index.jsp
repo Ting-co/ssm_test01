@@ -69,88 +69,147 @@
 
     <%--主体--%>
     <div class="mylayui-index-body">
-        <div class="layui-btn-container">
+        <%--  <div>
+          <div class="layui-btn-container">
 
-            <button type="button" class="layui-btn">默认按钮</button>
+              <button type="button" class="layui-btn">默认按钮</button>
 
-        </div>
-        <div>
-            <h1>测试保存</h1>
-            <form action="account/save" method="post">
-                姓名：<input type="text" name="name"/><br/>
-                金额：<input type="text" name="money"/><br/>
-                <input type="submit" value="保存">
+          </div>
+          <div>
+              <h1>测试保存</h1>
+              <form action="account/save" method="post">
+                  姓名：<input type="text" name="name"/><br/>
+                  金额：<input type="text" name="money"/><br/>
+                  <input type="submit" value="保存">
+              </form>
+              <form action="pagerto/mindex">
+                  <input type="submit" value="跳转">
+              </form>
+              <form action="pagerto/register">
+
+                  <input type="submit" value="登录">
+              </form>
+              <a href="pagerto/register">ss</a>
+              <a href="usermanager/test">ss</a>
+          </div>
+          &lt;%&ndash;        <form action="usermanager/test">&ndash;%&gt;
+          <form action="pagerto/test">
+              &lt;%&ndash;            <input type="hidden" name="username" value="${sessionScope.tt}">&ndash;%&gt;
+              <input type="submit" value="测试">
+          </form>
+
+          <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+              <legend>拖拽上传</legend>
+          </fieldset>
+
+          <div class="layui-form-item layui-form-text" id="ss" style="display: none">
+              <label class="layui-form-label">上传按钮</label>
+              <div class="layui-input-block">
+                  <button type="button" class="layui-btn" id="test1">
+                      <i class="layui-icon">&#xe67c;</i>上传图片
+                  </button>
+              </div>
+              <img id="image" src="static/images/headImg/1576635039_7.jpg"
+                   style="width:70px; height:70px; border-radius:50%; ">
+          </div>
+
+          <div id="layerDemo" style="margin-bottom: 0;">
+              <div class="layui-btn-container">
+                  <button data-method="offset" data-type="auto" class="layui-btn layui-btn-normal">居中弹出</button>
+              </div>
+          </div>
+          </div>--%>
+        <%--搜索框--%>
+        <div style="">
+            <form class="layui-form layui-form-pane" action="index/select">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">搜索</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="commodity" placeholder="请输入商品名字" value=""
+                               autocomplete="" class="layui-input"/>
+                        <input type="submit" class="layui-btn" value="搜索">
+                    </div>
+                </div>
             </form>
-            <form action="pagerto/mindex">
-                <input type="submit" value="跳转">
-            </form>
-            <form action="pagerto/register">
-
-                <input type="submit" value="登录">
-            </form>
-            <a href="pagerto/register">ss</a>
-            <a href="usermanager/test">ss</a>
-        </div>
-        <%--        <form action="usermanager/test">--%>
-        <form action="pagerto/test">
-            <%--            <input type="hidden" name="username" value="${sessionScope.tt}">--%>
-            <input type="submit" value="测试">
-        </form>
-
-        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-            <legend>拖拽上传</legend>
-        </fieldset>
-
-        <div class="layui-form-item layui-form-text" id="ss" style="display: none">
-            <label class="layui-form-label">上传按钮</label>
-            <div class="layui-input-block">
-                <button type="button" class="layui-btn" id="test1">
-                    <i class="layui-icon">&#xe67c;</i>上传图片
-                </button>
-            </div>
-            <img id="image" src="static/images/headImg/1576635039_7.jpg"
-                 style="width:70px; height:70px; border-radius:50%; ">
         </div>
 
-        <div id="layerDemo" style="margin-bottom: 0;">
-            <div class="layui-btn-container">
-                <button data-method="offset" data-type="auto" class="layui-btn layui-btn-normal">居中弹出</button>
-            </div>
-        </div>
+        <ul>
+            <li><a href="index/selectBySort?sort=衣服装扮">衣服装扮</a></li>
+            <li><a href="index/selectBySort?sort=美妆护肤">美妆护肤</a></li>
+            <li><a href="index/selectBySort?sort=电子数码">电子数码</a></li>
+            <li><a href="index/selectBySort?sort=书本文具">书本文具</a></li>
+            <li><a href="index/selectBySort?sort=零食水果">零食水果</a></li>
+            <li><a href="index/selectBySort?sort=项链饰品">项链饰品</a></li>
+        </ul>
+
         <div id="pager" style="margin-bottom: 0;">
-            <div class="daf">
+            <div class="daf" style="padding-left: 400px;padding-right: 400px">
 
 
                 <c:forEach items="${commoditys.list}" var="commoditys">
 
-                    <div class="layui-bg-gray" style="padding: 30px;">
-                        <div class="layui-row layui-col-space15">
-                            <div class="layui-col-md6">
-                                <div class="layui-panel">
-                                    <div style="padding: 50px 30px;">${commoditys.sid}</div>
-                                </div>
-                            </div>
-                            <div class="layui-col-md6">
-                                <div class="layui-panel">
-                                    <div style="padding: 50px 30px;">${commoditys.commodity}</div>
-                                </div>
-                            </div>
-                        </div>
+                    <div style="background: #c0c4cc">
+                        <table border="0">
+                            <tr>
+                                <td rowspan="6">
+                                    <div style="padding: 5px">
+                                    <img src="static/images/commoditys/${commoditys.simage}"
+                                                     style="height: 200px;width: 300px">
+                                    </div>
+                                </td>
+
+                                <td>&nbsp;&nbsp;&nbsp;&nbsp;${commoditys.commodity}
+                                    </br>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;&nbsp;&nbsp;￥${commoditys.price}
+
+                                    <div style="padding-left: 10px"> <hr ></div>
+                                </td>
+                                <td>库存${commoditys.amount}
+                                    </br>
+                                    <hr width="220">
+                                </td>
+                            </tr>
+
+                            <tr>
+
+                                <td>&nbsp;&nbsp;&nbsp;上架时间: ${commoditys.sdate}
+
+                                  <div style="padding-left: 10px"> <br/></div>
+                                </td>
+
+                            </tr>
+                            <tr>
+
+                                <td>&nbsp;&nbsp;&nbsp;简介：</br>
+                                    <div style="padding-left: 10px"> <br/></div>
+                                    &nbsp;&nbsp;&nbsp;${commoditys.synopsis}</td>
+                                </td>
+                                    <%-- <td colspan="3">Row 3 Cell 1</td>--%>
+                            </tr>
+                            <tr>
+
+                                <td> <li><input type="button" name="minus" value="-" onclick="minus(0)"><input type="text" name="amount" value="1"><input type="button" name="plus" value="+" onclick="plus(0)" ></li>
+
+                                </td>
+                                    <%-- <td colspan="3">Row 3 Cell 1</td>--%>
+                            </tr>
+                            <tr>
+
+                                <td>&nbsp;&nbsp;&nbsp;<BUTTON>加入购物车</BUTTON><BUTTON>立即购买</BUTTON>
+                                </td>
+                                    <%-- <td colspan="3">Row 3 Cell 1</td>--%>
+                            </tr>
+                        </table>
                     </div>
+                    </br>
                 </c:forEach>
 
                 <div id="demo7"></div>
             </div>
         </div>
-
-        <%--        <ul class="layui-fixbar" style="right: 50px; bottom: 100px;">--%>
-        <%--            <li class="layui-icon" lay-type="bar1" style="background-color:#393D49">&#xe61f;</li>--%>
-        <%--            <li class="layui-icon" lay-type="bar2" style="background-color:#393D49">&#xe604;</li>--%>
-        <%--            <li class="layui-icon layui-fixbar-top" lay-type="top"--%>
-        <%--                style="background-color: rgb(57, 61, 73); display: none;">--%>
-        <%--            </li>--%>
-        <%--        </ul>--%>
-
 
 
     </div>
@@ -160,7 +219,6 @@
     </div>
 </div>
 <script>
-
 
 
     layui.use(['util', 'upload', 'element', 'laypage', 'layer'], function () {
@@ -178,107 +236,115 @@
             layer.msg(elem.text());
         });
 
-        //json数据的测试
-        /*  var jj={
-              "kk":1,
-              "ss":"ss"
-          }
-
-          alert(jj)
-          alert("json字符串"+JSON.stringify(jj))
-          */
         var curr;
-if (${commoditys.pageNum==null}){
-    curr=1;
-}else {
-    curr=${commoditys.pageNum};
-}
+        if (${commoditys.pageNum==null}) {
+            curr = 1;
+        } else {
+            curr =${commoditys.pageNum};
+        }
+
+        var select =${select};
+
+
+        //搜索回显
+        var myselect = "${myselect}";
+
+        if (myselect != null || myselect != ' ') {
+            //名称文本框回显
+            $("input[name='commodity']").val('${myselect}');
+        } /*else {
+            $("#none").css({"display": "hidden"})
+        }*/
+
+        var selectBySort = "${selectBySort}";
 
 
         //分页
-
         laypage.render({
             elem: 'demo7'
             , count: ${commoditys.total}
-            ,limit:${commoditys.pageSize}
-            ,curr:curr
+            , limit:${commoditys.pageSize}
+            , curr: curr
             , layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
             , jump: function (obj, first) {
 
                 if (!first) {
                     var curr = obj.curr;
                     $.get("index/toPage", {"pageNum": curr}, function () {
-                            location.replace("index/toindex?pageNum="+curr);
+                        if (select != 1) {
+                            location.replace("index/toindex?pageNum=" + curr);
+                        } else {
+                            if (myselect == null || myselect == "") {
+                                location.replace("index/select?pageNum=" + curr + "select=" + select);
+                            } else {
+                                if (select == 1 || select == "1") {
+                                    location.replace("index/select?pageNum=" + curr + "&select=" + select + "&commodity=" + myselect);
+                                } else {
+                                    location.replace("index/select?pageNum=" + curr + "&select=" + select + "&commodity=" + selectBySort);
+                                }
+                            }
+
+                        }
 
                     })
                 }
             }
         });
 
-        //常规使用 - 普通图片上传
-        let uploadInst = upload.render({
-            elem: '#test1'
-            , url: 'usermanager/image' //改成您自己的上传接口
-            , dataType: "json"
-            , before: function (obj) {
-                //预读本地文件示例，不支持ie8
-                obj.preview(function (index, file, result) {
-                    $('#image').attr('src', result); //图片链接（base64）
-                    // alert(result);
-                });
+
+        //物品的加减
+        //减法
+        function minus(index) {
+            //获取当前数量的值
+            var amounts=document.getElementsByName("amount");
+
+            //得到第一个amount的元素的value属性的值
+            var count=parseInt(amounts[index].value); //数量加1
+
+            if (count<=1){
+                alert("不能再减了，快没了！！");
+            } else {
+                //得到第一个amount的元素的value属性的值
+                var count=parseInt(amounts[index].value)-1; //数量加1
+
+                //重新把count的值绑定在数量文本框里
+                amounts[index].value=count;
+                var prices=document.getElementsByName("price");
+                var price=parseFloat(prices[index].value);
+                //乘以Math.pow(10,2)的原因为避免失真
+                var totalMoney=((price*Math.pow(10,2))*count)/Math.pow(10,2);
+
+                document.getElementById("price"+index).innerHTML="¥："+totalMoney;
             }
-            , done: function (res) {
 
-                //如果上传失败
-                if (res.code > 0) {
-                    return layer.msg('上传失败!!!');
-                }
-                alert("上传头像成功" + res.data.src);
+            total();
 
-            }
-            , error: function () {
-                alert("上传失败");
-            }
-        });
+        }
 
+        //加法
+        function plus(index) {
 
-        //弹窗触发事件
-        var active = {
-            offset: function (othis) {
-                var type = othis.data('type')
-                    , text = othis.text();
+            //获取当前数量的值
+            var amounts=document.getElementsByName("amount");
 
-                layer.open({
-                    type: 1
-                    , offset: type //具体配置参考：https://www.layui.site/doc/modules/layer.html#offset
-                    , id: 'layerDemo' + type //防止重复弹出
-                    , content: $("#ss")
-                    , success: function () {
-                        alert("你好")
-                    }
-                });
-            }
-        };
+            //得到第一个amount的元素的value属性的值
+            var count=parseInt(amounts[index].value)+1; //数量加1
 
-        $('#layerDemo .layui-btn').on('click', function () {
-            var othis = $(this), method = othis.data('method');
-            active[method] ? active[method].call(this, othis) : '';
-        });
+            //重新把count的值绑定在数量文本框里
+            amounts[index].value=count;
 
-        //固定块
-        util.fixbar({
-            bar1: '&#xe61f;'
-            , bar2: '&#xe604;'
-            , css: {right: 50, bottom: 100}
-            , bgcolor: '#393D49'
-            , click: function (type) {
-                if (type === 'bar1') {
-                    layer.msg('icon 是可以随便换的')
-                } else if (type === 'bar2') {
-                    layer.msg('两个 bar 都可以设定是否开启')
-                }
-            }
-        });
+            //当前操作端口的价格也要重新计算
+            //得到当前端口的单价
+            var prices=document.getElementsByName("price");
+            var price=parseFloat(prices[index].value);
+            //乘以Math.pow(10,2)的原因为避免失真
+            var totalMoney=((price*Math.pow(10,2))*count)/Math.pow(10,2);
+
+            //把当前价格显示在文本中
+            document.getElementById("price"+index).innerHTML="¥："+totalMoney;
+
+            total();
+        }
 
     });
 

@@ -45,4 +45,9 @@ public interface CommoditysDao {
     @Update("update commoditys set message=#{message},state=#{state}  where sid=#{sid}")
     void updPass(@Param("message") String message, @Param("state") int state,@Param("sid") int sid);
 
+    @Select("select * from commoditys where commodity like concat( '%',#{name},'%' )")
+    List<Commoditys> getByName(String commodity);
+
+    @Select("select * from commoditys where sort=#{sort}")
+    List<Commoditys> getBySort(String sort);
 }

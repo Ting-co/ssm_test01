@@ -82,7 +82,7 @@
                     <dd><a href="javascript:;">历史订单</a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item"><a href="">购物车</a></li>
+            <li class="layui-nav-item"><a href="pagerto/shopping">购物车</a></li>
             <li class="layui-nav-item"><a href="commoditys/all">管理商品</a></li>
             <li class="layui-nav-item"><a href="">留言区</a></li>
         </ul>
