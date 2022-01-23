@@ -35,7 +35,7 @@
             <i class="layui-icon layui-icon-spread-left"></i>
         </li>
 
-        <li class="layui-nav-item layui-hide-xs"><a href="pagerto/homeindex">返回首页</a></li>
+        <li class="layui-nav-item layui-hide-xs"><a href="index/toindex">返回首页</a></li>
         <li class="layui-nav-item layui-hide-xs"><a href="pagerto/message">求物留言区</a></li>
     </ul>
 

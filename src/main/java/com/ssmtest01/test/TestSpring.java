@@ -54,14 +54,38 @@ public class TestSpring {
     @Test
     public void run3() {
         String str="123";
+        String str2=" 1 2,3";
+        String str1=null;
         System.out.println(DataUtils.isInteger(str));
         int i = Integer.parseInt(str);
         System.out.println();
         System.out.println(i);
+        int i1 = str.hashCode();
+        int i2 = str.charAt(2);
+        String trim = str2.trim();
+        System.out.println(trim);
+
 
 
     }
+    @Test
+    public void run4() {
+        StringBuffer hello = new StringBuffer("Hello");
 
+        if (false);
+        System.out.println(hello);
+        System.out.println(hello.length() > 5 && (hello.append("there").equals("False")));
+
+
+
+    }
+    @Test
+    public void run5() {
+        System.out.println(4>=5);
+        System.out.println(5>=5);
+        System.out.println(6>=5);
+
+    }
 
 
 

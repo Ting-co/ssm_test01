@@ -2,6 +2,7 @@ package com.ssmtest01.bean;
 
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * Keafmd
@@ -48,6 +49,19 @@ public class Account implements Serializable {
                 ", name='" + name + '\'' +
                 ", money=" + money +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Account account = (Account) o;
+        return Objects.equals(id, account.id) && Objects.equals(name, account.name) && Objects.equals(money, account.money);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, money);
     }
 }
 

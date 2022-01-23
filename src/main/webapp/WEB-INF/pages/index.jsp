@@ -21,7 +21,7 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
+    <script src="static/js/jquery.min.js"></script>
     <link rel="stylesheet" href="../../static/layui/css/layui.css" media="all">
     <script src="../../static/layui/layui.js" charset="utf-8"></script>
 
@@ -146,26 +146,31 @@
             <div class="daf" style="padding-left: 400px;padding-right: 400px">
 
 
-                <c:forEach items="${commoditys.list}" var="commoditys">
+                <c:forEach items="${commoditys.list}" var="commoditys" varStatus="status">
 
                     <div style="background: #c0c4cc">
                         <table border="0">
                             <tr>
                                 <td rowspan="6">
                                     <div style="padding: 5px">
-                                    <img src="static/images/commoditys/${commoditys.simage}"
-                                                     style="height: 200px;width: 300px">
+                                        <img src="static/images/commoditys/${commoditys.simage}"
+                                             style="height: 200px;width: 300px">
                                     </div>
                                 </td>
 
-                                <td>&nbsp;&nbsp;&nbsp;&nbsp;${commoditys.commodity}
-                                    </br>
+                                <td>&nbsp;
+                                    <div style="padding-left: 13px">
+                                            ${commoditys.commodity}
+                                    </div>
+
+
                                 </td>
                             </tr>
-                            <tr>
-                                <td>&nbsp;&nbsp;&nbsp;￥${commoditys.price}
-
-                                    <div style="padding-left: 10px"> <hr ></div>
+                            <tr><%--${status.index}--%>
+                                <td class="price">&nbsp;&nbsp;&nbsp;￥${commoditys.price}
+                                    <div style="padding-left: 10px">
+                                        <hr>
+                                    </div>
                                 </td>
                                 <td>库存${commoditys.amount}
                                     </br>
@@ -175,39 +180,49 @@
 
                             <tr>
 
-                                <td>&nbsp;&nbsp;&nbsp;上架时间: ${commoditys.sdate}
+                                <td>&nbsp;&nbsp;&nbsp;
+                                    <div style="padding-left: 13px;padding-bottom: 5px">
+                                        上架时间: ${commoditys.sdate}
+                                    </div>
 
-                                  <div style="padding-left: 10px"> <br/></div>
                                 </td>
 
                             </tr>
                             <tr>
 
                                 <td>&nbsp;&nbsp;&nbsp;简介：</br>
-                                    <div style="padding-left: 10px"> <br/></div>
+                                    <div style="padding-left: 10px"><br/></div>
                                     &nbsp;&nbsp;&nbsp;${commoditys.synopsis}</td>
                                 </td>
                                     <%-- <td colspan="3">Row 3 Cell 1</td>--%>
                             </tr>
                             <tr>
 
-                                <td> <li><input type="button" name="minus" value="-" onclick="minus(0)"><input type="text" name="amount" value="1"><input type="button" name="plus" value="+" onclick="plus(0)" ></li>
+                                <td>
+                                    <li><input type="button" name="minus" value="-" onclick="minus(${status.index})">
+                                        <input type="text" class="amount${status.index}" value="1">
+                                        <input type="button" name="plus"value="+" onclick="plus(${status.index})"></li>
 
                                 </td>
                                     <%-- <td colspan="3">Row 3 Cell 1</td>--%>
                             </tr>
                             <tr>
 
-                                <td>&nbsp;&nbsp;&nbsp;<BUTTON>加入购物车</BUTTON><BUTTON>立即购买</BUTTON>
+                                <td>&nbsp;&nbsp;&nbsp;<BUTTON onclick="addshoping(${status.index})">加入购物车</BUTTON>
+                                    <BUTTON>立即购买</BUTTON>
                                 </td>
                                     <%-- <td colspan="3">Row 3 Cell 1</td>--%>
                             </tr>
+
                         </table>
                     </div>
                     </br>
+                    <input style="display: none" class="amounts${status.index}"  value="${commoditys.amount}"/>
+                    <input style="display: none" class="sid${status.index}"  value="${commoditys.sid}"/>
                 </c:forEach>
 
                 <div id="demo7"></div>
+
             </div>
         </div>
 
@@ -292,61 +307,84 @@
         });
 
 
-        //物品的加减
-        //减法
-        function minus(index) {
-            //获取当前数量的值
-            var amounts=document.getElementsByName("amount");
 
-            //得到第一个amount的元素的value属性的值
-            var count=parseInt(amounts[index].value); //数量加1
-
-            if (count<=1){
-                alert("不能再减了，快没了！！");
-            } else {
-                //得到第一个amount的元素的value属性的值
-                var count=parseInt(amounts[index].value)-1; //数量加1
-
-                //重新把count的值绑定在数量文本框里
-                amounts[index].value=count;
-                var prices=document.getElementsByName("price");
-                var price=parseFloat(prices[index].value);
-                //乘以Math.pow(10,2)的原因为避免失真
-                var totalMoney=((price*Math.pow(10,2))*count)/Math.pow(10,2);
-
-                document.getElementById("price"+index).innerHTML="¥："+totalMoney;
-            }
-
-            total();
-
-        }
-
-        //加法
-        function plus(index) {
-
-            //获取当前数量的值
-            var amounts=document.getElementsByName("amount");
-
-            //得到第一个amount的元素的value属性的值
-            var count=parseInt(amounts[index].value)+1; //数量加1
-
-            //重新把count的值绑定在数量文本框里
-            amounts[index].value=count;
-
-            //当前操作端口的价格也要重新计算
-            //得到当前端口的单价
-            var prices=document.getElementsByName("price");
-            var price=parseFloat(prices[index].value);
-            //乘以Math.pow(10,2)的原因为避免失真
-            var totalMoney=((price*Math.pow(10,2))*count)/Math.pow(10,2);
-
-            //把当前价格显示在文本中
-            document.getElementById("price"+index).innerHTML="¥："+totalMoney;
-
-            total();
-        }
 
     });
+    //物品的加减
+
+    //减法
+    function minus(index) {
+        var url = ".amount" + index;
+        //获取当前数量的值
+        var amounts = document.querySelector(url);
+
+        //得到第一个amount的元素的value属性的值
+        var count = parseInt(amounts.value); //数量加1
+
+        if (count <= 1) {
+            alert("不能再减了，快没了！！");
+        } else {
+            //得到第一个amount的元素的value属性的值
+            var count = parseInt(amounts.value) - 1; //数量加1
+
+            //重新把count的值绑定在数量文本框里
+            amounts.value = count;
+        }
+
+        total();
+
+    }
+
+    //加法
+    function plus(index) {
+
+        var amounturl = ".amount" + index;
+        var totalurl = ".amounts" + index;
+
+        //获取当前数量的值
+        var amounts = document.querySelector(amounturl);
+        var total = document.querySelector(totalurl);
+
+        //得到第一个amount的元素的value属性的值
+        var count = parseInt(amounts.value); //数量加1
+
+        if (count >= total.value) {
+            alert("不能再加了，超出仓库数了！！");
+        } else {
+            //得到第一个amount的元素的value属性的值
+            var count = parseInt(amounts.value) + 1; //数量加1
+
+            //重新把count的值绑定在数量文本框里
+            amounts.value = count;
+        }
+
+
+    }
+
+    //加入购物车
+    function addshoping(index) {
+        if (${sessionScope.user == null})
+        {
+            alert("请先登录，再加入购物车");
+            return;
+        }
+
+
+        var amounturl = ".amount" + index;
+        var sidurl = ".sid" + index;
+
+        //获取当前数量的值
+        var amounts = document.querySelector(amounturl);
+        var sid = document.querySelector(sidurl);
+
+        alert(sid.value);
+        var data ={sid:sid+"",amounts:amounts+""};
+        $.post("shopping/add",data,function (date) {
+            alert(date.msg)
+        }
+        )
+
+    }
 
 
 </script>

@@ -55,7 +55,7 @@ public class UserController {
 //                            return "manager/home";
 
 
-                        resp.sendRedirect(req.getContextPath()+"/pagerto/homeindex");
+                        resp.sendRedirect(req.getContextPath()+"/index/toindex");
                     }
 
                 }

@@ -203,11 +203,9 @@
                 <li>《昆虫记》</li>
                 <li><img src="../image/2.jpg" alt="" width="50" height="50"></li>
                 <li>¥<input type="text" name="price" value="24.00"></li>
-                <li><input type="button" name="minus" value="-" onclick="minus(1)"><input type="text" name="amount"
-                                                                                          value="1"><input type="button"
-                                                                                                           name="plus"
-                                                                                                           value="+"
-                                                                                                           onclick="plus(1)">
+                <li><input type="button" name="minus" value="-" onclick="minus(1)">
+                    <input type="text" name="amount" value="1">
+                    <input type="button" name="plus" value="+" onclick="plus(1)">
                 </li>
                 <li id="price1">¥24.00</li>
                 <li><p onclick="save()">移入收藏</p>
