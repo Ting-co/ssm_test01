@@ -33,7 +33,7 @@ public interface MessagesDao {
     List<Messages> getallmessages();
 
 
-    @Delete("delete from messages where mid=#{mid} ")
+
      int delBysId(int mid);
 
     @Select("<script>select * from messages where mid=#{mid} or uid=#{uid} or" +
