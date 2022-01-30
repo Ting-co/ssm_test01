@@ -7,7 +7,7 @@ public class Shopping {
     private int uid;
     private int sid;
     private int sum;
-    private List<Commoditys> commoditys;
+    private Commoditys commoditys;
 
     public Shopping() {
     }
@@ -51,11 +51,11 @@ public class Shopping {
         this.sum = sum;
     }
 
-    public List<Commoditys> getCommoditys() {
+    public Commoditys getCommoditys() {
         return commoditys;
     }
 
-    public void setCommoditys(List<Commoditys> commoditys) {
+    public void setCommoditys(Commoditys commoditys) {
         this.commoditys = commoditys;
     }
 

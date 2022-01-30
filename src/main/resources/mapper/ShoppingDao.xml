@@ -6,19 +6,20 @@
         <result column="sid" property="sid"></result>
         <result column="uid" property="uid" />
         <result column="sum" property="sum" />
-        <collection property="commoditys" ofType="com.ssmtest01.bean.Commoditys">
-            <id column="sid" property="sid"/>
+        <association property="commoditys" column="sid" select="com.ssmtest01.dao.CommoditysDao.getall" >
+           <!-- <id column="sid" property="sid"/>
             <result column="uid" property="uid"/>
             <result column="commodity" property="commodity"/>
             <result column="price" property="price"/>
             <result column="amount" property="amount"/>
-            <result column="simage" property="simage"/>
-        </collection>
+            <result column="simage" property="simage"/>-->
+
+        </association>
     </resultMap>
 
     <select id="all" resultMap="shopping">
-        select  * from shopping as s left join commoditys as c  on s.sid=c.sid
-        where s.uid=#{uid}
+        select  * from shopping
+        where shopping.uid=#{uid}
     </select>
 
 </mapper>

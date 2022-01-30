@@ -10,6 +10,8 @@ import java.util.List;
 @Repository
 public interface CommoditysDao {
 
+    public Commoditys getall(int sid);
+
 
     @Select("select * from commoditys where uid=#{uid}")
     public List<Commoditys> selall(int uid);

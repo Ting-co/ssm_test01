@@ -183,34 +183,24 @@
                 <li>金额（元）</li>
                 <li>操作</li>
             </ul>
+            <c:forEach items="${all}" var="all" varStatus="status">
             <ul style="display: flex;justify-content: space-between;align-items: center;border:1px solid #eee ;" id="first">
-                <li>《平凡的世界》</li>
+                <li>${all.commoditys.commodity}</li>
                 <li><img src="../image/1.jpg" alt="" width="50" height="50"></li>
                 <li>¥<input type="text" name="price" value="21.90"></li>
-                <li><input type="button" name="minus" value="-" onclick="minus(0)">
+                <li><input type="button" name="minus" value="-" onclick="minus(${status.index})">
                     <input type="text" name="amount"
                            value="1">
                     <input type="button"
                            name="plus"
                            value="+"
-                           onclick="plus(0)">
+                           onclick="plus(${status.index})">
                 </li>
                 <li id="price0">¥21.90</li>
                 <li><p onclick="save()">移入收藏</p>
                     <p onclick="delete1()">删除</p></li>
             </ul>
-            <ul style="display: flex;justify-content: space-between;align-items: center; margin: 20px 0;">
-                <li>《昆虫记》</li>
-                <li><img src="../image/2.jpg" alt="" width="50" height="50"></li>
-                <li>¥<input type="text" name="price" value="24.00"></li>
-                <li><input type="button" name="minus" value="-" onclick="minus(1)">
-                    <input type="text" name="amount" value="1">
-                    <input type="button" name="plus" value="+" onclick="plus(1)">
-                </li>
-                <li id="price1">¥24.00</li>
-                <li><p onclick="save()">移入收藏</p>
-                    <p onclick="delete1()">删除</p></li>
-            </ul>
+            </c:forEach>
             <ol>
                 <li id="totalPrice">&nbsp;</li>
                 <li><span>结算</span></li>

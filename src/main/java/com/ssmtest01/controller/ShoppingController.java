@@ -1,8 +1,10 @@
 package com.ssmtest01.controller;
 
 import com.ssmtest01.bean.Commoditys;
+import com.ssmtest01.bean.Shopping;
 import com.ssmtest01.bean.User;
 import com.ssmtest01.service.ShoppingService;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
@@ -50,10 +52,10 @@ public class ShoppingController {
     @RequestMapping("/all")
     public String all(HttpServletRequest request, HttpSession session) {
         User user = (User) session.getAttribute("user");
-        List<Commoditys> all = shoppingService.all(user.getUid());
-        System.out.println(all);
-        return "";
-
-
+        List<Shopping> commoditys = shoppingService.all(user.getUid());
+        System.out.println(commoditys);
+        request.setAttribute("all",commoditys);
+        return "user/shopping";
     }
+
 }
