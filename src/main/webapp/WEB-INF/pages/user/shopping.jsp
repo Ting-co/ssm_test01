@@ -174,7 +174,7 @@
         <div class="logo">
             <span onclick="javascript:if (confirm('确认要关闭吗'))window.close() ">关闭</span>
         </div>
-        <div class="cartList">
+        <div class="cartList"  >
             <ul>
                 <li>商品信息</li>
                 <li>商品图片</li>
@@ -183,7 +183,7 @@
                 <li>金额（元）</li>
                 <li>操作</li>
             </ul>
-            <ul style="display: flex;justify-content: space-between;align-items: center" id="first">
+            <ul style="display: flex;justify-content: space-between;align-items: center;border:1px solid #eee ;" id="first">
                 <li>《平凡的世界》</li>
                 <li><img src="../image/1.jpg" alt="" width="50" height="50"></li>
                 <li>¥<input type="text" name="price" value="21.90"></li>

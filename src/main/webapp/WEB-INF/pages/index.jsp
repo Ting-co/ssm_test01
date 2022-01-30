@@ -377,8 +377,8 @@
         var amounts = document.querySelector(amounturl);
         var sid = document.querySelector(sidurl);
 
-        alert(sid.value);
-        var data ={sid:sid+"",amounts:amounts+""};
+
+        var data ={sid:sid.value+"",amounts:amounts.value+""};
         $.post("shopping/add",data,function (date) {
             alert(date.msg)
         }
