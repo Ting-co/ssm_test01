@@ -184,21 +184,23 @@
                 <li>操作</li>
             </ul>
             <c:forEach items="${all}" var="all" varStatus="status">
-            <ul style="display: flex;justify-content: space-between;align-items: center;border:1px solid #eee ;" id="first">
+            <ul style="display: flex;justify-content: space-between;align-items: center;border:1px solid #eee ;" class="first${status.index}">
+                <li style="display: none;"  class="id${status.index}" value="${all.id}"></li>
                 <li>${all.commoditys.commodity}</li>
-                <li><img src="../image/1.jpg" alt="" width="50" height="50"></li>
-                <li>¥<input type="text" name="price" value="21.90"></li>
+                <li><img src="static/images/commoditys/${all.commoditys.simage}" alt="" width="50" height="50"></li>
+                <li>¥<input type="text" name="price" value="${all.commoditys.price}"></li>
                 <li><input type="button" name="minus" value="-" onclick="minus(${status.index})">
                     <input type="text" name="amount"
-                           value="1">
+                           value="${all.sum}">
                     <input type="button"
                            name="plus"
                            value="+"
                            onclick="plus(${status.index})">
                 </li>
-                <li id="price0">¥21.90</li>
+
+                <li class="price${status.index}">¥${all.commoditys.price * all.sum}</li>
                 <li><p onclick="save()">移入收藏</p>
-                    <p onclick="delete1()">删除</p></li>
+                    <p onclick="delete1(${status.index})">删除</p></li>
             </ul>
             </c:forEach>
             <ol>
@@ -252,12 +254,15 @@
             //乘以Math.pow(10,2)的原因为避免失真
             var totalMoney = ((price * Math.pow(10, 2)) * count) / Math.pow(10, 2);
 
-            document.getElementById("price" + index).innerHTML = "¥：" + totalMoney;
+            var url = ".price" + index;
+            document.querySelector(url).innerHTML = "¥" + totalMoney;
         }
 
         total();
 
     }
+
+
 
     //加法
     function plus(index) {
@@ -279,7 +284,8 @@
         var totalMoney = ((price * Math.pow(10, 2)) * count) / Math.pow(10, 2);
 
         //把当前价格显示在文本中
-        document.getElementById("price" + index).innerHTML = "¥：" + totalMoney;
+        var url = ".price" + index;
+        document.querySelector(url).innerHTML = "¥" + totalMoney;
 
         total();
     }
@@ -318,11 +324,19 @@
     }
 
     //删除
-    function delete1() {
+    function delete1(index) {
         if (confirm("确认要删除吗？")) {
-            var del = document.getElementById("first");
+            var ulid = ".first" + index;
+            var id = ".id" + index;
+            var del = document.querySelector(ulid);
+            var id = document.querySelector(id);
+
             del.parentNode.removeChild(del);
-            alert("删除成功！！");
+            var data ={id:id.value+""};
+            $.post("shopping/del",data,function (date) {
+                alert(date.msg)
+            })
+            total();
         }
     }
 

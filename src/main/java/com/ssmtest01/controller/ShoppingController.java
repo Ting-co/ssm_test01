@@ -1,12 +1,9 @@
 package com.ssmtest01.controller;
 
-import com.ssmtest01.bean.Commoditys;
 import com.ssmtest01.bean.Shopping;
 import com.ssmtest01.bean.User;
 import com.ssmtest01.service.ShoppingService;
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -35,10 +32,18 @@ public class ShoppingController {
         Integer newsid = new Integer(sid);
         Integer newamounts = new Integer(amounts);
 
-        int insertshop = shoppingService.insertshop(newsid, user.getUid(), newamounts);
+        List<Shopping> shoppings = shoppingService.selUAndSid(user.getUid(), newsid);
+        int insertshop = 0;
+        int upadd=0;
+        if(shoppings.isEmpty()){
+            insertshop= shoppingService.insertshop(newsid, user.getUid(), newamounts);
+        }else {
+            int addamount = shoppings.get(0).getSum() + newamounts;
+            upadd = shoppingService.Upadd(user.getUid(), newsid, addamount);
+        }
 
         HashMap map = new HashMap();
-        if (insertshop>0){
+        if (insertshop>0||upadd>0 ){
         map.put("msg","成功加入购物车");
         }else {
             map.put("msg","加入购物车失败");
@@ -56,6 +61,23 @@ public class ShoppingController {
         System.out.println(commoditys);
         request.setAttribute("all",commoditys);
         return "user/shopping";
+    }
+
+    @RequestMapping("/del")
+    @ResponseBody
+    public HashMap delshopping(HttpServletRequest request, HttpSession session) {
+        String id = request.getParameter("id");
+        Integer newid = new Integer(id);
+        int delshopping = shoppingService.delshopping(newid);
+
+        HashMap map = new HashMap();
+        if (delshopping>0){
+            map.put("msg","删除购物车成功");
+        }else {
+            map.put("msg","删除购物车失败");
+        }
+
+        return map;
     }
 
 }

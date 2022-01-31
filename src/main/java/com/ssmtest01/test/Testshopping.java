@@ -18,8 +18,11 @@ public class Testshopping {
 
     @Test
     public void ss(){
-        List<Shopping> commoditys = shoppingService.all(2);
+//        List<Shopping> commoditys = shoppingService.all(2);
 //        System.out.println(commoditys.get(1).getCommoditys().get(0).getCommodity());
-  System.out.println(commoditys);
+//        List<Shopping> shoppings = shoppingService.selUAndSid(2, 7);
+        int upadd = shoppingService.Upadd(2, 7, 4);
+
+        System.out.println(upadd);
     }
 }

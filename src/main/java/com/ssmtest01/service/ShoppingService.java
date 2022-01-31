@@ -14,4 +14,9 @@ public interface ShoppingService {
     List<Shopping> all(int uid);
 
 
+    List<Shopping> selUAndSid(int uid, int sid);
+
+    int Upadd(int uid, Integer newsid, int newamounts);
+
+    int delshopping(Integer newid);
 }

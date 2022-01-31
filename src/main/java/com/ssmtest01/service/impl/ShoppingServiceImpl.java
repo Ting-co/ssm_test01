@@ -25,5 +25,20 @@ public class ShoppingServiceImpl  implements ShoppingService {
         return shoppingDao.all(uid);
     }
 
+    @Override
+    public List<Shopping> selUAndSid(int uid, int sid) {
+        return  shoppingDao.selUAndSid(uid,sid);
+    }
+
+    @Override
+    public int Upadd(int uid, Integer newsid, int newamounts) {
+        return shoppingDao.Upadd(uid,newsid,newamounts);
+    }
+
+    @Override
+    public int delshopping(Integer newid) {
+        return shoppingDao.delshopping(newid);
+    }
+
 
 }
