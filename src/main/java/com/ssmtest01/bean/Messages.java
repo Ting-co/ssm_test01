@@ -8,6 +8,18 @@ public class Messages {
     private int good;
     private User user;
 
+    public Messages() {
+    }
+
+    public Messages(int mid, int uid, String message, String mdate, int good, User user) {
+        this.mid = mid;
+        this.uid = uid;
+        this.message = message;
+        this.mdate = mdate;
+        this.good = good;
+        this.user = user;
+    }
+
     public int getMid() {
         return mid;
     }

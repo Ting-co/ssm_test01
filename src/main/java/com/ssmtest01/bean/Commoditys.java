@@ -13,6 +13,23 @@ public class Commoditys {
     private String sdate;
     private String message;
 
+    public Commoditys() {
+    }
+
+    public Commoditys(int sid, int uid, String commodity, String synopsis, double price, int amount, int state, String sort, String simage, String sdate, String message) {
+        this.sid = sid;
+        this.uid = uid;
+        this.commodity = commodity;
+        this.synopsis = synopsis;
+        this.price = price;
+        this.amount = amount;
+        this.state = state;
+        this.sort = sort;
+        this.simage = simage;
+        this.sdate = sdate;
+        this.message = message;
+    }
+
     public String getMessage() {
         return message;
     }

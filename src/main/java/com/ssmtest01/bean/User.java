@@ -17,6 +17,23 @@ public class User {
     private String sex;
     private String text;
 
+    public User() {
+    }
+
+    public User(int uid, String uuidname, String username, String password, String himage, String phone, String email, int role, String address, double money, String sex, String text) {
+        this.uid = uid;
+        this.uuidname = uuidname;
+        this.username = username;
+        this.password = password;
+        this.himage = himage;
+        this.phone = phone;
+        this.email = email;
+        this.role = role;
+        this.address = address;
+        this.money = money;
+        this.sex = sex;
+        this.text = text;
+    }
 
     public int getUid() {
         return uid;

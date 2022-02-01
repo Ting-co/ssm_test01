@@ -174,7 +174,7 @@
         <div class="logo">
             <span onclick="javascript:if (confirm('确认要关闭吗'))window.close() ">关闭</span>
         </div>
-        <div class="cartList"  >
+        <div class="cartList">
             <ul>
                 <li>商品信息</li>
                 <li>商品图片</li>
@@ -184,28 +184,35 @@
                 <li>操作</li>
             </ul>
             <c:forEach items="${all}" var="all" varStatus="status">
-            <ul style="display: flex;justify-content: space-between;align-items: center;border:1px solid #eee ;" class="first${status.index}">
-                <li style="display: none;"  class="id${status.index}" value="${all.id}"></li>
-                <li>${all.commoditys.commodity}</li>
-                <li><img src="static/images/commoditys/${all.commoditys.simage}" alt="" width="50" height="50"></li>
-                <li>¥<input type="text" name="price" value="${all.commoditys.price}"></li>
-                <li><input type="button" name="minus" value="-" onclick="minus(${status.index})">
-                    <input type="text" name="amount"
-                           value="${all.sum}">
-                    <input type="button"
-                           name="plus"
-                           value="+"
-                           onclick="plus(${status.index})">
-                </li>
+                <ul style="display: flex;justify-content: space-between;align-items: center;border:1px solid #eee ;"
+                    class="first${status.index}">
+                        <%--用于删除id--%>
+                    <li style="display: none;" class="id${status.index}" value="${all.id}"></li>
+                        <%--用于序列--%>
+                    <li style="display: none;" class="ulid" value="${status.index}"></li>
+                        <%--以下是商品id和卖家--%>
+                    <li style="display: none;" class="sid${status.index}" value="${all.commoditys.sid}"></li>
+                    <li style="display: none;" class="uid${status.index}" value="${all.commoditys.uid}"></li>
+                    <li>${all.commoditys.commodity}</li>
+                    <li><img src="static/images/commoditys/${all.commoditys.simage}" alt="" width="50" height="50"></li>
+                    <li>¥<input type="text" name="price" value="${all.commoditys.price}"></li>
+                    <li><input type="button" name="minus" value="-" onclick="minus(${status.index})">
+                        <input type="text" name="amount"
+                               value="${all.sum}">
+                        <input type="button"
+                               name="plus"
+                               value="+"
+                               onclick="plus(${status.index})">
+                    </li>
 
-                <li class="price${status.index}">¥${all.commoditys.price * all.sum}</li>
-                <li><p onclick="save()">移入收藏</p>
-                    <p onclick="delete1(${status.index})">删除</p></li>
-            </ul>
+                    <li class="price${status.index}">¥${all.commoditys.price * all.sum}</li>
+                    <li><p onclick="save()">移入收藏</p>
+                        <p onclick="delete1(${status.index})">删除</p></li>
+                </ul>
             </c:forEach>
             <ol>
                 <li id="totalPrice">&nbsp;</li>
-                <li><span>结算</span></li>
+                <li class="clearShopping"><span>结算</span></li>
             </ol>
         </div>
 
@@ -261,7 +268,6 @@
         total();
 
     }
-
 
 
     //加法
@@ -332,14 +338,37 @@
             var id = document.querySelector(id);
 
             del.parentNode.removeChild(del);
-            var data ={id:id.value+""};
-            $.post("shopping/del",data,function (date) {
+            var data = {id: id.value + ""};
+            $.post("shopping/del", data, function (date) {
                 alert(date.msg)
             })
             total();
         }
     }
 
+    //结算
+    $(".clearShopping").click(function () {
+        $(".ulid").each(function () {
+            var index =$(this).attr("value");
+
+            //需要卖家id，商品id，数量
+            var uidurl= ".uid" + index;
+            var sidurl= ".sid" + index;
+            var uid = document.querySelector(uidurl).value;
+            var sid = document.querySelector(sidurl).value;
+
+            //获取当前数量的值
+            var amounts = document.getElementsByName("amount");
+
+            alert(uid+"地"+sid+"地"+amounts[index].value+"地"+index)
+            var data = {uid: uid + "",sid: sid + "",amount: amounts[index].value + ""};
+            $.post("myOrder/add", data, function (date) {
+                alert(date.msg)
+            })
+
+
+        })
+    })
 
 </script>
 

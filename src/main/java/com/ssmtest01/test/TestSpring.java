@@ -45,9 +45,13 @@ public class TestSpring {
             System.out.println(num);
         }*/
         Random r = new Random();
+        Random r2 = new Random();
         for (int i = 0; i < 500; i++) {
-            int ran1 = r.nextInt(800);
-            System.out.println(ran1+100);
+
+
+            int ran2 = r2.nextInt(r.nextInt(800));
+
+            System.out.println("r2"+ran2);
         }
 
     }

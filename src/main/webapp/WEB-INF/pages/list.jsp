@@ -30,6 +30,8 @@
     <button type="button" class="layui-btn layui-btn-warm">暖色按钮</button>
     <button type="button" class="layui-btn layui-btn-danger">警告按钮</button>
     <button type="button" class="layui-btn layui-btn-disabled">禁用按钮</button>
+    <button type="button" class="layui-btn layui-btn-danger"  onclick="x()"></button>
+    <button type="button" class="layui-btn layui-btn-danger"  onclick="x()"></button>
 </div>
 <h1>查询所有的账户</h1>
 <%--${list}--%>
@@ -38,6 +40,10 @@
     ${account.name}
     ${account.money}
 </c:forEach>
+
+
+
+
 
 <table id="demo" lay-filter="test"></table>
 <script>
@@ -58,6 +64,29 @@
         });
 
     });
+
+    function x() {
+        //1、
+        var jsonstr="[{'name':'a','value':1},{'name':'b','value':2}]";
+        var jsonarray = eval('('+jsonstr+')');
+        alert(JSON.parse(jsonarray))
+        var arr  =
+            {
+                "name" : "safsf",
+                "value" : 12
+            }
+        jsonarray.push(arr);
+        alert(JSON.parse(jsonarray))
+
+    }
+    function ss() {
+        //2、
+        var json={};// 定义一个json对象
+        json.array1=["2","4"];// 增加一个新属性，此属性是数组
+        json.array1[json.array1.length]='6';// 数组追加一个元素
+        alert(json.array1)
+    }
+
 </script>
 </body>
 </html>

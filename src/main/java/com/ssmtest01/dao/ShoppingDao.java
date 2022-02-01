@@ -23,4 +23,7 @@ public interface ShoppingDao {
 
     @Delete("delete from shopping where id=#{newid}")
     int delshopping(Integer newid);
+
+
+
 }

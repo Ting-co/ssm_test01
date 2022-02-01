@@ -119,6 +119,7 @@
               </div>
           </div>
           </div>--%>
+
         <%--搜索框--%>
         <div style="">
             <form class="layui-form layui-form-pane" action="index/select">
@@ -132,6 +133,7 @@
                 </div>
             </form>
         </div>
+
 
         <ul>
             <li><a href="index/selectBySort?sort=衣服装扮">衣服装扮</a></li>
