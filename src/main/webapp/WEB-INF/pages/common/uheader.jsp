@@ -78,7 +78,7 @@
             <li class="layui-nav-item layui-nav-itemed">
                 <a href="javascript:;">订单中心</a>
                 <dl class="layui-nav-child">
-                    <dd><a href="javascript:;">当前订单</a></dd>
+                    <dd><a href="usermanager/nowOrder">当前订单</a></dd>
                     <dd><a href="javascript:;">历史订单</a></dd>
                 </dl>
             </li>

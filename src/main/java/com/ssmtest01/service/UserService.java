@@ -12,4 +12,6 @@ public interface UserService {
     void updataUser(User user);
 
     public User selByidname(String uuidname);
+
+    public User selAllUser(int uid);
 }

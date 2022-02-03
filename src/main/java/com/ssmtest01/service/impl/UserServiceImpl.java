@@ -35,4 +35,9 @@ public class UserServiceImpl implements UserService {
         return userDao.selByidname(uuidname);
     }
 
+    @Override
+    public User selAllUser(int uid) {
+        return userDao.selAllUser(uid);
+    }
+
 }

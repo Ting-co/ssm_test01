@@ -16,10 +16,10 @@ public class OrderServiceImpl implements OrderService {
     public int addOrder(Integer sidnew, Integer uidnew, Integer amountnew, int uid, String getdata, Long dataId) {
        int assccess=0;
 
-        Order order=new Order(dataId,"买家已付款","发货中",getdata,1,amountnew);
+        Order order=new Order(dataId,"买家已付款","发货中",getdata,1,amountnew,uid,uidnew,sidnew);
         int add= orderDao.addOrder(order);
         if (add>0){
-           assccess= orderDao.insertsAndO(dataId,uid,uidnew,sidnew);
+           assccess= orderDao.insertsAndO(dataId,uid,uidnew);
         }
 
         return assccess;

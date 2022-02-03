@@ -8,11 +8,31 @@ public class Order {
     private String okdate;
     private int payment;
     private int amount;
+    private  int uid;
+    private  int sid;
+    private  int cid;
+    private User user;
+    private Commoditys commoditys;
+
 
     public Order() {
     }
 
-    public Order(Long oid, String sstate, String bstate, String odate, String okdate, int payment, int amount) {
+
+
+    public Order(Long oid, String sstate, String bstate, String odate, int payment, int amount, int uid, int sid, int cid) {
+        this.oid = oid;
+        this.sstate = sstate;
+        this.bstate = bstate;
+        this.odate = odate;
+        this.payment = payment;
+        this.amount = amount;
+        this.uid = uid;
+        this.sid = sid;
+        this.cid = cid;
+    }
+
+    public Order(Long oid, String sstate, String bstate, String odate, String okdate, int payment, int amount, int uid, int sid, int cid) {
         this.oid = oid;
         this.sstate = sstate;
         this.bstate = bstate;
@@ -20,15 +40,17 @@ public class Order {
         this.okdate = okdate;
         this.payment = payment;
         this.amount = amount;
+        this.uid = uid;
+        this.sid = sid;
+        this.cid = cid;
     }
 
-    public Order(Long oid, String sstate, String bstate, String odate, int payment, int amount) {
-        this.oid = oid;
-        this.sstate = sstate;
-        this.bstate = bstate;
-        this.odate = odate;
-        this.payment = payment;
-        this.amount = amount;
+    public int getCid() {
+        return cid;
+    }
+
+    public void setCid(int cid) {
+        this.cid = cid;
     }
 
     public Long getOid() {
@@ -87,6 +109,38 @@ public class Order {
         this.amount = amount;
     }
 
+    public int getUid() {
+        return uid;
+    }
+
+    public void setUid(int uid) {
+        this.uid = uid;
+    }
+
+    public int getSid() {
+        return sid;
+    }
+
+    public void setSid(int sid) {
+        this.sid = sid;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Commoditys getCommoditys() {
+        return commoditys;
+    }
+
+    public void setCommoditys(Commoditys commoditys) {
+        this.commoditys = commoditys;
+    }
+
     @Override
     public String toString() {
         return "Order{" +
@@ -97,6 +151,10 @@ public class Order {
                 ", okdate='" + okdate + '\'' +
                 ", payment=" + payment +
                 ", amount=" + amount +
+                ", uid=" + uid +
+                ", sid=" + sid +
+                ", user=" + user +
+                ", commoditys=" + commoditys +
                 '}';
     }
 }

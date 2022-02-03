@@ -1,5 +1,7 @@
 package com.ssmtest01.bean;
 
+import java.util.List;
+
 /**
  * 用户bean
  */
@@ -17,8 +19,46 @@ public class User {
     private String sex;
     private String text;
 
+    private List<Order> order;
+
+
     public User() {
     }
+
+
+  /*  public User(int uid, String uuidname, String username, String password, String himage, String phone, String email, int role, String address, double money, String sex, String text, User user, Order order) {
+        this.uid = uid;
+        this.uuidname = uuidname;
+        this.username = username;
+        this.password = password;
+        this.himage = himage;
+        this.phone = phone;
+        this.email = email;
+        this.role = role;
+        this.address = address;
+        this.money = money;
+        this.sex = sex;
+        this.text = text;
+        this.user = user;
+        this.order = order;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+*/
 
     public User(int uid, String uuidname, String username, String password, String himage, String phone, String email, int role, String address, double money, String sex, String text) {
         this.uid = uid;
@@ -33,6 +73,16 @@ public class User {
         this.money = money;
         this.sex = sex;
         this.text = text;
+
+    }
+
+
+    public List<Order> getOrder() {
+        return order;
+    }
+
+    public void setOrder(List<Order> order) {
+        this.order = order;
     }
 
     public int getUid() {
@@ -146,6 +196,7 @@ public class User {
                 ", money=" + money +
                 ", sex='" + sex + '\'' +
                 ", text='" + text + '\'' +
+                ", order=" + order +
                 '}';
     }
 }

@@ -35,9 +35,9 @@ public class TestOrder {
 
         /* shoppingDao.insertsAndO(1,2,3,4);*/
         String getdata = DataUtils.getdata();
-        Order order = new Order(123L,"撒旦艰苦","就ask",getdata,getdata,1,4);
-        int i = orderDao.addOrder(order);
-        System.out.println(i);
+//        Order order = new Order(123L,"撒旦艰苦","就ask",getdata,getdata,1,4,1,2);
+//        int i = orderDao.addOrder(order);
+//        System.out.println(i);
 
     }
 
@@ -47,4 +47,9 @@ public class TestOrder {
         messagesDao.addM(s);
 
     }
+    /*@Test
+    public void ss2() {
+      orderDao.delorder();
+      orderDao.delorderAndshopping();
+    }*/
 }

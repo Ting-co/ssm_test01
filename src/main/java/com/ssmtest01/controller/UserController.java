@@ -197,4 +197,15 @@ public class UserController {
 
     }
 
+
+    /*查看当前订单*/
+    @RequestMapping("/nowOrder")
+    public String nowOrder (HttpServletRequest request,HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        User AllOrder = userServiceImpl.selAllUser(user.getUid());
+        request.setAttribute("AllOrder",AllOrder);
+        return "user/order";
+
+    }
+
 }

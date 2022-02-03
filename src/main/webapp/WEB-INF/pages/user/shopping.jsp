@@ -139,7 +139,15 @@
 
         .cartList ol li:nth-of-type(1) {
             color: #ff0000;
-            width: 80px;
+            width: 20px;
+            height: 35px;
+            line-height: 35px;
+            text-align: center;
+        }
+        .cartList ol li:nth-of-type(2) {
+            color: #ff0000;
+            padding-left: 5px;
+            padding-right: 40px;
             height: 35px;
             line-height: 35px;
             text-align: center;
@@ -211,6 +219,7 @@
                 </ul>
             </c:forEach>
             <ol>
+                <li >￥:</li>
                 <li id="totalPrice">&nbsp;</li>
                 <li class="clearShopping"><span>结算</span></li>
             </ol>
@@ -316,7 +325,7 @@
         }
 
         //把总金额显示再指定的元素中
-        document.getElementById("totalPrice").innerHTML = "¥：" + sumMoney;
+        document.getElementById("totalPrice").innerHTML =  sumMoney;
 
     }
 
@@ -348,26 +357,32 @@
 
     //结算
     $(".clearShopping").click(function () {
-        $(".ulid").each(function () {
-            var index =$(this).attr("value");
+        if (document.getElementById("totalPrice").innerHTML<${user.money}){
 
-            //需要卖家id，商品id，数量
-            var uidurl= ".uid" + index;
-            var sidurl= ".sid" + index;
-            var uid = document.querySelector(uidurl).value;
-            var sid = document.querySelector(sidurl).value;
+            $(".ulid").each(function () {
+                var index =$(this).attr("value");
 
-            //获取当前数量的值
-            var amounts = document.getElementsByName("amount");
+                //需要卖家id，商品id，数量
+                var uidurl= ".uid" + index;
+                var sidurl= ".sid" + index;
+                var uid = document.querySelector(uidurl).value;
+                var sid = document.querySelector(sidurl).value;
 
-            alert(uid+"地"+sid+"地"+amounts[index].value+"地"+index)
-            var data = {uid: uid + "",sid: sid + "",amount: amounts[index].value + ""};
-            $.post("myOrder/add", data, function (date) {
-                alert(date.msg)
+                //获取当前数量的值
+                var amounts = document.getElementsByName("amount");
+
+                alert(uid+"地"+sid+"地"+amounts[index].value+"地"+index)
+                var data = {uid: uid + "",sid: sid + "",amount: amounts[index].value + ""};
+                $.post("myOrder/add", data, function (date) {
+                    alert(date.msg)
+                })
+
+
             })
+        }else {
 
-
-        })
+            alert("您的账户金额不足")
+        }
     })
 
 </script>

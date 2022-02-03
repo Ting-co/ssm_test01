@@ -1,8 +1,11 @@
 package com.ssmtest01.dao;
 
+import com.ssmtest01.bean.Order;
 import com.ssmtest01.bean.User;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface UserDao {
@@ -49,4 +52,7 @@ public interface UserDao {
     @Select("select * from user WHERE uid=#{u_id}")
     @ResultMap(value = "userMap")
     public  User finById(int u_id);
+
+
+    public User selAllUser(int uid);
 }

@@ -1,6 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ssmtest01.dao.UserDao">
+    <resultMap id="myOrder" type="com.ssmtest01.bean.User">
+        <id column="uid" property="uid"></id>
+        <result column="uuidname" property="uuidname"></result>
+        <result column="username" property="username" />
+        <result column="password" property="password" />
+        <result column="himage" property="himage" />
+        <result column="phone" property="phone" />
+        <result column="email" property="email" />
+        <result column="role" property="role" />
+        <result column="address" property="address" />
+        <result column="money" property="money" />
+        <result column="sex" property="sex" />
+        <result column="text" property="text" />
+
+        <collection property="order" javaType="list"  ofType="com.ssmtest01.bean.Order"   >
+            <id column="oid" property="oid"/>
+            <result column="sstate" property="sstate" />
+            <result column="bstate" property="bstate" />
+            <result column="odate" property="odate" />
+            <result column="okdate" property="okdate" />
+            <result column="payment" property="payment" />
+            <result column="amount" property="amount" />
+            <result column="uid" property="uid" />
+            <result column="sid" property="sid" />
+            <result column="sid" property="cid" />
+            <association property="user"    column="uid"  resultMap="user" />
+            <association property="commoditys"    column="cid"   resultMap="commodity" />
+        </collection>
+    </resultMap>
+
+    <resultMap id="user" type="com.ssmtest01.bean.User">
+        <id column="uid" property="uid"></id>
+        <result column="uuidname" property="uuidname"></result>
+        <result column="username" property="username" />
+        <result column="password" property="password" />
+        <result column="himage" property="himage" />
+        <result column="phone" property="phone" />
+        <result column="email" property="email" />
+        <result column="role" property="role" />
+        <result column="address" property="address" />
+        <result column="money" property="money" />
+        <result column="sex" property="sex" />
+        <result column="text" property="text" />
+    </resultMap>
+
+    <resultMap id="commodity" type="com.ssmtest01.bean.Commoditys">
+        <id column="sid" property="sid"/>
+        <result column="uid" property="uid"/>
+        <result column="commodity" property="commodity"/>
+        <result column="synopsis" property="synopsis"/>
+        <result column="price" property="price"/>
+        <result column="amount" property="amount"/>
+        <result column="simage" property="simage"/>
+    </resultMap>
+
+
+    <select id="selAllUser" resultMap="myOrder" >
+        SELECT u.uid,o.*, su.username,su.phone,su.email,su.text,c.*
+        from `user` u
+                 join shopping_order s_o  on s_o.buyerid=u.uid
+                 join  myorder o on o.oid=s_o.oid
+                 join  `user` su on o.sid=su.uid
+                 join  commoditys c on c.sid=o.cid
+        where u.uid=#{uid}
+
+    </select>
+
+
 
 
 </mapper>

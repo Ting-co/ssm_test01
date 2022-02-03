@@ -54,6 +54,16 @@ public class OrderController {
             map.put("msg","购买失败");
         }
 
+
+      /*  [User
+            {uid=2, uuidname='C_1640526849734', username='gg', password='123', himage='1640853434780.png', phone='18300071361', email='123@qq.com', role=0, address='', money=666666.0, sex='男', text='iiiiiiiiiiiii',
+                    order=[Order{oid=1643862838706, sstate='买家已付款', bstate='发货中', odate='2022-02-03 12:33', okdate='null', payment=1, amount=3, uid=2, sid=2,
+                                user=User{uid=2, uuidname='C_1640526849734', username='gg', password='123', himage='1640853434780.png', phone='18300071361', email='123@qq.com', role=0, address='', money=666666.0, sex='男', text='iiiiiiiiiiiii', order=null}},
+                            Order{oid=1643862839594, sstate='买家已付款', bstate='发货中', odate='2022-02-03 12:33', okdate='null', payment=1, amount=4, uid=2, sid=2,
+                                user=User{uid=2, uuidname='C_1640526849734', username='gg', password='123', himage='1640853434780.png', phone='18300071361', email='123@qq.com', role=0, address='', money=666666.0, sex='男', text='iiiiiiiiiiiii', order=null}},
+                            Order{oid=1643862840710, sstate='买家已付款', bstate='发货中', odate='2022-02-03 12:34', okdate='null', payment=1, amount=2, uid=2, sid=2,
+                                user=User{uid=2, uuidname='C_1640526849734', username='gg', password='123', himage='1640853434780.png', phone='18300071361', email='123@qq.com', role=0, address='', money=666666.0, sex='男', text='iiiiiiiiiiiii', order=null}}]}]
+*/
         return map;
     }
 
