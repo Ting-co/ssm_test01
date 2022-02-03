@@ -28,7 +28,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void  updataUser(User user){userDao.updataUser(user);}
+    public void  updataUser(User user){
+        System.out.println(user);
+        userDao.updataUser(user);
+    }
 
     @Override
     public User selByidname(String uuidname){

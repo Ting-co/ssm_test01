@@ -39,7 +39,7 @@
                     <label class="layui-form-label">搜索</label>
                     <div class="layui-input-inline">
                         <input type="text" name="commodity" placeholder="请输入商品名字或商品uuid" value=""
-                               autocomplete=""   class="layui-input"/>
+                               autocomplete="" class="layui-input"/>
                         <input type="submit" class="layui-btn" value="搜索">
                     </div>
                 </div>
@@ -77,7 +77,7 @@
 
                             <td></td>
                             <td>${obj.sid}</td>
-                            <td><img  src="static/images/commoditys/${obj.simage} "></td>
+                            <td><img src="static/images/commoditys/${obj.simage} "></td>
                             <td>${obj.commodity}</td>
                             <td>${obj.synopsis}</td>
                             <td>${obj.price}</td>
@@ -110,13 +110,12 @@
                             </td>
                         </tr>
                     </c:forEach>
-                    <h1 id="none" style="display: none" >没有商品，快去添加商品吧</h1>
+                    <h1 id="none" style="display: none">没有商品，快去添加商品吧</h1>
                     </tbody>
                 </table>
             </div>
 
         </div>
-
 
 
         <%--留言模拟--%>
@@ -361,7 +360,6 @@
             });
 
 
-
             //表格头工具栏事件
             table.on('toolbar(demo)', function (obj) {
                 switch (obj.event) {
@@ -371,12 +369,12 @@
                             , title: '添加商品'
                             , area: ['700px', '720px']
                             , content: $("#addCommoditys")
-                            ,success: function (layero) {
+                            , success: function (layero) {
                                 //把内容放到遮罩层里
                                 var mask = $(".layui-layer-shade");
                                 mask.appendTo(layero.parent());
                             }
-                            ,anim:3
+                            , anim: 3
                             , end: function () {
                                 $("#addCommoditys").css({"display": "none"})
                             }

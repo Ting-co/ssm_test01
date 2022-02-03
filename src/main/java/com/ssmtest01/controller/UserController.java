@@ -1,6 +1,7 @@
 package com.ssmtest01.controller;
 
 
+import com.alibaba.fastjson.JSON;
 import com.ssmtest01.bean.DataJson;
 import com.ssmtest01.bean.User;
 import com.ssmtest01.service.UserService;
@@ -203,7 +204,8 @@ public class UserController {
     public String nowOrder (HttpServletRequest request,HttpSession session) {
         User user = (User) session.getAttribute("user");
         User AllOrder = userServiceImpl.selAllUser(user.getUid());
-        request.setAttribute("AllOrder",AllOrder);
+        System.out.println("当前传过来的值为"+AllOrder);
+        request.setAttribute("AllOrder", JSON.toJSON(AllOrder));
         return "user/order";
 
     }

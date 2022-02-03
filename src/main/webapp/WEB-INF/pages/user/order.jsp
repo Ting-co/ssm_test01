@@ -204,7 +204,7 @@
                                 <li class="price${status.index}">¥${allOrder.commoditys.price * allOrder.amount}</li>
                                 <li>${allOrder.bstate}</li>
 
-                                <li><p onclick="save()">订单详情</p>
+                                <li><p onclick="orderDetails()">订单详情</p>
                                     <p onclick="delete1(${status.index})">申请退款</p>
                                     <p onclick="delete1(${status.index})">完成订单</p>
                                 </li>
@@ -274,8 +274,9 @@
     }
 
 
-    //加入收藏
-    function save() {
+    //查看商品
+    function orderDetails() {
+
 
     }
 
