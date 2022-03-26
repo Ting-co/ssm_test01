@@ -124,10 +124,11 @@
         <div style="">
             <form class="layui-form layui-form-pane" action="index/select">
                 <div class="layui-form-item">
-                    <label class="layui-form-label">搜索</label>
-                    <div class="layui-input-inline">
+                    <div class="layui-inline">
                         <input type="text" name="commodity" placeholder="请输入商品名字" value=""
                                autocomplete="" class="layui-input"/>
+                    </div>
+                    <div class="layui-inline">
                         <input type="submit" class="layui-btn" value="搜索">
                     </div>
                 </div>

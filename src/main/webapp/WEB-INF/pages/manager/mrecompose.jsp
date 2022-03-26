@@ -39,16 +39,19 @@
         </div>
         <div style="border:1px solid #eee ;margin: 0 auto;max-width: 1140px;padding-top: 10px;">
 
-            <img id="image" src="static/images/headImg/${sessionScope.user.himage}" style="width:70px; height:70px; border-radius:50%; ">
-            <div class="layui-form-item layui-form-text">
-                <div class="layui-input-block">
-                    <button type="button" class="layui-btn" id="test1">
-                        <i class="layui-icon">&#xe67c;</i>上传图片${sessionScope.user.himage}
-                    </button>
-                </div>
-            </div>
-
             <form class="layui-form layui-form-pane" action="usermanager/urecompose">
+
+
+                <img id="image" src="static/images/headImg/${sessionScope.user.himage}" style="width:80px; height:70px;  border-radius:100%; padding: 10px;">
+                <div class="layui-form-item layui-form-text">
+                    <div class="layui-input-block">
+                        <button type="button" class="layui-btn" id="test1">
+                            <i class="layui-icon">&#xe67c;</i>上传图片
+                        </button>
+                    </div>
+                </div>
+
+
 
                 <div class="layui-form-item">
                     <label class="layui-form-label">名字</label>
