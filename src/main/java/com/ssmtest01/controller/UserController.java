@@ -220,7 +220,7 @@ public class UserController {
     /*管理员根据id删除用户*/
     @RequestMapping("/delUserById")
     @ResponseBody
-    public int delUserById (int uid) {
+    public int delUserById (Integer uid) {
         return userServiceImpl.delUserById(uid);
     }
 
@@ -255,4 +255,14 @@ public class UserController {
     }
 
 
+    /*前端管理员搜索用户*/
+    @RequestMapping("/selLikeUser")
+    public String selLikeUser (User user,HttpSession session) throws IOException {
+
+
+        List<User> allUser = userServiceImpl.selLikeUser(user);
+        session.setAttribute("selUser",user);
+        session.setAttribute("AllUser", allUser);
+        return "manager/user";
+    }
 }

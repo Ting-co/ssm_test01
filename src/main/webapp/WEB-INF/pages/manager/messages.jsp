@@ -33,13 +33,14 @@
     <div class="layui-body">
         <!-- 内容主体区域 -->
         <%--搜索框--%>
-        <div style="">
+        <div style="padding: 30px;">
             <form class="layui-form layui-form-pane" action="messages/select">
                 <div class="layui-form-item">
-                    <label class="layui-form-label">搜索</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="messagesOrId" placeholder="请输入商品名字或商品uuid" value=""
+                        <input type="text" name="messagesOrId" placeholder="请输入用户uid或留言内容" value=""
                                autocomplete=""  class="layui-input"/>
+                    </div>
+                    <div class="layui-input-inline">
                         <input type="submit" class="layui-btn" value="搜索">
                     </div>
                 </div>

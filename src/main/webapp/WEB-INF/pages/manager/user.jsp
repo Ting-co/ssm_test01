@@ -33,21 +33,45 @@
     <div class="layui-body">
         <!-- 内容主体区域 -->
         <%--搜索框--%>
-        <div style="">
-            <form class="layui-form layui-form-pane" action="messages/select">
+        <div style="padding: 30px">
+            <form class="layui-form layui-form-pane" action="usermanager/selLikeUser">
                 <div class="layui-form-item">
-                    <label class="layui-form-label">搜索</label>
-                    <div class="layui-input-inline">
-                        <input type="text" name="uid" placeholder="uid" value="" class="layui-input"/>
-                        <input type="text" name="email" placeholder="邮箱" value="" class="layui-input"/>
-                        <input type="text" name="username" placeholder="用户名" value="" class="layui-input"/>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">uid</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="uid"  value=""  placeholder="请输入uid"  class="layui-input"/>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">邮箱</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="email" lay-verify="email" value=""  class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">用户名</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="username"  value="" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">电话</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="phone" value="" class="layui-input"/>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
                         <input type="submit" class="layui-btn" value="搜索">
+                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
                     </div>
                 </div>
             </form>
         </div>
 
-        <%--表格主体--%>
+
+
+
+<%--表格主体--%>
         <div style="border: #beb9b0 solid 1px;margin-top: 30px;border-radius: 5px;">
             <div style="border-bottom: #beb9b0 solid 1px;height:40px;">
                 <h2 style="margin:10px 0 10px 15px;">商品列表</h2>
@@ -218,13 +242,13 @@
              * 搜索条件数据回显
              * @type {string}
              */
-            var messages = "${messages}";
-            if (messages != null || messages != ' ') {
+
                 //名称文本框回显
-                $("input[name='messagesOrId']").val('${messagesOrId}');
-            } else {
-                $("#none").css({"display": "hidden"})
-            }
+                $("input[name='uid']").val('${selUser.uid}');
+                $("input[name='email']").val('${selUser.email}');
+                $("input[name='username']").val('${selUser.username}');
+                $("input[name='phone']").val('${selUser.phone}');
+
 
             /**
              * 表格渲染

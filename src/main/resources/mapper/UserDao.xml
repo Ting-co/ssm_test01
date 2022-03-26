@@ -111,6 +111,23 @@
 
 
     </select>
+    <select id="selLikeUser" resultMap="user">
+        select * from `user`
+        <where>
+            <if test="user.uid != null and user.uid != ''">
+                AND uid LIKE CONCAT('%', #{user.uid}, '%')
+            </if>
+            <if test="user.username != null and user.username != ''">
+                AND username LIKE CONCAT('%', #{user.username}, '%')
+            </if>
+            <if test="user.phone != null and user.phone != ''">
+                AND phone LIKE  CONCAT('%', #{user.phone}, '%')
+            </if>
+            <if test="user.email != null and user.email != ''">
+                AND email LIKE CONCAT('%', #{user.email}, '%')
+            </if>
+        </where>
+    </select>
 
     <update id="updataByUser"  parameterType="com.ssmtest01.bean.User">
         update `user`

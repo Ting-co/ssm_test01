@@ -16,10 +16,12 @@ public interface UserService {
 
     public User selByidname(String uuidname);
 
-    public User selAllUser(int uid);
+    public User selAllUser(Integer uid);
 
     List<User> selUser(User user);
 
-    int delUserById(int uid);
+    int delUserById(Integer uid);
     int updataByUser(User user);
+
+    List<User> selLikeUser(User user);
 }

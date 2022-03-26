@@ -47,17 +47,19 @@ public interface UserDao {
     public User selByidname(String uuidname);
 
 
-    @Select("select * from user WHERE uid=#{u_id}")
+    @Select("select * from user WHERE uid=#{uid}")
     @ResultMap(value = "userMap")
-    public User finById(int u_id);
+    public User finById(Integer uid);
 
 
-    public User selAllUser(int uid);
+    public User selAllUser(Integer uid);
 
     List<User> selUser(@Param("user") User user);
 
     @Delete("delete from user where uid=#{uid}")
-    int delUserById(@Param("uid") int uid);
+    int delUserById(@Param("uid") Integer uid);
 
     int updataByUser(@Param("user") User user);
+
+    List<User> selLikeUser(@Param("user") User user);
 }

@@ -51,8 +51,8 @@ public class Testuser {
     @Test
     public void t2() {
         User user = new User();
-        user.setEmail("11@qq.com");
-        System.out.println(userDao.selUser(user));
+        user.setUid(1);
+        System.out.println(userDao.selLikeUser(user));
         System.out.println(userDao.selUser(user).isEmpty());
 
     }

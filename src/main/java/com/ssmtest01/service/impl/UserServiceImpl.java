@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User selAllUser(int uid) {
+    public User selAllUser(Integer uid) {
         return userDao.selAllUser(uid);
     }
 
@@ -51,12 +51,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int delUserById(int uid){
+    public int delUserById(Integer uid){
         return userDao.delUserById(uid);
     }
 
     @Override
     public int updataByUser(User user) {
         return userDao.updataByUser(user);
+    }
+
+    @Override
+    public List<User> selLikeUser(User user) {
+        return userDao.selLikeUser(user);
     }
 }

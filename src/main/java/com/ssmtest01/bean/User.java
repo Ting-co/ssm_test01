@@ -6,7 +6,7 @@ import java.util.List;
  * 用户bean
  */
 public class User {
-    private int uid;
+    private Integer uid;
     private String uuidname;
     private String username;
     private String password;
@@ -60,7 +60,7 @@ public class User {
     }
 */
 
-    public User(int uid, String uuidname, String username, String password, String himage, String phone, String email, int role, String address, double money, String sex, String text) {
+    public User(Integer uid, String uuidname, String username, String password, String himage, String phone, String email, int role, String address, double money, String sex, String text) {
         this.uid = uid;
         this.uuidname = uuidname;
         this.username = username;
@@ -85,11 +85,11 @@ public class User {
         this.order = order;
     }
 
-    public int getUid() {
+    public Integer getUid() {
         return uid;
     }
 
-    public void setUid(int uid) {
+    public void setUid(Integer uid) {
         this.uid = uid;
     }
 
