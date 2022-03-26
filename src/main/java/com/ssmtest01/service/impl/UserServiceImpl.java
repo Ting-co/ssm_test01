@@ -6,6 +6,8 @@ import com.ssmtest01.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -43,4 +45,13 @@ public class UserServiceImpl implements UserService {
         return userDao.selAllUser(uid);
     }
 
+    @Override
+    public List<User> selUser(User user){
+        return userDao.selUser(user);
+    }
+
+    @Override
+    public int delUserById(int uid){
+        return userDao.delUserById(uid);
+    }
 }

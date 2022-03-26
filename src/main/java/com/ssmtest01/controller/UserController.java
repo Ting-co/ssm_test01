@@ -17,10 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Random;
-import java.util.UUID;
+import java.util.*;
 
 @Controller
 @RequestMapping("/usermanager")
@@ -209,5 +206,23 @@ public class UserController {
         return "user/order";
 
     }
+
+
+    /*管理员查看所有用户*/
+    @RequestMapping("/allUser")
+    public String allUser (HttpServletRequest request,HttpSession session,User user) {
+
+        List<User> allUser = userServiceImpl.selUser(user);
+        session.setAttribute("AllUser", allUser);
+        return "manager/user";
+    }
+
+    /*管理员根据id删除用户*/
+    @RequestMapping("/delUserById")
+    @ResponseBody
+    public int delUserById (HttpServletRequest request,HttpSession session,int uid) {
+        return userServiceImpl.delUserById(uid);
+    }
+
 
 }

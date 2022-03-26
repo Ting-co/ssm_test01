@@ -2,6 +2,8 @@ package com.ssmtest01.service;
 
 import com.ssmtest01.bean.User;
 
+import java.util.List;
+
 public interface UserService {
     public User selBynameAndEmail(String username, String email);
 
@@ -14,4 +16,8 @@ public interface UserService {
     public User selByidname(String uuidname);
 
     public User selAllUser(int uid);
+
+    List<User> selUser(User user);
+
+    int delUserById(int uid);
 }

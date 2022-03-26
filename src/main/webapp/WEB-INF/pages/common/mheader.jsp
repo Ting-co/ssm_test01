@@ -33,7 +33,7 @@
             <i class="layui-icon layui-icon-spread-left"></i>
         </li>
 
-        <li class="layui-nav-item layui-hide-xs"><a href="pagerto/mindex">返回首页</a></li>
+        <li class="layui-nav-item layui-hide-xs"><a href="index/toindex">返回首页</a></li>
         <li class="layui-nav-item layui-hide-xs"><a href="pagerto/message">求物留言区</a></li>
     </ul>
 
@@ -74,6 +74,8 @@
             <li class="layui-nav-item"><a href="pagerto/mrecompose">修改个人资料</a></li>
             <li class="layui-nav-item"><a href="Mcommoditys/all">管理商品</a></li>
             <li class="layui-nav-item"><a href="messages/mall">留言区</a></li>
+            <li class="layui-nav-item"><a href="usermanager/allUser">用户管理</a></li>
+            <li class="layui-nav-item"><a href="messages/mall">订单管理</a></li>
         </ul>
     </div>
 </div>

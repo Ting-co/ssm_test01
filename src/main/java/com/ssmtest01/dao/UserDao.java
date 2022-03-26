@@ -53,4 +53,9 @@ public interface UserDao {
 
 
     public User selAllUser(int uid);
+
+    List<User> selUser(@Param("user") User user);
+
+    @Delete("delete from user where uid=#{uid}")
+    int delUserById(@Param("uid") int uid);
 }
