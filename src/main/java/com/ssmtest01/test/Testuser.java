@@ -36,6 +36,31 @@ public class Testuser {
     public void ss() {
         User sss =  userDao.selAllUser(2);
         System.out.println(sss.getOrder().get(1).getCommoditys().getCommodity());
+    }
+
+    @Test
+    public void t1() {
+        User user = new User();
+        user.setUid(14);
+//        user.setUsername("gg");
+        user.setRole(0);
+        int i = userDao.updataByUser(user);
+        System.out.println(i);
+
+    }
+    @Test
+    public void t2() {
+        User user = new User();
+        user.setEmail("11@qq.com");
+        System.out.println(userDao.selUser(user));
+        System.out.println(userDao.selUser(user).isEmpty());
+
+    }
+    @Test
+    public void t3() {
+        User user = new User();
+        System.out.println(user.getMoney());
+
 
     }
 }

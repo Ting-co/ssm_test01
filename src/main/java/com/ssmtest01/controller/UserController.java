@@ -220,19 +220,39 @@ public class UserController {
     /*管理员根据id删除用户*/
     @RequestMapping("/delUserById")
     @ResponseBody
-    public int delUserById (HttpServletRequest request,HttpSession session,int uid) {
+    public int delUserById (int uid) {
         return userServiceImpl.delUserById(uid);
     }
 
-    /*前端管理员查看所有用户*/
+    /*前端管理员查看用户信息*/
     @RequestMapping("/sleUser")
     @ResponseBody
-    public HashMap sleUser (HttpServletRequest request,HttpSession session,User user) {
+    public HashMap sleUser (User user) {
 
         List<User> allUser = userServiceImpl.selUser(user);
         HashMap<String, User> stringUserHashMap = new HashMap<>();
         stringUserHashMap.put("sleUser", allUser.get(0));
         return stringUserHashMap;
     }
+
+    /*前端管理员修改用户*/
+    @RequestMapping("/updataByUser")
+    public void updataByUser (User user,HttpServletRequest request,HttpServletResponse response) throws IOException {
+        User uidUser = new User();
+        uidUser.setUid(user.getUid());
+        if (userServiceImpl.selUser(uidUser).get(0).getEmail()!=user.getEmail()){
+            user.setEmail("");
+            userServiceImpl.updataByUser(user);
+        }
+        response.sendRedirect(request.getContextPath() + "/usermanager/allUser");
+    }
+
+    /*修改用户权限*/
+    @RequestMapping("/updataRole")
+    @ResponseBody
+    public int updataRole (User user,HttpServletRequest request,HttpServletResponse response) throws IOException {
+            return userServiceImpl.updataByUser(user);
+    }
+
 
 }

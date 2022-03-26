@@ -38,8 +38,9 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">搜索</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="messagesOrId" placeholder="请输入商品名字或商品uuid" value=""
-                               autocomplete="" class="layui-input"/>
+                        <input type="text" name="uid" placeholder="uid" value="" class="layui-input"/>
+                        <input type="text" name="email" placeholder="邮箱" value="" class="layui-input"/>
+                        <input type="text" name="username" placeholder="用户名" value="" class="layui-input"/>
                         <input type="submit" class="layui-btn" value="搜索">
                     </div>
                 </div>
@@ -88,8 +89,12 @@
                             <td>${obj.money}</td>
                             <td>
                                 <c:if test="${obj.role!=1}">
+                                    <a class="operateBtn" lay-event="role" role="1"  objId="${obj.uid}">升权限</a>
                                     <a class="operateBtn" lay-event="update" objId="${obj.uid}">编辑</a>
                                     <a class="operateBtn" lay-event="delete" objId="${obj.uid}">删除</a>
+                                </c:if>
+                                <c:if test="${obj.role==1}">
+                                    <a class="operateBtn" lay-event="role" role="0" objId="${obj.uid}">降权限</a>
                                 </c:if>
                             </td>
                         </tr>
@@ -104,12 +109,12 @@
     </div>
 
         <div style="border:0px solid #eee ;margin: 0 auto;max-width: 1140px;padding-top: 10px;display: none;" id="updataUser">
-            <img id="image" src="static/images/headImg/${sessionScope.user.himage}"
+            <img id="image" src=""
                  style="width:70px; height:70px; border-radius:50%; ">
 
 
-            <form class="layui-form layui-form-pane" action="usermanager/urecompose">
-
+            <form class="layui-form layui-form-pane" action="usermanager/updataByUser">
+                <input id="uid" type="hidden" name="uid" value=""/>
                 <div class="layui-form-item">
                     <label class="layui-form-label">名字</label>
                     <div class="layui-input-inline">
@@ -121,16 +126,16 @@
                 <div class="layui-form-item" pane="">
                     <label class="layui-form-label">性别</label>
                     <div class="layui-input-block">
-                        <input type="radio" name="sex" value="男" title="男">
-                        <input type="radio" name="sex" value="女" title="女">
-                        <input type="radio" name="sex" value="其他" title="其他" >
+                        <input type="radio" id="nan"  name="sex" value="男" title="男">
+                        <input type="radio" id="nv" name="sex" value="女" title="女">
+                        <input type="radio"  id="other" name="sex" value="其他" title="其他" >
                     </div>
                 </div>
 
                 <div class="layui-form-item">
                     <label class="layui-form-label">手机号码</label>
                     <div class="layui-input-inline">
-                        <input type="text" id="phone" name="phone" value="${sessionScope.user.phone}" lay-verify="required|phone"
+                        <input type="text" id="phone" name="phone" value="" lay-verify="required|phone"
                                autocomplete="off" class="layui-input">
                     </div>
                 </div>
@@ -138,7 +143,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">邮箱</label>
                     <div class="layui-input-inline">
-                        <input type="text" id="email" name="email" value="${sessionScope.user.email}" lay-verify="email"
+                        <input type="text" id="email" name="email" value="" lay-verify="email"
                                autocomplete="off" class="layui-input">
                     </div>
                 </div>
@@ -161,14 +166,22 @@
                     </div>
                 </div>
 
-                <div class="layui-form-item layui-form-text">
-                    <label class="layui-form-label">留言</label>
-                    <div class="layui-input-block">
-                        <textarea id="text" name="text" placeholder="${sessionScope.user.text}" class="layui-textarea"></textarea>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">金额</label>
+                    <div class="layui-input-inline">
+                        <input type="text" id="money" name="money" value="" autocomplete=""
+                               class="layui-input">
                     </div>
                 </div>
 
-                <input id="uid" type="hidden"  value=""/>
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">留言</label>
+                    <div class="layui-input-block">
+                        <textarea id="text" name="text" placeholder="" class="layui-textarea"></textarea>
+                    </div>
+                </div>
+
+
 
                 <div class="layui-form-item">
                     <input type="submit" class="layui-btn" value="确认修改">
@@ -178,6 +191,9 @@
         </div>
 
     <script>
+       function  testTime(){
+           location.replace("usermanager/allUser");
+        }
         //JS
         layui.use(['element', 'layer', 'util'], function () {
             var element = layui.element
@@ -245,9 +261,60 @@
                         layer.close(index);
                     });
                 }
+                //删除商品
+                if (layEvent == 'role') {
+                    var id1 = $(this).attr("objId");
+                    var role = $(this).attr("role");
+                    if(role=="1"){
+                        layer.confirm('确认升级为管理员吗 \"' + data.username + '\" ?', {title: '提示'}, function (index) {
+                            $.ajax({
+                                url: 'usermanager/updataRole?uid='+id1+'&role='+role
+                                , type: 'post'
+                                , success: function (data) {
+                                    if (data >= 1) {
+                                        layer.msg("成功");
+                                    } else {
+                                        layer.msg("失败");
+                                    }
+                                }
+                                , error: function () {
+                                    alert("修改失败")
+                                }
 
 
-                //编辑商品信息
+                            });
+                            layer.close(index);
+                            setInterval("testTime()",1000);
+                        });
+                    }else {
+                        layer.confirm('确认降级为用户吗 \"' + data.username + '\" ?', {title: '提示'}, function (index) {
+                            $.ajax({
+                                url: 'usermanager/updataRole?uid='+id1+'&role='+role
+                                , type: 'post'
+                                , success: function (data) {
+                                    if (data >= 1) {
+                                        layer.msg("成功");
+                                    } else {
+                                        layer.msg("失败");
+                                    }
+                                }
+                                , error: function () {
+                                    alert("修改失败")
+                                }
+
+
+                            });
+                            layer.close(index);
+
+                            setInterval("testTime()",1000);
+
+                        });
+                    }
+
+                }
+
+
+                //编辑用户信息
                 if (layEvent == 'update') {
                     //选中行的id
                     var uid = $(this).attr("objId");
@@ -276,6 +343,8 @@
                                      document.getElementById("address").innerHTML = data.sleUser.address;
                                      document.getElementById("text").placeholder = data.sleUser.text;
                                      document.getElementById("uid").value = data.sleUser.uid;
+                                     document.getElementById("money").value = data.sleUser.money;
+                                     data.sleUser.sex=="男"?document.getElementById("nan").checked = true:(data.sleUser.sex=="女"?document.getElementById("nv").checked = true:document.getElementById("other").checked = true)
                                      form.render(); //更新全部
                                      form.render('select'); //刷新select选择框渲染*/
                                 }

@@ -58,4 +58,6 @@ public interface UserDao {
 
     @Delete("delete from user where uid=#{uid}")
     int delUserById(@Param("uid") int uid);
+
+    int updataByUser(@Param("user") User user);
 }
