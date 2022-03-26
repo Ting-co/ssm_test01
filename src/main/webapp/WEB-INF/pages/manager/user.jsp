@@ -90,7 +90,6 @@
                                 <c:if test="${obj.role!=1}">
                                     <a class="operateBtn" lay-event="update" objId="${obj.uid}">编辑</a>
                                     <a class="operateBtn" lay-event="delete" objId="${obj.uid}">删除</a>
-
                                 </c:if>
                             </td>
                         </tr>
@@ -104,47 +103,34 @@
 
     </div>
 
-        <div style="border:0px solid #eee ;margin: 0 auto;max-width: 1140px;padding-top: 10px;display: none;">
+        <div style="border:0px solid #eee ;margin: 0 auto;max-width: 1140px;padding-top: 10px;display: none;" id="updataUser">
             <img id="image" src="static/images/headImg/${sessionScope.user.himage}"
                  style="width:70px; height:70px; border-radius:50%; ">
-            <div class="layui-form-item layui-form-text">
-                <div class="layui-input-block">
-                    <button type="button" class="layui-btn" id="test1">
-                        <i class="layui-icon">&#xe67c;</i>上传图片${sessionScope.user.himage}
-                    </button>
-                </div>
-            </div>
+
 
             <form class="layui-form layui-form-pane" action="usermanager/urecompose">
 
                 <div class="layui-form-item">
                     <label class="layui-form-label">名字</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="username" value="${sessionScope.user.username}" autocomplete=""
+                        <input type="text" id="username" name="username" value="" autocomplete=""
                                class="layui-input">
                     </div>
                 </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">uuid</label>
-                    <div class="mylayui-input-inline" style="padding-left: 120px;padding-top: 10px">
-                        <font style="color:#b3aeae;height: 38px;"> ${sessionScope.user.uuidname}</font>
-                    </div>
-                </div>
-
 
                 <div class="layui-form-item" pane="">
                     <label class="layui-form-label">性别</label>
                     <div class="layui-input-block">
                         <input type="radio" name="sex" value="男" title="男">
                         <input type="radio" name="sex" value="女" title="女">
-                        <input type="radio" name="sex" value="其他" title="其他" d>
+                        <input type="radio" name="sex" value="其他" title="其他" >
                     </div>
                 </div>
 
                 <div class="layui-form-item">
                     <label class="layui-form-label">手机号码</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="phone" value="${sessionScope.user.phone}" lay-verify="required|phone"
+                        <input type="text" id="phone" name="phone" value="${sessionScope.user.phone}" lay-verify="required|phone"
                                autocomplete="off" class="layui-input">
                     </div>
                 </div>
@@ -152,7 +138,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">邮箱</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="email" value="${sessionScope.user.email}" lay-verify="email"
+                        <input type="text" id="email" name="email" value="${sessionScope.user.email}" lay-verify="email"
                                autocomplete="off" class="layui-input">
                     </div>
                 </div>
@@ -161,7 +147,7 @@
                     <label class="layui-form-label">收货地址</label>
                     <div class="layui-input-inline">
                         <select name="address">
-                            <option value="${sessionScope.user.address}">${sessionScope.user.address}</option>
+                            <option id="address" value=""></option>
                             <option value="1A">1A101</option>
                             <option value="1A">1A201</option>
                             <option value="1A">1A301</option>
@@ -178,11 +164,11 @@
                 <div class="layui-form-item layui-form-text">
                     <label class="layui-form-label">留言</label>
                     <div class="layui-input-block">
-                        <textarea name="text" placeholder="${sessionScope.user.text}" class="layui-textarea"></textarea>
+                        <textarea id="text" name="text" placeholder="${sessionScope.user.text}" class="layui-textarea"></textarea>
                     </div>
                 </div>
 
-                <input id="newhimage" type="hidden" name="himage" value=""/>
+                <input id="uid" type="hidden"  value=""/>
 
                 <div class="layui-form-item">
                     <input type="submit" class="layui-btn" value="确认修改">
@@ -257,6 +243,56 @@
                             }
                         });
                         layer.close(index);
+                    });
+                }
+
+
+                //编辑商品信息
+                if (layEvent == 'update') {
+                    //选中行的id
+                    var uid = $(this).attr("objId");
+
+                    //弹窗
+                    layer.open({
+                        type: 1
+                        , title: '修改用户信息'
+                        , area: ['800px', '820px']
+
+                        , content: $("#updataUser")
+                        , success: function () {
+
+
+                            $.ajax({
+                                url: 'usermanager/sleUser'
+                                , type: 'post'
+                                , dataType: "json"
+                                , data: {uid: uid}
+                                , success: function (data) {
+                                    console.log(data);
+                                     document.getElementById("username").value = data.sleUser.username;
+                                     document.getElementById("phone").value = data.sleUser.phone;
+                                     document.getElementById("email").value = data.sleUser.email;
+                                     document.getElementById("image").src = "static/images/commoditys/" + data.sleUser.himage;
+                                     document.getElementById("address").innerHTML = data.sleUser.address;
+                                     document.getElementById("text").placeholder = data.sleUser.text;
+                                     document.getElementById("uid").value = data.sleUser.uid;
+                                     form.render(); //更新全部
+                                     form.render('select'); //刷新select选择框渲染*/
+                                }
+                                , error: function () {
+                                    alert("获取商品数据失败")
+                                }
+
+
+                            });
+
+
+                        }
+                        , end() {
+
+                            $("#updataUser").css({"display": "none"})
+                        }
+
                     });
                 }
 

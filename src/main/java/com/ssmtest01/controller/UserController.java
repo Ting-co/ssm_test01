@@ -224,5 +224,15 @@ public class UserController {
         return userServiceImpl.delUserById(uid);
     }
 
+    /*前端管理员查看所有用户*/
+    @RequestMapping("/sleUser")
+    @ResponseBody
+    public HashMap sleUser (HttpServletRequest request,HttpSession session,User user) {
+
+        List<User> allUser = userServiceImpl.selUser(user);
+        HashMap<String, User> stringUserHashMap = new HashMap<>();
+        stringUserHashMap.put("sleUser", allUser.get(0));
+        return stringUserHashMap;
+    }
 
 }
