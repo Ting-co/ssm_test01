@@ -67,5 +67,30 @@ public class OrderController {
         return map;
     }
 
+    @RequestMapping("/buyerOkOrder")
+    @ResponseBody
+    public HashMap buyerOkOrder(HttpServletRequest request, HttpSession session) {
+        String oid = request.getParameter("oid");
 
+
+        Order order = new Order();
+        /*获取当前时间*/
+        String getdata = DataUtils.getdata();
+        order.setOkdate(getdata);
+        order.setOid(Long.parseLong(oid));
+        order.setBstate("完成");
+
+        orderService.updataOrder(order);
+
+        HashMap map = new HashMap();
+        if (1>0){
+            map.put("msg","购买成功");
+        }else {
+            map.put("msg","购买失败");
+        }
+
+
+
+        return map;
+    }
 }

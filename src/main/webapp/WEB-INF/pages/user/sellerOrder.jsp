@@ -198,9 +198,10 @@
                         <ul style="display: flex;justify-content: space-between;align-items: center;border:1px solid #eee ;"
                             class="first${status.index}">
                             <li>
-                            <c:if test="${allOrder.uid==sessionScope.user.uid}">
-                                <span class="layui-badge layui-bg-green">买家</span>
-                            </c:if>
+
+                                <c:if test="${allOrder.sid==sessionScope.user.uid}">
+                                    <span class="layui-badge">卖家</span>
+                                </c:if>
                             </li>
 
                             <li>
@@ -208,24 +209,24 @@
                                      height="50">
                             </li>
                             <li>
-                                  ${allOrder.commoditys.commodity}
+                                    ${allOrder.commoditys.commodity}
                             </li>
 
                             <li>¥<input type="text" name="price" value="${allOrder.commoditys.price  }"></li>
                             <li>${allOrder.amount}</li>
                             <li class="price${status.index}">¥${allOrder.commoditys.price * allOrder.amount}</li>
                             <li>
-                                <c:if test="${allOrder.uid==sessionScope.user.uid}">
-                                    ${allOrder.bstate}
-                                </c:if>
 
+                                <c:if test="${allOrder.sid==sessionScope.user.uid}">
+                                    ${allOrder.sstate}
+                                </c:if>
 
                             </li>
 
                             <li>
                                 <p onclick="orderDetails()">订单详情</p>
                                     <%--<p onclick="delete1(${status.index})">申请退款</p>--%>
-                                <p onclick="okOrder(${allOrder.oid})">完成订单</p>
+                                <p onclick="delete1(${status.index})">完成订单</p>
                             </li>
 
                                 <%--用于删除id--%>
@@ -269,20 +270,7 @@
     });
 
 
-    //加入收藏
-    function okOrder(oid) {
-        layer.confirm('确认完成该订单吗 ?', {title: '提示'}, function () {
-            $.post('myOrder/buyerOkOrder?oid=' + oid, function (data) {
-                if (data >= 1) {
-                    layer.msg("订单完成成功");
-                    obj.del();
-                } else {
-                    layer.msg("订单完成失败");
-                }
-            });
 
-    });
-    }
 
 </script>
 

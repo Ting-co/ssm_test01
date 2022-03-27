@@ -44,6 +44,10 @@ public class UserServiceImpl implements UserService {
     public User selAllUser(Integer uid) {
         return userDao.selAllUser(uid);
     }
+    @Override
+    public User selSeller(Integer uid) {
+        return userDao.selSeller(uid);
+    }
 
     @Override
     public List<User> selUser(User user){

@@ -8,4 +8,20 @@
     </delete>
 
 
+    <update id="updataOrder" parameterType="com.ssmtest01.bean.Order">
+        update myorder
+        <set>
+            <if test="order.sstate != null and order.sstate != ''">
+                sstate=#{order.sstate},
+            </if>
+            <if test="order.bstate != null and order.bstate != ''">
+                bstate=#{order.bstate},
+            </if>
+            <if test="order.okdate != null and order.okdate != ''">
+                okdate=#{order.okdate},
+            </if>
+        </set>
+        where oid=#{order.oid}
+    </update>
+
 </mapper>

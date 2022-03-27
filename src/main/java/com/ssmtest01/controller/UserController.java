@@ -196,7 +196,7 @@ public class UserController {
     }
 
 
-    /*查看当前订单*/
+    /*查看买家订单*/
     @RequestMapping("/nowOrder")
     public String nowOrder (HttpServletRequest request,HttpSession session) {
         User user = (User) session.getAttribute("user");
@@ -204,6 +204,16 @@ public class UserController {
         System.out.println("当前传过来的值为"+AllOrder);
         request.setAttribute("AllOrder", JSON.toJSON(AllOrder));
         return "user/order";
+
+    }
+    /*查看买家订单*/
+    @RequestMapping("/selSeller")
+    public String selSeller (HttpServletRequest request,HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        User AllOrder = userServiceImpl.selSeller(user.getUid());
+        System.out.println("当前传过来的值为"+AllOrder);
+        request.setAttribute("AllOrder", JSON.toJSON(AllOrder));
+        return "user/sellerOrder";
 
     }
 

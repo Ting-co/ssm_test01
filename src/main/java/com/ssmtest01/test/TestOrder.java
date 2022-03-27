@@ -47,9 +47,14 @@ public class TestOrder {
         messagesDao.addM(s);
 
     }
-    /*@Test
+    @Test
     public void ss2() {
-      orderDao.delorder();
-      orderDao.delorderAndshopping();
-    }*/
+        Order order = new Order();
+        /*获取当前时间*/
+        String getdata = DataUtils.getdata();
+        order.setOkdate(getdata);
+        order.setOid(1643891186890L);
+        int i = orderDao.updataOrder(order);
+
+    }
 }

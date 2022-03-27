@@ -68,6 +68,16 @@
 
     </select>
 
+    <select id="selSeller" resultMap="myOrder" >
+        SELECT u.uid,o.*, su.username,su.phone,su.email,su.text,c.*
+        from `user` u
+                 join shopping_order s_o  on s_o.sellerid=u.uid
+                 join  myorder o on o.oid=s_o.oid
+                 join  `user` su on o.uid=su.uid
+                 join  commoditys c on c.sid=o.cid
+        where u.uid=#{uid}
+
+    </select>
 
     <select id="selUser" resultMap="user">
         SELECT * from `user`

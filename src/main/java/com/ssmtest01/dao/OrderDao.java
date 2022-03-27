@@ -19,10 +19,12 @@ public interface OrderDao {
     int insertsAndO(@Param("oid") Long oid,@Param("buyerid")int buyerid,@Param("sellerid")int sellerid);
 
 
-    List<Order> selNowOrder(int uid);
+//    List<Order> selNowOrder(int uid);
 
     @Delete("delete from myorder where uid is null")
     void delorder();
 
     void delorderAndshopping();
+
+    int updataOrder(@Param("order") Order order);
 }

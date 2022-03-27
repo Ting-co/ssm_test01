@@ -58,9 +58,8 @@ public class Testuser {
     }
     @Test
     public void t3() {
-        User user = new User();
-        System.out.println(user.getMoney());
-
+        User user = userDao.selSeller(14);
+        System.out.println(user);
 
     }
 }

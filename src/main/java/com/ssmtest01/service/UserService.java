@@ -24,4 +24,6 @@ public interface UserService {
     int updataByUser(User user);
 
     List<User> selLikeUser(User user);
+
+    User selSeller(Integer uid);
 }
