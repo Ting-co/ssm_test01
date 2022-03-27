@@ -4,6 +4,7 @@ import com.ssmtest01.bean.Order;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -27,4 +28,7 @@ public interface OrderDao {
     void delorderAndshopping();
 
     int updataOrder(@Param("order") Order order);
+
+
+    Order selOrder(@Param("order") Order order);
 }

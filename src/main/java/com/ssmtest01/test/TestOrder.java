@@ -57,4 +57,13 @@ public class TestOrder {
         int i = orderDao.updataOrder(order);
 
     }
+    @Test
+    public void ss3() {
+        Order order = new Order();
+        order.setOid(1643891186890L);
+        Order order1 = orderDao.selOrder(order);
+        System.out.println(order1);
+        System.out.println(order1.getAmount()*order1.getCommoditys().getPrice());
+
+    }
 }

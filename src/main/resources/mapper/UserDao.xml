@@ -64,7 +64,8 @@
                  join  myorder o on o.oid=s_o.oid
                  join  `user` su on o.sid=su.uid
                  join  commoditys c on c.sid=o.cid
-        where u.uid=#{uid}
+        where u.uid=#{uid} and o.bstate!='完成'
+
 
     </select>
 
@@ -75,7 +76,7 @@
                  join  myorder o on o.oid=s_o.oid
                  join  `user` su on o.uid=su.uid
                  join  commoditys c on c.sid=o.cid
-        where u.uid=#{uid}
+        where u.uid=#{uid} and o.sstate!='完成'
 
     </select>
 

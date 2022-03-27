@@ -226,7 +226,9 @@
                             <li>
                                 <p onclick="orderDetails()">订单详情</p>
                                     <%--<p onclick="delete1(${status.index})">申请退款</p>--%>
-                                <p onclick="delete1(${status.index})">完成订单</p>
+                                <c:if test="${allOrder.bstate=='完成'}">
+                                    <p onclick="okOrder(${allOrder.oid})">完成订单</p>
+                                </c:if>
                             </li>
 
                                 <%--用于删除id--%>
@@ -269,7 +271,26 @@
         });
     });
 
+    //买家完成订单
+    function okOrder(oid) {
+        layer.confirm('确认完成该订单吗 ?', {title: '提示'}, function () {
+            $.post('myOrder/sellerOkOrder?oid=' + oid, function (data) {
+                if (data >= 1) {
+                    layer.msg(data.msg);
 
+                } else {
+                    layer.msg(data.msg);
+                }
+                setInterval("testTime()",1000);
+            });
+
+        });
+
+    }
+
+    function  testTime(){
+        location.replace("usermanager/selSeller");
+    }
 
 
 </script>

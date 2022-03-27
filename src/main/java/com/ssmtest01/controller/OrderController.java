@@ -79,14 +79,37 @@ public class OrderController {
         order.setOkdate(getdata);
         order.setOid(Long.parseLong(oid));
         order.setBstate("完成");
+        order.setSstate("用户已确认收货");
 
-        orderService.updataOrder(order);
+        int i = orderService.updataOrder(order);
 
         HashMap map = new HashMap();
-        if (1>0){
-            map.put("msg","购买成功");
+        if (i>0){
+            map.put("msg","订单完成成功");
         }else {
-            map.put("msg","购买失败");
+            map.put("msg","订单完成失败");
+        }
+
+
+
+        return map;
+    }
+
+    @RequestMapping("/sellerOkOrder")
+    @ResponseBody
+    public HashMap sellerOkOrder(HttpServletRequest request, HttpSession session) {
+        String oid = request.getParameter("oid");
+
+        Order order = new Order();
+        order.setOid(Long.parseLong(oid));
+        order.setSstate("完成");
+        int i = orderService.updataOrder(order);
+        double price = orderService.selOrder(order);
+        HashMap map = new HashMap();
+        if (i>0){
+            map.put("msg","订单完成成功,金额"+price+"已到账");
+        }else {
+            map.put("msg","订单完成失败");
         }
 
 
