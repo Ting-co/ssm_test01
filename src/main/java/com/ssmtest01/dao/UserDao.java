@@ -52,9 +52,10 @@ public interface UserDao {
     public User finById(Integer uid);
 
 
-    public User selAllUser(Integer uid);
+    public User selAllUser(@Param("order") Order order);
 
-    public User selSeller(Integer uid);
+    public User selSeller(@Param("order") Order order);
+
 
     List<User> selUser(@Param("user") User user);
 

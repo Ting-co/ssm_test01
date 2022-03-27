@@ -1,5 +1,6 @@
 package com.ssmtest01.test;
 
+import com.ssmtest01.bean.Messages;
 import com.ssmtest01.bean.Order;
 import com.ssmtest01.bean.User;
 import com.ssmtest01.dao.MessagesDao;
@@ -34,8 +35,8 @@ public class Testuser {
 
     @Test
     public void ss() {
-        User sss =  userDao.selAllUser(2);
-        System.out.println(sss.getOrder().get(1).getCommoditys().getCommodity());
+//        User sss =  userDao.selAllUser(2);
+//        System.out.println(sss.getOrder().get(1).getCommoditys().getCommodity());
     }
 
     @Test
@@ -58,8 +59,27 @@ public class Testuser {
     }
     @Test
     public void t3() {
-        User user = userDao.selSeller(14);
-        System.out.println(user);
+
+//        User user1 = userDao.selAllUser(2);
+//        User user2 = userDao.selSeller();
+        Order order = new Order();
+        order.setUid(2);
+        order.setSstate("买家已付款，待发货");
+        User AllOrder = userDao.selSeller(order);
+        /*User{uid=2, uuidname='null', username='gg', password='null', himage='null', phone='18300071361', email='123@qq.com', role=0, address='null', money=0.0, sex='null', text='iiiiiiiiiiiii',
+        order=[Order{oid=1648375882029, sstate='买家已付款，待发货', bstate='发货中', odate='2022-03-27 06:11', okdate='null', payment=1, amount=1, uid=2, sid=2,
+            user=User{uid=2, uuidname='null', username='gg', password='null', himage='null', phone='18300071361', email='123@qq.com', role=0, address='null', money=0.0, sex='null', text='iiiiiiiiiiiii', order=null},
+            commoditys=Commoditys{sid=2, uid=2, commodity='123', synopsis='123', price=123.0, amount=1, state=0, sort='null', simage='1640860216779.png', sdate='null', message='null'}}]}*/
+        System.out.println(AllOrder);
+
+    }
+    @Test
+    public void t4() {
+        Messages messages = new Messages();
+        messages.setUid(2);
+        List<Messages> messages1 = messagesDao.userAll(messages);
+
+        System.out.println(messages1);
 
     }
 }

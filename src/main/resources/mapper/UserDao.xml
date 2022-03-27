@@ -64,7 +64,14 @@
                  join  myorder o on o.oid=s_o.oid
                  join  `user` su on o.sid=su.uid
                  join  commoditys c on c.sid=o.cid
-        where u.uid=#{uid} and o.bstate!='完成'
+        <where>
+            <if test="order.uid != null and order.uid != ''">
+              AND  u.uid=#{order.uid}
+            </if>
+            <if test="order.bstate != null and order.bstate != ''">
+                AND o.bstate=#{order.bstate}
+            </if>
+        </where>
 
 
     </select>
@@ -76,7 +83,15 @@
                  join  myorder o on o.oid=s_o.oid
                  join  `user` su on o.uid=su.uid
                  join  commoditys c on c.sid=o.cid
-        where u.uid=#{uid} and o.sstate!='完成'
+        <where>
+            <if test="order.uid != null and order.uid != ''">
+               AND u.uid=#{order.uid}
+            </if>
+            <if test="order.sstate != null and order.sstate != ''">
+                AND o.sstate=#{order.sstate}
+            </if>
+        </where>
+
 
     </select>
 

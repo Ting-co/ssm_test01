@@ -15,4 +15,6 @@ public interface MessagesService {
      int delBysId(int mid);
 
      List<Messages> selByIdOrName(int mid, String message, int uid);
+
+    List<Messages> userAll(Messages messages);
 }

@@ -46,4 +46,9 @@ public class MessagesServiceImpl implements MessagesService {
     public List<Messages> selByIdOrName(int mid, String message, int uid) {
         return messagesDao.selByIdOrName(mid,message,uid);
     }
+
+    @Override
+    public List<Messages> userAll(Messages messages) {
+        return messagesDao.userAll(messages);
+    }
 }

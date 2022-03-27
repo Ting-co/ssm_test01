@@ -3,6 +3,7 @@ package com.ssmtest01.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.ssmtest01.bean.DataJson;
+import com.ssmtest01.bean.Order;
 import com.ssmtest01.bean.User;
 import com.ssmtest01.service.UserService;
 
@@ -200,22 +201,45 @@ public class UserController {
     @RequestMapping("/nowOrder")
     public String nowOrder (HttpServletRequest request,HttpSession session) {
         User user = (User) session.getAttribute("user");
-        User AllOrder = userServiceImpl.selAllUser(user.getUid());
+        Order order = new Order();
+        order.setUid(user.getUid());
+        order.setBstate("发货中");
+        User AllOrder = userServiceImpl.selAllUser(order);
         System.out.println("当前传过来的值为"+AllOrder);
         request.setAttribute("AllOrder", JSON.toJSON(AllOrder));
         return "user/order";
 
     }
-    /*查看买家订单*/
+    /*查看卖家订单*/
     @RequestMapping("/selSeller")
     public String selSeller (HttpServletRequest request,HttpSession session) {
         User user = (User) session.getAttribute("user");
-        User AllOrder = userServiceImpl.selSeller(user.getUid());
+        Order order = new Order();
+        order.setUid(user.getUid());
+        order.setSstate("买家已付款，待发货");
+        User AllOrder = userServiceImpl.selSeller(order);
         System.out.println("当前传过来的值为"+AllOrder);
         request.setAttribute("AllOrder", JSON.toJSON(AllOrder));
         return "user/sellerOrder";
 
     }
+    /*查看历史订单*/
+    @RequestMapping("/selHistory")
+    public String selHistory (HttpServletRequest request,HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        Order order = new Order();
+        order.setUid(user.getUid());
+        order.setSstate("完成");
+        order.setBstate("完成");
+        User selSeller = userServiceImpl.selSeller(order);
+        User AllOrder = userServiceImpl.selAllUser(order);
+        AllOrder.setOrder(selSeller.getOrder());
+        System.out.println("当前传过来的值为"+AllOrder);
+        request.setAttribute("AllOrder", JSON.toJSON(AllOrder));
+        return "user/historyOrder";
+
+    }
+
 
 
     /*管理员查看所有用户*/

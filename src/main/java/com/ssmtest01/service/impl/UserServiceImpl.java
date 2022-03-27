@@ -1,5 +1,6 @@
 package com.ssmtest01.service.impl;
 
+import com.ssmtest01.bean.Order;
 import com.ssmtest01.bean.User;
 import com.ssmtest01.dao.UserDao;
 import com.ssmtest01.service.UserService;
@@ -41,12 +42,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User selAllUser(Integer uid) {
-        return userDao.selAllUser(uid);
+    public User selAllUser(Order order) {
+        return userDao.selAllUser(order);
     }
     @Override
-    public User selSeller(Integer uid) {
-        return userDao.selSeller(uid);
+    public User selSeller(Order order) {
+        return userDao.selSeller(order);
     }
 
     @Override

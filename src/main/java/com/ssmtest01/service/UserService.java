@@ -1,5 +1,6 @@
 package com.ssmtest01.service;
 
+import com.ssmtest01.bean.Order;
 import com.ssmtest01.bean.User;
 import org.apache.ibatis.annotations.Param;
 
@@ -16,7 +17,7 @@ public interface UserService {
 
     public User selByidname(String uuidname);
 
-    public User selAllUser(Integer uid);
+    public User selAllUser(Order order);
 
     List<User> selUser(User user);
 
@@ -25,5 +26,5 @@ public interface UserService {
 
     List<User> selLikeUser(User user);
 
-    User selSeller(Integer uid);
+    User selSeller(Order order);
 }

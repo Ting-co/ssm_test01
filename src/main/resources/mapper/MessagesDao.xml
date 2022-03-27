@@ -7,4 +7,14 @@
         delete from messages where mid=#{mid}
     </delete>
 
+    <select id="userAll" resultType="com.ssmtest01.bean.Messages">
+        select * from messages
+        <where>
+            uid=#{messages.uid}
+            <if test="messages.message != null and messages.message != ''">
+               AND message LIKE  CONCAT('%', #{messages.message}, '%')
+            </if>
+        </where>
+    </select>
+
 </mapper>

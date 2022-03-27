@@ -34,7 +34,7 @@
         </li>
 
         <li class="layui-nav-item layui-hide-xs"><a href="index/toindex">返回首页</a></li>
-        <li class="layui-nav-item layui-hide-xs"><a href="pagerto/message">求物留言区</a></li>
+        <li class="layui-nav-item layui-hide-xs"><a href="messages/all">求物留言区</a></li>
     </ul>
 
 

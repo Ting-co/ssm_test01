@@ -36,7 +36,7 @@
         </li>
 
         <li class="layui-nav-item layui-hide-xs"><a href="index/toindex">返回首页</a></li>
-        <li class="layui-nav-item layui-hide-xs"><a href="pagerto/message">求物留言区</a></li>
+        <li class="layui-nav-item layui-hide-xs"><a href="messages/all">求物留言区</a></li>
     </ul>
 
 
@@ -80,12 +80,12 @@
                 <dl class="layui-nav-child">
                     <dd><a href="usermanager/nowOrder">购买订单</a></dd>
                     <dd><a href="usermanager/selSeller">销售订单</a></dd>
-                    <dd><a href="javascript:;">历史订单</a></dd>
+                    <dd><a href="usermanager/selHistory">历史订单</a></dd>
                 </dl>
             </li>
             <li class="layui-nav-item"><a href="shopping/all">购物车</a></li>
             <li class="layui-nav-item"><a href="commoditys/all">管理商品</a></li>
-            <li class="layui-nav-item"><a href="">留言区</a></li>
+            <li class="layui-nav-item"><a href="messages/userAll">留言区</a></li>
         </ul>
     </div>
 </div>

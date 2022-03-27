@@ -203,7 +203,7 @@
 
                                 <td>
                                     <li><input type="button" name="minus" value="-" onclick="minus(${status.index})">
-                                        <input type="text" class="amount${status.index}" value="1">
+                                        <input type="number"  class="amount${status.index}" value="1">
                                         <input type="button" name="plus"value="+" onclick="plus(${status.index})"></li>
 
                                 </td>

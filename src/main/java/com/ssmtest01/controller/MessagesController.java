@@ -109,4 +109,16 @@ public class MessagesController {
         return null;
     }
 
+    @RequestMapping("/userAll")
+    public String userAll(HttpServletRequest request, HttpSession session,Messages myMessages) {
+        User user = (User) session.getAttribute("user");
+        Messages messages = new Messages();
+        messages.setUid(user.getUid());
+        messages.setMessage(myMessages.getMessage());
+        List<Messages> getall = messagesService.userAll(messages);
+        request.setAttribute("myMessages", getall);
+        request.setAttribute("request",myMessages);
+        return "user/myMessage";
+    }
+
 }

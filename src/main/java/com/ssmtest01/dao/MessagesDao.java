@@ -40,5 +40,7 @@ public interface MessagesDao {
             "<when test='#{message} !=null '>  message like concat ('%',#{message,jdbcType=VARCHAR},'%')</when></script>")
     List<Messages> selByIdOrName(@Param("mid") int mid, @Param("message") String message, @Param("uid") int uid);
 
+    List<Messages> userAll(@Param("messages") Messages messages);
+
 
 }
