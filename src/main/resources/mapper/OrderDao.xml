@@ -53,7 +53,20 @@
                       myorder o
                           join  commoditys c on c.sid=o.cid
 
-           where o.oid=#{order.oid}
+           <where>
+               <if test="order.oid != null and order.oid != ''">
+                    AND  o.oid=#{order.oid}
+               </if>
+               <if test="order.uid != null and order.uid != ''">
+                   AND   o.uid=#{order.uid}
+               </if>
+               <if test="order.sid != null and order.sid != ''">
+                   AND  o.sid=#{order.sid}
+               </if>
+
+
+           </where>
+
     </select>
 
 </mapper>

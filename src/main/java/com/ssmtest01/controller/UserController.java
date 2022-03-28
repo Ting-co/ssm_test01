@@ -216,7 +216,7 @@ public class UserController {
         User user = (User) session.getAttribute("user");
         Order order = new Order();
         order.setUid(user.getUid());
-        order.setSstate("买家已付款，待发货");
+        order.setSstate("已");
         User AllOrder = userServiceImpl.selSeller(order);
         System.out.println("当前传过来的值为"+AllOrder);
         request.setAttribute("AllOrder", JSON.toJSON(AllOrder));
@@ -233,7 +233,9 @@ public class UserController {
         order.setBstate("完成");
         User selSeller = userServiceImpl.selSeller(order);
         User AllOrder = userServiceImpl.selAllUser(order);
-        AllOrder.setOrder(selSeller.getOrder());
+        if(selSeller!=null) {
+            AllOrder.setOrder(selSeller.getOrder());
+        }
         System.out.println("当前传过来的值为"+AllOrder);
         request.setAttribute("AllOrder", JSON.toJSON(AllOrder));
         return "user/historyOrder";
@@ -292,8 +294,6 @@ public class UserController {
     /*前端管理员搜索用户*/
     @RequestMapping("/selLikeUser")
     public String selLikeUser (User user,HttpSession session) throws IOException {
-
-
         List<User> allUser = userServiceImpl.selLikeUser(user);
         session.setAttribute("selUser",user);
         session.setAttribute("AllUser", allUser);

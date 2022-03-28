@@ -99,12 +99,16 @@ public class OrderController {
     @ResponseBody
     public HashMap sellerOkOrder(HttpServletRequest request, HttpSession session) {
         String oid = request.getParameter("oid");
-
+        int i=0;
         Order order = new Order();
         order.setOid(Long.parseLong(oid));
-        order.setSstate("完成");
-        int i = orderService.updataOrder(order);
+
         double price = orderService.selOrder(order);
+        if (price>0){
+            order.setSstate("完成");
+            i = orderService.updataOrder(order);
+
+        }
         HashMap map = new HashMap();
         if (i>0){
             map.put("msg","订单完成成功,金额"+price+"已到账");

@@ -69,7 +69,7 @@
 
         .cartList ul:nth-of-type(1) {
             display: flex;
-            margin-top: 125px;
+            margin-top: 10px;
         }
 
         .cartList ul {

@@ -61,7 +61,7 @@ public class TestOrder {
     public void ss3() {
         Order order = new Order();
         order.setOid(1643891186890L);
-        Order order1 = orderDao.selOrder(order);
+        Order order1 = (Order) orderDao.selOrder(order);
         System.out.println(order1);
         System.out.println(order1.getAmount()*order1.getCommoditys().getPrice());
 

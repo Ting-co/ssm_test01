@@ -82,4 +82,12 @@ public class Testuser {
         System.out.println(messages1);
 
     }
+    @Test
+    public void t5() {
+        Order order = new Order();
+//        order.setOid(1643862838706L);
+        List<Order> orders = orderDao.selOrder(order);
+
+        System.out.println(orders);
+    }
 }

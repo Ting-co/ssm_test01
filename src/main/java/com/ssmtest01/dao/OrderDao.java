@@ -30,5 +30,5 @@ public interface OrderDao {
     int updataOrder(@Param("order") Order order);
 
 
-    Order selOrder(@Param("order") Order order);
+    List<Order> selOrder(@Param("order") Order order);
 }
