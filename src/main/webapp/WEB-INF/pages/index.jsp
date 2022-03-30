@@ -156,18 +156,10 @@
                             <tr>
                                 <td rowspan="6">
                                     <div style="padding: 5px">
-                                        <img src="static/images/commoditys/${commoditys.simage}"
-                                             style="height: 200px;width: 300px">
+                                        <img src="static/images/commoditys/${commoditys.simage}" style="height: 200px;width: 300px">
                                     </div>
                                 </td>
-
-                                <td>&nbsp;
-                                    <div style="padding-left: 13px">
-                                            ${commoditys.commodity}
-                                    </div>
-
-
-                                </td>
+                                <td>&nbsp;<div style="padding-left: 13px">${commoditys.commodity}</div></td>
                             </tr>
                             <tr><%--${status.index}--%>
                                 <td class="price">&nbsp;&nbsp;&nbsp;￥${commoditys.price}
@@ -203,8 +195,8 @@
 
                                 <td>
                                     <li><input type="button" name="minus" value="-" onclick="minus(${status.index})">
-                                        <input type="number"  class="amount${status.index}" value="1">
-                                        <input type="button" name="plus"value="+" onclick="plus(${status.index})"></li>
+                                        <input type="number" class="amount${status.index}" value="1">
+                                        <input type="button" name="plus" value="+" onclick="plus(${status.index})"></li>
 
                                 </td>
                                     <%-- <td colspan="3">Row 3 Cell 1</td>--%>
@@ -220,8 +212,8 @@
                         </table>
                     </div>
                     </br>
-                    <input style="display: none" class="amounts${status.index}"  value="${commoditys.amount}"/>
-                    <input style="display: none" class="sid${status.index}"  value="${commoditys.sid}"/>
+                    <input style="display: none" class="amounts${status.index}" value="${commoditys.amount}"/>
+                    <input style="display: none" class="sid${status.index}" value="${commoditys.sid}"/>
                 </c:forEach>
 
                 <div id="demo7"></div>
@@ -310,8 +302,6 @@
         });
 
 
-
-
     });
     //物品的加减
 
@@ -366,8 +356,7 @@
 
     //加入购物车
     function addshoping(index) {
-        if (${sessionScope.user == null})
-        {
+        if (${sessionScope.user == null}) {
             alert("请先登录，再加入购物车");
             return;
         }
@@ -381,10 +370,10 @@
         var sid = document.querySelector(sidurl);
 
 
-        var data ={sid:sid.value+"",amounts:amounts.value+""};
-        $.post("shopping/add",data,function (date) {
-            alert(date.msg)
-        }
+        var data = {sid: sid.value + "", amounts: amounts.value + ""};
+        $.post("shopping/add", data, function (date) {
+                alert(date.msg)
+            }
         )
 
     }

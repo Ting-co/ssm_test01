@@ -87,22 +87,6 @@
                             <tr>
                                 <td>
                                     <div id="message" style="height: 100px">
-
-                                            <%-- <div class="layui-bg-gray" style="padding: 30px;">
-                                                 <div class="layui-row layui-col-space15">
-                                                     <div class="layui-col-md6">
-                                                         <div class="layui-card">
-                                                             <div class="layui-card-header"><img
-                                                                     src="static/images/headImg/${obj.user.himage}"
-                                                                     style="width:70px; height:70px; border-radius:50%; ">${obj.user.username}
-                                                             </div>
-                                                             <div class="layui-card-body">
-                                                                     ${obj.message}<br>
-                                                             </div>
-                                                         </div>
-                                                     </div>
-                                                 </div>
-                                             </div>--%>
                                         <div class="ds-post-main">
                                             <div class="ds-avatar">
                                                 <img src="static/images/headImg/${obj.user.himage}">
@@ -133,10 +117,7 @@
          id="addCommoditys">
 
 
-
         <form class="layui-form layui-form-pane" id="addmessage" action="">
-
-
 
 
             <div class="layui-form-item layui-form-text">
@@ -164,7 +145,7 @@
 
     <%--alert("${messages}");--%>
 
-    layui.use(['util','laypage', 'element'], function () {
+    layui.use(['util', 'laypage', 'element'], function () {
         var element = layui.element //导航的hover效果、二级菜单等功能，需要依赖element模块
             , laypage = layui.laypage
             , table = layui.table
@@ -180,6 +161,7 @@
         /*laypage.render({
             elem: 'message' //注意，这里的 test1 是 ID，不用加 # 号
             ,count:
+
 
 
 
@@ -202,41 +184,38 @@
         });
 
         $(".layui-btn").click(function () {
-            var data =$("#addmessage").serialize();
-            $.post("messages/add",data,function (date) {
-                if (date.msg!=null)
-                {
-                    alert(date.msg);
-                }
+            var data = $("#addmessage").serialize();
+            $.post("messages/add", data, function (date) {
+                    if (date.msg != null) {
+                        alert(date.msg);
+                    }
 
-                location.reload();
+                    location.reload();
                 }
-
             )
         })
-
 
 
         //固定块
         util.fixbar({
             bar1: '&#xe61f;'
-            ,bar2: '&#xe604;'
-            ,css: {right: 50, bottom: 100}
-            ,bgcolor: '#393D49'
-            ,click: function(type){
-                if(type === 'bar1'){
+            , bar2: '&#xe604;'
+            , css: {right: 50, bottom: 100}
+            , bgcolor: '#393D49'
+            , click: function (type) {
+                if (type === 'bar1') {
                     layer.open({
                         type: 1
                         , title: '添加留言'
                         , area: ['400px', '220px']
-                        ,offset: '300px'
+                        , offset: '300px'
                         , content: $("#addCommoditys")
                         , end: function () {
                             $("#addCommoditys").css({"display": "none"})
                         }
 
                     });
-                } else if(type === 'bar2') {
+                } else if (type === 'bar2') {
                     layer.msg('两个 bar 都可以设定是否开启')
                 }
             }

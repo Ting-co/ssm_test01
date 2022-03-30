@@ -37,23 +37,12 @@ public class UserController {
 
     @RequestMapping("/tologin")
     public String tologin(User user, HttpServletRequest req,HttpServletResponse resp,HttpSession session) throws IOException {
-        System.out.println(user);
-    /*    String realPath = session.getServletContext().getRealPath("/static/images");
-        System.out.println("测试"+realPath);//测试C:\Users\Administrator\IdeaProjects\ssm_test03\target\ssm_test01\static\images*/
         User user1 = userServiceImpl.selByemail(user.getEmail());
-        System.out.println(user1);
         if (!user.getEmail().isEmpty()) {
-
             if (user1 != null) {
                 if (!user.getEmail().isEmpty()) {
                     if (user.getPassword().equals(user1.getPassword())) {
                         session.setAttribute("user", user1);
-                        /*if (user1.getRole() == 1)
-                            return "manager/mindex";
-                        if (user1.getRole() == 0)*/
-//                            return "manager/home";
-
-
                         resp.sendRedirect(req.getContextPath()+"/index/toindex");
                     }
 
@@ -161,9 +150,7 @@ public class UserController {
 
     @RequestMapping("/urecompose")
     public void urecompose(User user, HttpSession session, HttpServletResponse response, HttpServletRequest request) throws IOException {
-        System.out.println(user);
         User sessionUser = (User) session.getAttribute("user");
-        System.out.println("sex[" + user.getSex() + "]");
         if (user.getSex() == null)
             user.setSex(sessionUser.getSex());
         if (user.getText() == "")

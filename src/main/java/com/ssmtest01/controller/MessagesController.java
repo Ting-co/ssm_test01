@@ -31,7 +31,6 @@ public class MessagesController {
     public String all(HttpServletRequest request) {
 
         List<Messages> getall = messagesService.getall();
-        System.out.println(getall);
         request.setAttribute("messages", getall);
         return "user/message";
 

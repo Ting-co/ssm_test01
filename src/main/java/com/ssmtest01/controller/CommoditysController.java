@@ -41,7 +41,6 @@ public class CommoditysController {
         User user = (User) session.getAttribute("user");
         List<Commoditys> selall = commoditysServiceImpl.selall(user.getUid());
         request.setAttribute("commoditys", selall);
-        System.out.println(selall);
         return "user/commoditys";
 
     }

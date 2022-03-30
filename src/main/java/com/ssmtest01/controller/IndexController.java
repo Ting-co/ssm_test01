@@ -26,12 +26,10 @@ public class IndexController {
         String pageNum = request.getParameter("pageNum");
         PageInfo<Object> pageInfo = new PageInfo<>();
         if (pageNum != null && pageNum != "") {
-
             pageInfo.setPageNum(Integer.parseInt(pageNum));
         } else {
             pageInfo.setPageNum(1);
         }
-
         PageHelper.startPage(pageInfo.getPageNum(), pageInfo.getPageSize());
         List<Commoditys> selall = commoditysService.mselall();
         PageInfo messagesPageInfo = new PageInfo<>(selall);
