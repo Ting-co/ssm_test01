@@ -73,7 +73,7 @@
             <%--留言模拟--%>
             <div style="border: #beb9b0 solid 1px;margin-top: 30px;border-radius: 5px;">
                 <div style="border-bottom: #beb9b0 solid 1px;height:40px;">
-                    <h2 style="margin:10px 0 10px 15px;">商品列表</h2>
+                    <h2 style="margin:10px 0 10px 15px;">留言区</h2>
                 </div>
                 <div style="padding:20px;">
                     <table id="demo" lay-filter="demo" style="border:0px ">
