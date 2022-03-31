@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.List;
 
 @Controller
 @RequestMapping("/myOrder")
@@ -116,5 +117,12 @@ public class OrderController {
             map.put("msg","订单完成失败");
         }
         return map;
+    }
+
+    @RequestMapping("/selAllOrder")
+    public String selAllOrder(HttpServletRequest request, HttpSession session) {
+        List<Order> orders = orderService.selAllOrder(new Order());
+        request.setAttribute("mOrder",orders);
+        return "manager/mOrder";
     }
 }

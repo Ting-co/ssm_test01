@@ -50,5 +50,10 @@ public class OrderServiceImpl implements OrderService {
 
     }
 
+    @Override
+    public List<Order> selAllOrder(Order order) {
+        return orderDao.selOrder(order);
+    }
+
 
 }

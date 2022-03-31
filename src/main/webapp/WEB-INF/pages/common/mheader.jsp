@@ -75,7 +75,7 @@
             <li class="layui-nav-item"><a href="Mcommoditys/all">管理商品</a></li>
             <li class="layui-nav-item"><a href="messages/mall">留言区</a></li>
             <li class="layui-nav-item"><a href="usermanager/allUser">用户管理</a></li>
-            <li class="layui-nav-item"><a href="messages/mall">订单管理</a></li>
+            <li class="layui-nav-item"><a href="myOrder/selAllOrder">订单管理</a></li>
         </ul>
     </div>
 </div>

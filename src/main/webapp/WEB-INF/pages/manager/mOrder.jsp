@@ -56,31 +56,35 @@
         <table id="demo" lay-filter="demo">
           <thead>
           <tr>
-
-            <th lay-data="{type:'numbers', width:60}">序号</th>
-            <th lay-data="{field:'mid',align: 'center',sort: true}">留言uuid</th>
-            <th lay-data="{field:'uid',align: 'center',sort: true}">留言用户id</th>
-            <th lay-data="{field:'message',minWidth:120,align: 'center'}">留言</th>
-            <th lay-data="{field:'mdate',align: 'center',sort: true}">发布时间</th>
-            <th lay-data="{field:'good',align: 'center',rowspan: 2,sort: true}">点赞数</th>
-            <th lay-data="{field:'operate',align: 'center',width:222}">操作</th>
+            <th lay-data="{field:'oid',align: 'center'}">订单号</th>
+            <th lay-data="{field:'commodity',minWidth:120,align: 'center'}">商品名</th>
+            <th lay-data="{field:'simage',align: 'center'}">商品图片</th>
+            <th lay-data="{field:'amount',align: 'center',sort: true}">购买数量</th>
+            <th lay-data="{field:'nubmer',align: 'center',sort: true}">总价</th>
+            <th lay-data="{field:'sstate',align: 'center'}">卖家状态</th>
+            <th lay-data="{field:'bstate',align: 'center'}">买家状态</th>
+            <th lay-data="{field:'odate',align: 'center',sort: true}">订单创建时间</th>
+            <th lay-data="{field:'okdate',align: 'center',sort: true}">订单完成时间</th>
+            <th lay-data="{field:'operate',align: 'center'}">操作</th>
           </tr>
           </thead>
           <tbody>
 
-          <c:forEach items="${messages}" var="obj">
+          <c:forEach items="${mOrder}" var="obj">
             <tr>
 
-              <td></td>
-              <td>${obj.mid}</td>
-              <td>${obj.uid}</td>
-              <td>${obj.message}</td>
-              <td>${obj.mdate}</td>
-              <td>${obj.good}</td>
+              <td>${obj.oid}</td>
+              <td>${obj.commoditys.commodity}</td>
+              <td><img src="static/images/commoditys/${obj.commoditys.simage} "></td>
+              <td>${obj.amount}</td>
+              <td>${obj.amount*obj.commoditys.price}</td>
+              <td>${obj.sstate}</td>
+              <td>${obj.bstate}</td>
+              <td>${obj.odate}</td>
+              <td>${obj.okdate}</td>
               <td>
-
-
-                <a class="operateBtn" lay-event="delete" objId="${obj.mid}">删除</a>
+                <a class="operateBtn" lay-event="delete" objId="${obj.oid}">查看详情</a>
+                <a class="operateBtn" lay-event="delete" objId="${obj.oid}">删除</a>
               </td>
             </tr>
           </c:forEach>
