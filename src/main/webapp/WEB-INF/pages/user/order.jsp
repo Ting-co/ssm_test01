@@ -223,7 +223,7 @@
                             </li>
 
                             <li>
-                                <p onclick="orderDetails()">订单详情</p>
+                                <p onclick="orderDetails(${allOrder.uid},${allOrder.oid})">订单详情</p>
                                     <%--<p onclick="delete1(${status.index})">申请退款</p>--%>
                                 <p onclick="okOrder(${allOrder.oid})">确认收货</p>
                             </li>
@@ -247,6 +247,63 @@
     </div>
 
 
+</div>
+
+<%--查看订单详情--%>
+<div style="border:0px solid #eee ;margin: 0 auto;max-width: 1140px;padding-top: 10px;display: none;"
+     id="selMyOrder">
+    <div style="flex: auto">
+        <div style="display:inline-block;line-height:40px; padding: 20px ">
+            <div style="flex: auto" >
+                <span>订单id :  </span><span id="oid"></span>
+            </div>
+            <div style="flex: auto;border-color: #FAFAFA;">
+                <span>商品名字 :  </span><span id="commodityName"></span>
+            </div>
+            <div style="flex: auto">
+                <span>商品图片 :  </span>
+                <img id="image" src="" style="width:70px; height:70px; ">
+            </div>
+            <div style="flex: auto">
+                <span>卖家名字 :  </span><span id="sName"></span>
+            </div>
+            <div style="flex: auto">
+                <span>卖家联系方式 :  </span><span id="sPhone"></span>
+            </div>
+            <div style="flex: auto">
+                <span>购买数量 :  </span><span id="amount"></span>
+            </div>
+            <div style="flex: auto">
+                <span>应支付金额 :  </span><span id="price"></span>
+            </div>
+            <div style="flex: auto">
+                <span>是否已支付 :  </span><span id="payment"></span>
+            </div>
+        </div>
+        <div style="display:inline-block;line-height:40px; padding:  20px 60px ">
+            <div style="flex: auto">
+                <span>买家名字 :  </span><span id="bName"></span>
+            </div>
+            <div style="flex: auto">
+                <span>买家联系方式 :  </span><span id="bPhone"></span>
+            </div>
+            <div style="flex: auto">
+                <span>买家收货地址 :  </span><span id="address"></span>
+            </div>
+            <div style="flex: auto">
+                <span>卖家状态 :  </span><span id="sstate"></span>
+            </div>
+            <div style="flex: auto">
+                <span>买家状态 :  </span><span id="bstate"></span>
+            </div>
+            <div style="flex: auto">
+                <span>购买时间 :  </span><span id="odate"></span>
+            </div>
+            <div style="flex: auto">
+                <span>完成时间 :  </span><span id="okdate"></span>
+            </div>
+        </div>
+    </div>
 </div>
 <script>
     //JS
@@ -284,6 +341,61 @@
     });
 
     }
+
+    function orderDetails(uid,oid){
+        //弹窗
+        layer.open({
+            type: 1
+            , title: '查看订单信息'
+            , area: ['30%', '50%']
+
+            , content: $("#selMyOrder")
+            , success: function () {
+
+
+                $.ajax({
+                    url: 'usermanager/selMyOrder'
+                    , type: 'post'
+                    , dataType: "json"
+                    , data: {oid: oid, uid: uid}
+                    , success: function (data) {
+                        console.log(data);
+                        console.log(data.selMyOrder.phone);
+
+                        document.getElementById("oid").innerHTML = data.selMyOrder.order[0].oid;
+                        document.getElementById("image").src = "static/images/commoditys/" + data.selMyOrder.order[0].commoditys.simage;
+                        document.getElementById("commodityName").innerHTML = data.selMyOrder.order[0].commoditys.commodity;
+                        document.getElementById("sName").innerHTML = data.selMyOrder.order[0].user.username;
+                        document.getElementById("sPhone").innerHTML = data.selMyOrder.order[0].user.phone;
+                        document.getElementById("amount").innerHTML = data.selMyOrder.order[0].amount;
+                        document.getElementById("price").innerHTML = data.selMyOrder.order[0].amount*data.selMyOrder.order[0].commoditys.price+' (元)';
+                        document.getElementById("payment").innerHTML = data.selMyOrder.order[0].payment==1?'已经支付':(data.selMyOrder.order[0].payment==2?'货到付款':'未支付');
+                        document.getElementById("bName").innerHTML = data.selMyOrder.username;
+                        document.getElementById("bPhone").innerHTML = data.selMyOrder.phone;
+                        document.getElementById("address").innerHTML = data.selMyOrder.address;
+                        document.getElementById("sstate").innerHTML = data.selMyOrder.order[0].sstate;
+                        document.getElementById("bstate").innerHTML = data.selMyOrder.order[0].bstate;
+                        document.getElementById("odate").innerHTML = data.selMyOrder.order[0].odate;
+                        document.getElementById("okdate").innerHTML = data.selMyOrder.order[0].okdate;
+                    }
+                    , error: function () {
+                        alert("获取商品数据失败")
+                    }
+
+
+                });
+
+
+            }
+            , end() {
+
+                $("#selMyOrder").css({"display": "none"})
+            }
+
+        });
+
+    }
+
 
     function  testTime(){
         location.replace("usermanager/nowOrder");
