@@ -288,6 +288,10 @@
 
     }
 
+    function orderDetails(){
+
+    }
+
     function  testTime(){
         location.replace("usermanager/nowOrder");
     }

@@ -58,7 +58,7 @@
 
 
     <select id="selAllUser" resultMap="myOrder" >
-        SELECT u.uid,o.*, su.username,su.phone,su.email,su.text,c.*
+        SELECT u.uid,o.*, su.username,su.phone,su.email,su.text,c.*,su.address
         from `user` u
                  join shopping_order s_o  on s_o.buyerid=u.uid
                  join  myorder o on o.oid=s_o.oid
@@ -74,13 +74,16 @@
             <if test="order.sstate != null and order.sstate != ''">
                 AND o.sstate LIKE  CONCAT('%', #{order.sstate}, '%')
             </if>
+            <if test="order.oid != null and order.oid != ''">
+                AND o.oid=#{order.oid}
+            </if>
         </where>
 
 
     </select>
 
     <select id="selSeller" resultMap="myOrder" >
-        SELECT u.uid,o.*, su.username,su.phone,su.email,su.text,c.*
+        SELECT u.uid,o.*, su.username,su.phone,su.email,su.text,c.*,su.address
         from `user` u
                  join shopping_order s_o  on s_o.sellerid=u.uid
                  join  myorder o on o.oid=s_o.oid
@@ -93,7 +96,9 @@
             <if test="order.sstate != null and order.sstate != ''">
                 AND o.sstate LIKE  CONCAT('%', #{order.sstate}, '%')
             </if>
-
+            <if test="order.oid != null and order.oid != ''">
+                AND o.oid=#{order.oid}
+            </if>
         </where>
 
 

@@ -8,6 +8,7 @@ import com.ssmtest01.bean.User;
 import com.ssmtest01.service.UserService;
 
 import com.ssmtest01.util.UploadUtils;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -285,5 +286,18 @@ public class UserController {
         session.setAttribute("selUser",user);
         session.setAttribute("AllUser", allUser);
         return "manager/user";
+    }
+
+    /*查看订单*/
+    @RequestMapping("/selMyOrder")
+    @ResponseBody
+    public HashMap<String, User> selMyOrder ( HttpServletRequest request) throws IOException {
+        Order order = new Order();
+        order.setUid(Integer.parseInt(request.getParameter("uid")) );
+        order.setOid(Long.parseLong(request.getParameter("oid")));
+        User user = userServiceImpl.selAllUser(order);
+        HashMap<String, User> selMyOrder = new HashMap<>();
+        selMyOrder.put("selMyOrder",user);
+        return selMyOrder;
     }
 }
