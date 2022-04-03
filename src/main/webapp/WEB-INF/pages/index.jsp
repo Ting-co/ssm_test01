@@ -120,104 +120,117 @@
           </div>
           </div>--%>
 
-        <%--搜索框--%>
-        <div style="">
-            <form class="layui-form layui-form-pane" action="index/select">
-                <div class="layui-form-item">
-                    <div class="layui-inline">
-                        <input type="text" name="commodity" placeholder="请输入商品名字" value=""
-                               autocomplete="" class="layui-input"/>
+
+        <div class="layui-row" style="padding: 50px 25% ">
+            <%--搜索框--%>
+            <div style="margin-bottom: 50px">
+                <form class="layui-form layui-form-pane" action="index/select">
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <input type="text" name="commodity" placeholder="请输入商品名字" value=""
+                                   autocomplete="" class="layui-input"/>
+                        </div>
+                        <div class="layui-inline">
+                            <input type="submit" class="layui-btn" value="搜索">
+                        </div>
                     </div>
-                    <div class="layui-inline">
-                        <input type="submit" class="layui-btn" value="搜索">
+                </form>
+            </div>
+            <div class="layui-col-md9">
+                <div class="grid-demo grid-demo-bg1">
+                    <div id="pager" style="margin-bottom: 0;">
+                        <div class="daf">
+                            <c:forEach items="${commoditys.list}" var="commoditys" varStatus="status">
+
+                                <div style="background: #c0c4cc">
+                                    <table border="0">
+                                        <tr>
+                                            <td rowspan="6">
+                                                <div style="padding: 5px">
+                                                    <img src="static/images/commoditys/${commoditys.simage}"
+                                                         style="height: 200px;width: 300px">
+                                                </div>
+                                            </td>
+                                            <td>&nbsp;<div style="padding-left: 13px">${commoditys.commodity}</div>
+                                            </td>
+                                        </tr>
+                                        <tr><%--${status.index}--%>
+                                            <td class="price">&nbsp;&nbsp;&nbsp;￥${commoditys.price}
+                                                <div style="padding-left: 10px">
+                                                    <hr>
+                                                </div>
+                                            </td>
+                                            <td>库存${commoditys.amount}
+                                                </br>
+                                                <hr width="220">
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+
+                                            <td>&nbsp;&nbsp;&nbsp;
+                                                <div style="padding-left: 13px;padding-bottom: 5px">
+                                                    上架时间: ${commoditys.sdate}
+                                                </div>
+
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+
+                                            <td>&nbsp;&nbsp;&nbsp;简介：</br>
+                                                <div style="padding-left: 10px"><br/></div>
+                                                &nbsp;&nbsp;&nbsp;${commoditys.synopsis}</td>
+                                            </td>
+                                                <%-- <td colspan="3">Row 3 Cell 1</td>--%>
+                                        </tr>
+                                        <tr>
+
+                                            <td>
+                                                <li><input type="button" name="minus" value="-"
+                                                           onclick="minus(${status.index})">
+                                                    <input type="number" class="amount${status.index}" value="1">
+                                                    <input type="button" name="plus" value="+"
+                                                           onclick="plus(${status.index},${commoditys.price},${commoditys.sid},${commoditys.uid})"></li>
+                                            </td>
+                                                <%-- <td colspan="3">Row 3 Cell 1</td>--%>
+                                        </tr>
+                                        <tr>
+
+                                            <td>&nbsp;&nbsp;&nbsp;<BUTTON onclick="addshoping(${status.index})">加入购物车
+                                            </BUTTON>
+                                                <BUTTON onclick="buyCommodity(${status.index},${commoditys.price},${commoditys.sid},${commoditys.uid},${commoditys.amount})">立即购买</BUTTON>
+                                            </td>
+                                                <%-- <td colspan="3">Row 3 Cell 1</td>--%>
+                                        </tr>
+
+                                    </table>
+                                </div>
+                                </br>
+                                <input style="display: none" class="amounts${status.index}"
+                                       value="${commoditys.amount}"/>
+                                <input style="display: none" class="sid${status.index}" value="${commoditys.sid}"/>
+                            </c:forEach>
+
+                            <div id="demo7"></div>
+
+                        </div>
                     </div>
                 </div>
-            </form>
-        </div>
-
-
-        <ul>
-            <li><a href="index/selectBySort?sort=衣服装扮">衣服装扮</a></li>
-            <li><a href="index/selectBySort?sort=美妆护肤">美妆护肤</a></li>
-            <li><a href="index/selectBySort?sort=电子数码">电子数码</a></li>
-            <li><a href="index/selectBySort?sort=书本文具">书本文具</a></li>
-            <li><a href="index/selectBySort?sort=零食水果">零食水果</a></li>
-            <li><a href="index/selectBySort?sort=项链饰品">项链饰品</a></li>
-        </ul>
-
-        <div id="pager" style="margin-bottom: 0;">
-            <div class="daf" style="padding-left: 400px;padding-right: 400px">
-
-
-                <c:forEach items="${commoditys.list}" var="commoditys" varStatus="status">
-
-                    <div style="background: #c0c4cc">
-                        <table border="0">
-                            <tr>
-                                <td rowspan="6">
-                                    <div style="padding: 5px">
-                                        <img src="static/images/commoditys/${commoditys.simage}" style="height: 200px;width: 300px">
-                                    </div>
-                                </td>
-                                <td>&nbsp;<div style="padding-left: 13px">${commoditys.commodity}</div></td>
-                            </tr>
-                            <tr><%--${status.index}--%>
-                                <td class="price">&nbsp;&nbsp;&nbsp;￥${commoditys.price}
-                                    <div style="padding-left: 10px">
-                                        <hr>
-                                    </div>
-                                </td>
-                                <td>库存${commoditys.amount}
-                                    </br>
-                                    <hr width="220">
-                                </td>
-                            </tr>
-
-                            <tr>
-
-                                <td>&nbsp;&nbsp;&nbsp;
-                                    <div style="padding-left: 13px;padding-bottom: 5px">
-                                        上架时间: ${commoditys.sdate}
-                                    </div>
-
-                                </td>
-
-                            </tr>
-                            <tr>
-
-                                <td>&nbsp;&nbsp;&nbsp;简介：</br>
-                                    <div style="padding-left: 10px"><br/></div>
-                                    &nbsp;&nbsp;&nbsp;${commoditys.synopsis}</td>
-                                </td>
-                                    <%-- <td colspan="3">Row 3 Cell 1</td>--%>
-                            </tr>
-                            <tr>
-
-                                <td>
-                                    <li><input type="button" name="minus" value="-" onclick="minus(${status.index})">
-                                        <input type="number" class="amount${status.index}" value="1">
-                                        <input type="button" name="plus" value="+" onclick="plus(${status.index})"></li>
-
-                                </td>
-                                    <%-- <td colspan="3">Row 3 Cell 1</td>--%>
-                            </tr>
-                            <tr>
-
-                                <td>&nbsp;&nbsp;&nbsp;<BUTTON onclick="addshoping(${status.index})">加入购物车</BUTTON>
-                                    <BUTTON>立即购买</BUTTON>
-                                </td>
-                                    <%-- <td colspan="3">Row 3 Cell 1</td>--%>
-                            </tr>
-
-                        </table>
+            </div>
+            <div class="layui-col-md3">
+                <div class="grid-demo">
+                    <div>
+                        <ul>
+                            <li><a href="index/selectBySort?sort=衣服装扮">衣服装扮</a></li>
+                            <li><a href="index/selectBySort?sort=美妆护肤">美妆护肤</a></li>
+                            <li><a href="index/selectBySort?sort=电子数码">电子数码</a></li>
+                            <li><a href="index/selectBySort?sort=书本文具">书本文具</a></li>
+                            <li><a href="index/selectBySort?sort=零食水果">零食水果</a></li>
+                            <li><a href="index/selectBySort?sort=项链饰品">项链饰品</a></li>
+                        </ul>
                     </div>
-                    </br>
-                    <input style="display: none" class="amounts${status.index}" value="${commoditys.amount}"/>
-                    <input style="display: none" class="sid${status.index}" value="${commoditys.sid}"/>
-                </c:forEach>
-
-                <div id="demo7"></div>
-
+                </div>
             </div>
         </div>
 
@@ -228,6 +241,69 @@
         <jsp:include page="common/bottom.jsp"/>
     </div>
 </div>
+
+<div style="border:0px solid #eee ;margin: 0 auto;max-width: 1140px;padding-top: 10px;display: none;" id="buyCommodity">
+    <form class="layui-form layui-form-pane" id="fromtest"  >
+        <input id="uid" type="hidden" name="uid" value=""/>
+        <input id="sid" type="hidden" name="sid" value=""/>
+        <input id="kunc" type="hidden" name="kunc" value=""/>
+        <input id="dprice" type="hidden" name="kunc" value=""/>
+
+
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width: 150px">收货手机号码</label>
+            <div class="layui-input-inline">
+                <input type="text" id="phone" name="phone" value="" lay-verify="required|phone" placeholder="${sessionScope.user.phone}"
+                        class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">收货地址</label>
+            <div class="layui-input-inline">
+                <input type="text" id="address" name="address" value="" placeholder="${sessionScope.user.address}"
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">钱包余额</label>
+            <div class="layui-input-inline">
+                <input type="text" id="money" value="${sessionScope.user.money}" disabled
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">购买数量</label>
+            <div class="layui-input-inline">
+                <input type="number" id="amount" name="amount" min="1" value="" autocomplete="" onchange="cheakNum()"
+                       class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">应付金额(元)</label>
+            <div class="layui-input-inline">
+                <input type="text" id="price" name="price" value="" autocomplete="" disabled
+                       class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item" pane="">
+            <label class="layui-form-label">付款方式</label>
+            <div class="layui-input-block">
+                <input type="radio" id="payLocal"  name="payment"  value="0" title="线下付款">
+                <input type="radio" id="payOnline" name="payment" value="1" title="线上付款" checked>
+            </div>
+        </div>
+    </form>
+    <div  style="padding-left: 300px">
+        <button type="button" class="layui-btn"  onclick="buy()">确认订单</button>
+        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+    </div>
+</div>
+
 <script>
 
 
@@ -245,6 +321,8 @@
             //console.log(elem)
             layer.msg(elem.text());
         });
+
+
 
         var curr;
         if (${commoditys.pageNum==null}) {
@@ -300,6 +378,41 @@
                 }
             }
         });
+
+
+            window.buy= function(){
+                let phone = document.getElementById("phone").value;
+                let address = document.getElementById("address").value;
+                if (phone==''&&address==''){
+                    alert('收货电话或地址为空')
+                    return;
+                }
+
+                //获取表单区域所有值
+                var datas =$("#fromtest").serialize();
+                if (!this.cheakNum()) {
+                    return;
+                }
+
+
+
+                /*$.ajax({
+                    url: 'usermanager/selMyOrder'
+                    , type: 'post'
+                    , dataType: "json"
+                    , data: datas
+                    , success: function (data) {
+                        console.log(data);
+                    }
+                    , error: function () {
+                        alert("购买失败")
+                    }
+
+
+                });*/
+                layer.closeAll();
+            }
+
 
 
     });
@@ -377,6 +490,63 @@
         )
 
     }
+    /*立即购买*/
+    function buyCommodity(index,price,sid,uid,kamount) {
+        if (${sessionScope.user == null}) {
+            alert("请先登录，再加入购物车");
+            return;
+        }
+        var amounts = document.querySelector(".amount" + index);
+        //弹窗
+        layer.open({
+            type: 1
+            , title: '确认订单信息'
+            ,offset: '300px'
+            , area: ['500px', '435px']
+            , content: $("#buyCommodity")
+            , success: function () {
+                document.getElementById("uid").value =  uid;
+                document.getElementById("sid").value =  sid;
+                document.getElementById("amount").value =  amounts.value;
+                document.getElementById("price").value =  price*amounts.value;
+                document.getElementById("kunc").value =  kamount;
+                document.getElementById("dprice").value =  price;
+            }
+            , end() {
+
+                $("#buyCommodity").css({"display": "none"})
+            }
+
+        });
+    }
+    /*检查数量是否正确*/
+    function cheakNum(){
+        let amount = document.getElementById("amount").value;
+        let kamount = document.getElementById("kunc").value;
+        let money = document.getElementById("money").value;
+        let dprice = document.getElementById("dprice").value;
+        let price =dprice*amount;
+        if (amount<0){
+            alert('输入的不能是负数')
+            return false;
+        }
+        if (amount>kamount){
+            alert('输入的大于库存数量')
+            return false;
+        }
+
+        if (money<price){
+            alert('余额不足')
+            return false;
+        }else {
+            document.getElementById("price").value=price;
+        }
+
+        return true;
+    }
+
+
+
 
 
 </script>

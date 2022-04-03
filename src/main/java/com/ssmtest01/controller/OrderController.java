@@ -68,6 +68,46 @@ public class OrderController {
         return map;
     }
 
+    @RequestMapping("/buyIndex")
+    @ResponseBody
+    public HashMap buyIndex(HttpServletRequest request, HttpSession session) {
+        /*获取发过来的值*/
+//        session.getAttribute('user');
+
+        String sid = request.getParameter("sid");
+        String uid = request.getParameter("uid");
+        String amount = request.getParameter("amount");
+        /*商品id*/
+        Integer sidnew = new Integer(sid);
+        /*卖家id*/
+        Integer uidnew = new Integer(uid);
+        Integer amountnew = new Integer(amount);
+
+        /*获取当前用户*/
+        User user = (User) session.getAttribute("user");
+
+        /*获取当前时间*/
+        String getdata = DataUtils.getdata();
+
+        /*获取随机id*/
+        Long dataId = DataUtils.getdataId();
+
+
+
+        int i = orderService.addOrder(sidnew, uidnew, amountnew, user.getUid(), getdata, dataId);
+
+
+        HashMap map = new HashMap();
+        if (i>0){
+            map.put("msg","购买成功");
+        }else {
+            map.put("msg","购买失败");
+        }
+
+
+        return map;
+    }
+
     @RequestMapping("/buyerOkOrder")
     @ResponseBody
     public HashMap buyerOkOrder(HttpServletRequest request, HttpSession session) {
