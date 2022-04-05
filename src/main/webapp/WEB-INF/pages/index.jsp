@@ -69,56 +69,6 @@
 
     <%--主体--%>
     <div class="mylayui-index-body">
-        <%--  <div>
-          <div class="layui-btn-container">
-
-              <button type="button" class="layui-btn">默认按钮</button>
-
-          </div>
-          <div>
-              <h1>测试保存</h1>
-              <form action="account/save" method="post">
-                  姓名：<input type="text" name="name"/><br/>
-                  金额：<input type="text" name="money"/><br/>
-                  <input type="submit" value="保存">
-              </form>
-              <form action="pagerto/mindex">
-                  <input type="submit" value="跳转">
-              </form>
-              <form action="pagerto/register">
-
-                  <input type="submit" value="登录">
-              </form>
-              <a href="pagerto/register">ss</a>
-              <a href="usermanager/test">ss</a>
-          </div>
-          &lt;%&ndash;        <form action="usermanager/test">&ndash;%&gt;
-          <form action="pagerto/test">
-              &lt;%&ndash;            <input type="hidden" name="username" value="${sessionScope.tt}">&ndash;%&gt;
-              <input type="submit" value="测试">
-          </form>
-
-          <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-              <legend>拖拽上传</legend>
-          </fieldset>
-
-          <div class="layui-form-item layui-form-text" id="ss" style="display: none">
-              <label class="layui-form-label">上传按钮</label>
-              <div class="layui-input-block">
-                  <button type="button" class="layui-btn" id="test1">
-                      <i class="layui-icon">&#xe67c;</i>上传图片
-                  </button>
-              </div>
-              <img id="image" src="static/images/headImg/1576635039_7.jpg"
-                   style="width:70px; height:70px; border-radius:50%; ">
-          </div>
-
-          <div id="layerDemo" style="margin-bottom: 0;">
-              <div class="layui-btn-container">
-                  <button data-method="offset" data-type="auto" class="layui-btn layui-btn-normal">居中弹出</button>
-              </div>
-          </div>
-          </div>--%>
 
 
         <div class="layui-row" style="padding: 50px 25% ">
@@ -218,7 +168,7 @@
                     </div>
                 </div>
             </div>
-            <div class="layui-col-md3">
+            <div class="layui-col-md3" style="background-color: #888888;padding-left: 30px">
                 <div class="grid-demo">
                     <div>
                         <ul>

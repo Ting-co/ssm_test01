@@ -159,6 +159,7 @@ public class OrderController {
         return map;
     }
 
+    /*管理员管理订单*/
     @RequestMapping("/selAllOrder")
     public String selAllOrder(HttpServletRequest request, HttpSession session) {
         List<Order> orders = orderService.selAllOrder(new Order());

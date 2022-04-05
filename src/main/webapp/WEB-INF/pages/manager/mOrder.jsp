@@ -37,7 +37,7 @@
             <form class="layui-form layui-form-pane" action="messages/select">
                 <div class="layui-form-item">
                     <div class="layui-input-inline">
-                        <input type="text" name="messagesOrId" placeholder="请输入用户uid或留言内容" value=""
+                        <input type="text" name="messagesOrId" placeholder="请输入用户uid或订单id" value=""
                                autocomplete="" class="layui-input"/>
                     </div>
                     <div class="layui-input-inline">
