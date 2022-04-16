@@ -30,12 +30,13 @@
 
     <div class="signup">
         <h2 class="form-title" id="signup"><span>或</span>登录</h2>
-        <form id="toregister" action="usermanager/tologin" method="post" >
+        <form id="tologin"  >
             <div class="form-holder">
-                <input type="email" class="input" lay-verify="email" name="email" placeholder="邮箱"/>
-                <input type="password" class="input" lay-verify="required" name="password" placeholder="密码"/>
+                <input type="email" class="input" lay-verify="email" name="email" placeholder="邮箱" />
+                <input type="password" class="input" lay-verify="required" name="password"  placeholder="密码"/>
             </div>
-            <input type="submit" class="submit-btn" value="登录"/>
+            <input type="button" class="submit-btn" onclick="logins()" value="登录"/>
+
         </form>
         <div class="reg-bar">
             <a class="forget" href="#" target="_blank">忘记密码</a>
@@ -44,13 +45,13 @@
     <div class="login slide-up">
         <div class="center">
             <h2 class="form-title" id="login"><span>或</span>注册</h2>
-            <form id="tologin"  >
+            <form id="toregister"  >
                 <div class="form-holder">
                     <input type="text" class="input" lay-verify="required" name="username" placeholder="用户名"/>
                     <input type="email" class="input" lay-verify="email" name="email" placeholder="邮箱"/>
                     <input type="password" class="input" lay-verify="required" name="password" placeholder="密码"/>
                 </div>
-                <input id="submit" type="submit" class="submit-btn" value="注册"/>
+                <input id="register" type="button" class="submit-btn" value="注册"/>
             </form>
         </div>
     </div>
@@ -85,15 +86,40 @@
         });
     });
 
-    $("#submit").click(function () {
-        var data =$("#tologin").serialize();
-        $.post("usermanager/toregister",data,function (date) {
-                alert(date.msg)
-            }
+    layui.use(['element', 'layer', 'util'], function () {
+        var element = layui.element
+            , layer = layui.layer
+            , util = layui.util
+            , $ = layui.jquery
+            , table = layui.table
+            , form = layui.form
+            , laydate = layui.laydate
+            , upload = layui.upload;
 
-        )
-    })
+        $("#register").click(function () {
+            var data = $("#toregister").serialize();
+            $.post("usermanager/toregister", data, function (date) {
 
+                layer.msg(date.msg, {icon: 0,offset: '100px' })
+                }
+            )
+        })
+
+
+        window.logins=  function() {
+            var data = $("#tologin").serialize();
+            console.log(data);
+            $.post("usermanager/tologin", data, function (date) {
+                    if (date.msg != "成功") {
+                        layer.msg(date.msg, {icon: 0,offset: '100px' })
+                    } else {
+                        location.replace("index/toindex");
+                    }
+
+                }
+            )
+        }
+    });
 </script>
 
 </body>

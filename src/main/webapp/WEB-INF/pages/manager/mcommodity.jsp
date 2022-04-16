@@ -521,7 +521,7 @@
                 layer.open({
                     type: 1
                     , title: '修改意见'
-                    , area: ['700px', '720px']
+                    , area: ['700px', '300px']
 
                     , content: $("#dispass")
                     , success: function () {

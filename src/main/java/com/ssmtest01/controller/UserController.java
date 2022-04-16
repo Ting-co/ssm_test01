@@ -37,23 +37,27 @@ public class UserController {
 
 
     @RequestMapping("/tologin")
-    public String tologin(User user, HttpServletRequest req,HttpServletResponse resp,HttpSession session) throws IOException {
+    @ResponseBody
+    public HashMap tologin(User user, HttpServletRequest req,HttpServletResponse resp,HttpSession session) throws IOException {
         User user1 = userServiceImpl.selByemail(user.getEmail());
+        HashMap<String,String> hashMap = new HashMap();
         if (!user.getEmail().isEmpty()) {
             if (user1 != null) {
-                if (!user.getEmail().isEmpty()) {
+                if (!user.getPassword().isEmpty()) {
                     if (user.getPassword().equals(user1.getPassword())) {
                         session.setAttribute("user", user1);
-                        resp.sendRedirect(req.getContextPath()+"/index/toindex");
-                    }
+                        hashMap.put("msg","成功");
+                    }else {hashMap.put("msg","密码错误");}
 
-                }
+                }else {hashMap.put("msg","请输入密码");}
 
-            }
+            }else {hashMap.put("msg","你输入的邮件账号不存在");}
 
+        }else {
+            hashMap.put("msg","请输入邮件账号");
         }
 
-        return "user/register";
+        return hashMap;
     }
 
     /**
@@ -66,15 +70,22 @@ public class UserController {
     @RequestMapping("/toregister")
     @ResponseBody
     public HashMap register(User user) {
-        System.out.println(user);
-        User user1 = userServiceImpl.selBynameAndEmail(user.getUsername(), user.getEmail());
         HashMap hashMap = new HashMap();
-
         if (user.getUsername() == "" || user.getUsername() == null) {
-            System.out.println("Username is null");
             hashMap.put("msg","用户名为空");
             return hashMap;
-        } else if (user1 != null) {
+        }
+        if (user.getEmail() == "" || user.getEmail() == null) {
+            hashMap.put("msg","邮件为空");
+            return hashMap;
+        }
+        if (user.getPassword() == "" || user.getPassword() == null) {
+            hashMap.put("msg","密码为空");
+            return hashMap;
+        }
+        User user1 = userServiceImpl.selBynameAndEmail(user.getUsername(), user.getEmail());
+
+        if (user1 != null) {
 
             if (user.getUsername().equals(user1.getUsername())) {
                 System.out.println("Username is t");
