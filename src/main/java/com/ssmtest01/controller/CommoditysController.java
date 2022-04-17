@@ -98,7 +98,6 @@ public class CommoditysController {
     public DataJson image(MultipartFile file, HttpServletRequest request) {
         //调用工具类完成文件上传
         String imagePath = UploadUtils.supload(file);
-        System.out.println(imagePath);
         DataJson dataJson = new DataJson();
         if (imagePath != null) {
             //创建一个HashMap用来存放图片路径
@@ -150,12 +149,9 @@ public class CommoditysController {
     @RequestMapping("/select")
     public String select(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws IOException {
         String commodity = request.getParameter("commodity");
-        System.out.println(commodity);
-
         if (commodity != null && commodity != "") {
             User user = (User) session.getAttribute("user");
             int uid = user.getUid();
-
             int sid;
             String name;
             if (DataUtils.isInteger(commodity)) {

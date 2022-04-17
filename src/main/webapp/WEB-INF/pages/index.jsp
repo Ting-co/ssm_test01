@@ -343,23 +343,6 @@
                 if (!this.cheakNum()) {
                     return;
                 }
-
-
-
-                /*$.ajax({
-                    url: 'usermanager/selMyOrder'
-                    , type: 'post'
-                    , dataType: "json"
-                    , data: datas
-                    , success: function (data) {
-                        console.log(data);
-                    }
-                    , error: function () {
-                        alert("购买失败")
-                    }
-
-
-                });*/
                 layer.closeAll();
             }
 

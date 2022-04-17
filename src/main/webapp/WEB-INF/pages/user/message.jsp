@@ -49,7 +49,7 @@
 
         .ds-comment-body {
             margin-left: 20px;
-            padding: 10px 10px 10px 30px;
+            flex: auto;
             height: 80px;
             background: #a19f9f;
         }
@@ -92,7 +92,9 @@
                                                 <img src="static/images/headImg/${obj.user.himage}">
                                             </div>
                                             <div class="ds-comment-body">
-                                                <div>${obj.user.username} ${obj.mdate}  </div>
+                                                <div class="messgename" style="padding-left: 5px;width: 300px;margin-left: 0px">
+                                                        ${obj.user.username} ${obj.mdate}
+                                                </div>
                                                 <br>
                                                 <div>
                                                         ${obj.message}

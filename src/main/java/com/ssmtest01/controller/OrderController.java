@@ -33,38 +33,19 @@ public class OrderController {
         /*卖家id*/
         Integer uidnew = new Integer(uid);
         Integer amountnew = new Integer(amount);
-
         /*获取当前用户*/
         User user = (User) session.getAttribute("user");
-
         /*获取当前时间*/
         String getdata = DataUtils.getdata();
-
         /*获取随机id*/
         Long dataId = DataUtils.getdataId();
-
-
-
         int i = orderService.addOrder(sidnew, uidnew, amountnew, user.getUid(), getdata, dataId);
-
-
         HashMap map = new HashMap();
         if (i>0){
             map.put("msg","购买成功");
         }else {
             map.put("msg","购买失败");
         }
-
-
-      /*  [User
-            {uid=2, uuidname='C_1640526849734', username='gg', password='123', himage='1640853434780.png', phone='18300071361', email='123@qq.com', role=0, address='', money=666666.0, sex='男', text='iiiiiiiiiiiii',
-                    order=[Order{oid=1643862838706, sstate='买家已付款', bstate='发货中', odate='2022-02-03 12:33', okdate='null', payment=1, amount=3, uid=2, sid=2,
-                                user=User{uid=2, uuidname='C_1640526849734', username='gg', password='123', himage='1640853434780.png', phone='18300071361', email='123@qq.com', role=0, address='', money=666666.0, sex='男', text='iiiiiiiiiiiii', order=null}},
-                            Order{oid=1643862839594, sstate='买家已付款', bstate='发货中', odate='2022-02-03 12:33', okdate='null', payment=1, amount=4, uid=2, sid=2,
-                                user=User{uid=2, uuidname='C_1640526849734', username='gg', password='123', himage='1640853434780.png', phone='18300071361', email='123@qq.com', role=0, address='', money=666666.0, sex='男', text='iiiiiiiiiiiii', order=null}},
-                            Order{oid=1643862840710, sstate='买家已付款', bstate='发货中', odate='2022-02-03 12:34', okdate='null', payment=1, amount=2, uid=2, sid=2,
-                                user=User{uid=2, uuidname='C_1640526849734', username='gg', password='123', himage='1640853434780.png', phone='18300071361', email='123@qq.com', role=0, address='', money=666666.0, sex='男', text='iiiiiiiiiiiii', order=null}}]}]
-*/
         return map;
     }
 
@@ -112,8 +93,6 @@ public class OrderController {
     @ResponseBody
     public HashMap buyerOkOrder(HttpServletRequest request, HttpSession session) {
         String oid = request.getParameter("oid");
-
-
         Order order = new Order();
         /*获取当前时间*/
         String getdata = DataUtils.getdata();
@@ -130,9 +109,6 @@ public class OrderController {
         }else {
             map.put("msg","订单完成失败");
         }
-
-
-
         return map;
     }
 
@@ -148,7 +124,6 @@ public class OrderController {
         if (price>0){
             order.setSstate("完成");
             i = orderService.updataOrder(order);
-
         }
         HashMap map = new HashMap();
         if (i>0){

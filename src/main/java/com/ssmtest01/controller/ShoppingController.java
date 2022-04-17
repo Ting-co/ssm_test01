@@ -26,13 +26,9 @@ public class ShoppingController {
     public HashMap shoppingAdd(HttpServletRequest request, HttpSession session) {
         String sid = request.getParameter("sid");
         String amounts = request.getParameter("amounts");
-        System.out.println(sid+amounts);
-
         User user = (User) session.getAttribute("user");
-
         Integer newsid = new Integer(sid);
         Integer newamounts = new Integer(amounts);
-
         List<Shopping> shoppings = shoppingService.selUAndSid(user.getUid(), newsid);
         int insertshop = 0;
         int upadd=0;
@@ -42,14 +38,12 @@ public class ShoppingController {
             int addamount = shoppings.get(0).getSum() + newamounts;
             upadd = shoppingService.Upadd(user.getUid(), newsid, addamount);
         }
-
         HashMap map = new HashMap();
         if (insertshop>0||upadd>0 ){
         map.put("msg","成功加入购物车");
         }else {
             map.put("msg","加入购物车失败");
         }
-
         return map;
 
 
