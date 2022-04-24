@@ -32,6 +32,29 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public int indexOrder(Integer sidnew, Integer uidnew, Integer amountnew, int uid, String getdata, Long dataId,Integer payment,User user) {
+        int assccess = 0;int add=0;
+
+        int byUser = userDao.updataByUser(user);
+
+        if (byUser>0) {
+            //如果付款则
+            if (payment == 1) {
+                Order order = new Order(dataId, "买家已付款，待发货", "发货中", getdata, payment, amountnew, uid, uidnew, sidnew);
+                add = orderDao.addOrder(order);
+            } else {
+                Order order = new Order(dataId, "买家已选择线下付款，待发货", "发货中", getdata, payment, amountnew, uid, uidnew, sidnew);
+                add = orderDao.addOrder(order);
+            }
+            if (add > 0) {
+                assccess = orderDao.insertsAndO(dataId, uid, uidnew);
+            }
+        }
+
+        return assccess;
+    }
+
+    @Override
     public int updataOrder(Order order) {
         return orderDao.updataOrder(order);
     }

@@ -58,24 +58,29 @@ public class OrderController {
         String sid = request.getParameter("sid");
         String uid = request.getParameter("uid");
         String amount = request.getParameter("amount");
+        String payment = request.getParameter("payment");
         /*商品id*/
         Integer sidnew = new Integer(sid);
         /*卖家id*/
         Integer uidnew = new Integer(uid);
         Integer amountnew = new Integer(amount);
-
         /*获取当前用户*/
         User user = (User) session.getAttribute("user");
-
         /*获取当前时间*/
         String getdata = DataUtils.getdata();
-
         /*获取随机id*/
         Long dataId = DataUtils.getdataId();
 
 
 
-        int i = orderService.addOrder(sidnew, uidnew, amountnew, user.getUid(), getdata, dataId);
+
+        User user1 = new User();
+        user1.setUid(user.getUid());
+        user1.setAddress(request.getParameter("address"));
+        user1.setPhone(request.getParameter("phone"));
+        user1.setMoney(user.getMoney() - Double.valueOf(request.getParameter("price")));
+//        if ()
+        int i = orderService.indexOrder(sidnew, uidnew, amountnew, user.getUid(), getdata, dataId,new Integer(payment),user1);
 
 
         HashMap map = new HashMap();

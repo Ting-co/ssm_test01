@@ -139,7 +139,7 @@
                                             <td>
                                                 <li><input type="button" name="minus" value="-"
                                                            onclick="minus(${status.index})">
-                                                    <input type="number" class="amount${status.index}" value="1">
+                                                    <input type="text" class="amount${status.index}" value="1">
                                                     <input type="button" name="plus" value="+"
                                                            onclick="plus(${status.index},${commoditys.price},${commoditys.sid},${commoditys.uid})"></li>
                                             </td>
@@ -197,7 +197,7 @@
         <input id="uid" type="hidden" name="uid" value=""/>
         <input id="sid" type="hidden" name="sid" value=""/>
         <input id="kunc" type="hidden" name="kunc" value=""/>
-        <input id="dprice" type="hidden" name="kunc" value=""/>
+        <input id="dprice" type="hidden" name="dprice" value=""/>
 
 
         <div class="layui-form-item">
@@ -211,7 +211,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">收货地址</label>
             <div class="layui-input-inline">
-                <input type="text" id="address" name="address" value="" placeholder="${sessionScope.user.address}"
+                <input type="text" id="address" name="address" value="${sessionScope.user.address}"
                        autocomplete="off" class="layui-input">
             </div>
         </div>
@@ -333,16 +333,29 @@
             window.buy= function(){
                 let phone = document.getElementById("phone").value;
                 let address = document.getElementById("address").value;
+                let price = document.getElementById("price").value;
                 if (phone==''&&address==''){
                     alert('收货电话或地址为空')
                     return;
                 }
 
-                //获取表单区域所有值
-                var datas =$("#fromtest").serialize();
+
                 if (!this.cheakNum()) {
                     return;
                 }
+
+                //获取表单区域所有值
+                var datas =$("#fromtest").serialize();
+
+                datas+='&price='+price
+
+                $.post('myOrder/buyIndex', datas, function (data) {
+
+                        layer.msg(data.msg);
+
+                });
+
+
                 layer.closeAll();
             }
 
@@ -387,7 +400,7 @@
         //得到第一个amount的元素的value属性的值
         var count = parseInt(amounts.value); //数量加1
 
-        if (count >= total.value) {
+        if (count >= +total.value) {
             alert("不能再加了，超出仓库数了！！");
         } else {
             //得到第一个amount的元素的value属性的值
@@ -426,7 +439,7 @@
     /*立即购买*/
     function buyCommodity(index,price,sid,uid,kamount) {
         if (${sessionScope.user == null}) {
-            alert("请先登录，再加入购物车");
+            alert("请先登录，再购买商品");
             return;
         }
         var amounts = document.querySelector(".amount" + index);
@@ -463,7 +476,7 @@
             alert('输入的不能是负数')
             return false;
         }
-        if (amount>kamount){
+        if (+amount > +kamount){
             alert('输入的大于库存数量')
             return false;
         }

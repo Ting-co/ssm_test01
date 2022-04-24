@@ -351,7 +351,7 @@
         layer.open({
             type: 1
             , title: '查看订单信息'
-            , area: ['30%', '50%']
+            , area: ['40%', '60%']
 
             , content: $("#selMyOrder")
             , success: function () {

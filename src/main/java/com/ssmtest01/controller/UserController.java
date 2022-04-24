@@ -117,13 +117,13 @@ public class UserController {
      */
 
     @RequestMapping("/tologout")
-    public String logout(HttpSession session) {
+    public void logout(HttpSession session ,HttpServletRequest request,HttpServletResponse response) throws IOException {
         User user = (User) session.getAttribute("user");
         if (user != null) {
             session.removeAttribute("user");
             System.out.println(user.getUsername() + "logout");
         }
-        return "index";
+       response.sendRedirect(request.getContextPath() + "/index/toindex");
 
 
     }

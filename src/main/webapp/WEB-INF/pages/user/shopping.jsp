@@ -371,7 +371,7 @@
                 //获取当前数量的值
                 var amounts = document.getElementsByName("amount");
 
-                alert(uid+"地"+sid+"地"+amounts[index].value+"地"+index)
+
                 var data = {uid: uid + "",sid: sid + "",amount: amounts[index].value + ""};
                 $.post("myOrder/add", data, function (date) {
                     alert(date.msg)
