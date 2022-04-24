@@ -26,17 +26,17 @@
         #car {
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
             text-align: center;
-            margin: 10px 100px;
+            margin: 10px 200px;
             border-radius: 15px;
-            width: 60%;
+            width: auto;
             height: 60%;
         }
 
         .carMessger {
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-            margin: 10px 100px;
+            margin: 10px 200px;
             border-radius: 15px;
-            width: 60%;
+            width: auto;
             height: 40%;
         }
 

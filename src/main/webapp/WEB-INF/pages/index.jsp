@@ -141,7 +141,8 @@
                                                            onclick="minus(${status.index})">
                                                     <input type="text" class="amount${status.index}" value="1">
                                                     <input type="button" name="plus" value="+"
-                                                           onclick="plus(${status.index},${commoditys.price},${commoditys.sid},${commoditys.uid})"></li>
+                                                           onclick="plus(${status.index},${commoditys.price},${commoditys.sid},${commoditys.uid})">
+                                                </li>
                                             </td>
                                                 <%-- <td colspan="3">Row 3 Cell 1</td>--%>
                                         </tr>
@@ -149,7 +150,9 @@
 
                                             <td>&nbsp;&nbsp;&nbsp;<BUTTON onclick="addshoping(${status.index})">加入购物车
                                             </BUTTON>
-                                                <BUTTON onclick="buyCommodity(${status.index},${commoditys.price},${commoditys.sid},${commoditys.uid},${commoditys.amount})">立即购买</BUTTON>
+                                                <BUTTON onclick="buyCommodity(${status.index},${commoditys.price},${commoditys.sid},${commoditys.uid},${commoditys.amount})">
+                                                    立即购买
+                                                </BUTTON>
                                             </td>
                                                 <%-- <td colspan="3">Row 3 Cell 1</td>--%>
                                         </tr>
@@ -193,7 +196,7 @@
 </div>
 
 <div style="border:0px solid #eee ;margin: 0 auto;max-width: 1140px;padding-top: 10px;display: none;" id="buyCommodity">
-    <form class="layui-form layui-form-pane" id="fromtest"  >
+    <form class="layui-form layui-form-pane" id="fromtest">
         <input id="uid" type="hidden" name="uid" value=""/>
         <input id="sid" type="hidden" name="sid" value=""/>
         <input id="kunc" type="hidden" name="kunc" value=""/>
@@ -203,8 +206,9 @@
         <div class="layui-form-item">
             <label class="layui-form-label" style="width: 150px">收货手机号码</label>
             <div class="layui-input-inline">
-                <input type="text" id="phone" name="phone" value="" lay-verify="required|phone" placeholder="${sessionScope.user.phone}"
-                        class="layui-input">
+                <input type="text" id="phone" name="phone" value="" lay-verify="required|phone"
+                       placeholder="${sessionScope.user.phone}"
+                       class="layui-input">
             </div>
         </div>
 
@@ -243,13 +247,13 @@
         <div class="layui-form-item" pane="">
             <label class="layui-form-label">付款方式</label>
             <div class="layui-input-block">
-                <input type="radio" id="payLocal"  name="payment"  value="0" title="线下付款">
+                <input type="radio" id="payLocal" name="payment" value="0" title="线下付款">
                 <input type="radio" id="payOnline" name="payment" value="1" title="线上付款" checked>
             </div>
         </div>
     </form>
-    <div  style="padding-left: 300px">
-        <button type="button" class="layui-btn"  onclick="buy()">确认订单</button>
+    <div style="padding-left: 300px">
+        <button type="button" class="layui-btn" onclick="buy()">确认订单</button>
         <button type="reset" class="layui-btn layui-btn-primary">重置</button>
     </div>
 </div>
@@ -271,7 +275,6 @@
             //console.log(elem)
             layer.msg(elem.text());
         });
-
 
 
         var curr;
@@ -330,35 +333,43 @@
         });
 
 
-            window.buy= function(){
-                let phone = document.getElementById("phone").value;
-                let address = document.getElementById("address").value;
-                let price = document.getElementById("price").value;
-                if (phone==''&&address==''){
-                    alert('收货电话或地址为空')
-                    return;
-                }
-
-
-                if (!this.cheakNum()) {
-                    return;
-                }
-
-                //获取表单区域所有值
-                var datas =$("#fromtest").serialize();
-
-                datas+='&price='+price
-
-                $.post('myOrder/buyIndex', datas, function (data) {
-
-                        layer.msg(data.msg);
-
-                });
-
-
-                layer.closeAll();
+        window.buy = function () {
+            let phone = document.getElementById("phone").value;
+            let address = document.getElementById("address").value;
+            let price = document.getElementById("price").value;
+            if (phone == '' && address == '') {
+                alert('收货电话或地址为空')
+                return;
             }
 
+
+            if (!this.cheakNum()) {
+                return;
+            }
+
+            //获取表单区域所有值
+            var datas = $("#fromtest").serialize();
+
+            datas += '&price=' + price
+
+            $.post({
+                url: 'myOrder/buyIndex',
+                data: datas,
+                success: function (data) {
+
+                    layer.msg(data.msg, {icon: 1,offset: '100px' ,time: 2000 })
+                    layer.closeAll('page'); //关闭所有页面层
+
+                },
+
+
+
+
+            });
+
+
+
+        }
 
 
     });
@@ -436,8 +447,9 @@
         )
 
     }
+
     /*立即购买*/
-    function buyCommodity(index,price,sid,uid,kamount) {
+    function buyCommodity(index, price, sid, uid, kamount) {
         if (${sessionScope.user == null}) {
             alert("请先登录，再购买商品");
             return;
@@ -447,16 +459,16 @@
         layer.open({
             type: 1
             , title: '确认订单信息'
-            ,offset: '300px'
+            , offset: '300px'
             , area: ['500px', '435px']
             , content: $("#buyCommodity")
             , success: function () {
-                document.getElementById("uid").value =  uid;
-                document.getElementById("sid").value =  sid;
-                document.getElementById("amount").value =  amounts.value;
-                document.getElementById("price").value =  price*amounts.value;
-                document.getElementById("kunc").value =  kamount;
-                document.getElementById("dprice").value =  price;
+                document.getElementById("uid").value = uid;
+                document.getElementById("sid").value = sid;
+                document.getElementById("amount").value = amounts.value;
+                document.getElementById("price").value = price * amounts.value;
+                document.getElementById("kunc").value = kamount;
+                document.getElementById("dprice").value = price;
             }
             , end() {
 
@@ -465,34 +477,32 @@
 
         });
     }
+
     /*检查数量是否正确*/
-    function cheakNum(){
+    function cheakNum() {
         let amount = document.getElementById("amount").value;
         let kamount = document.getElementById("kunc").value;
         let money = document.getElementById("money").value;
         let dprice = document.getElementById("dprice").value;
-        let price =dprice*amount;
-        if (amount<0){
+        let price = dprice * amount;
+        if (amount < 0) {
             alert('输入的不能是负数')
             return false;
         }
-        if (+amount > +kamount){
+        if (+amount > +kamount) {
             alert('输入的大于库存数量')
             return false;
         }
 
-        if (money<price){
+        if (money < price) {
             alert('余额不足')
             return false;
-        }else {
-            document.getElementById("price").value=price;
+        } else {
+            document.getElementById("price").value = price;
         }
 
         return true;
     }
-
-
-
 
 
 </script>
