@@ -73,7 +73,7 @@
             <li class="layui-nav-item">
                 <a href="pagerto/urecompose">个人资料</a>
             </li>
-            <li class="layui-nav-item"><a href="">个人钱包</a></li>
+            <li class="layui-nav-item"><a href="pagerto/wallet">个人钱包</a></li>
 
             <li class="layui-nav-item layui-nav-itemed">
                 <a href="javascript:;">订单中心</a>

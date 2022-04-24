@@ -154,6 +154,15 @@ public class PagerTo {
         return "/user/shopping";
     }
 
+    /**
+     *  钱包
+     * @return
+     */
+    @RequestMapping("/wallet")
+    public String wallet() {
+
+        return "/user/wallet";
+    }
 
 
 }
