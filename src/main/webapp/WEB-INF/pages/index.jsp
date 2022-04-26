@@ -24,7 +24,23 @@
     <script src="static/js/jquery.min.js"></script>
     <link rel="stylesheet" href="../../static/layui/css/layui.css" media="all">
     <script src="../../static/layui/layui.js" charset="utf-8"></script>
+    <style>
+        .daf{
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            border-radius: 15px;
+            width: 100%;
+            height: 300px;
 
+        }
+        .fenlei{
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            border-radius: 15px;
+            width: 150px;
+            height: 150px;
+            margin-left: 30px;
+            position: fixed;
+        }
+    </style>
 </head>
 <body>
 <div class="layui-layout layui-layout-admin">
@@ -89,10 +105,10 @@
             <div class="layui-col-md9">
                 <div class="grid-demo grid-demo-bg1">
                     <div id="pager" style="margin-bottom: 0;">
-                        <div class="daf">
+                        <div >
                             <c:forEach items="${commoditys.list}" var="commoditys" varStatus="status">
 
-                                <div style="background: #c0c4cc">
+                                <div class="daf">
                                     <table border="0">
                                         <tr>
                                             <td rowspan="6">
@@ -165,16 +181,16 @@
                                 <input style="display: none" class="sid${status.index}" value="${commoditys.sid}"/>
                             </c:forEach>
 
-                            <div id="demo7"></div>
+                            <div id="demo7" ></div>
 
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="layui-col-md3" style="background-color: #888888;padding-left: 30px">
+            <div class="layui-col-md3" >
                 <div class="grid-demo">
-                    <div>
-                        <ul>
+                    <div class="fenlei">
+                        <ul style="padding: 20px">
                             <li><a href="index/selectBySort?sort=衣服装扮">衣服装扮</a></li>
                             <li><a href="index/selectBySort?sort=美妆护肤">美妆护肤</a></li>
                             <li><a href="index/selectBySort?sort=电子数码">电子数码</a></li>
