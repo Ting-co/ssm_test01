@@ -1,8 +1,10 @@
 package com.ssmtest01.controller;
 
 
+import com.github.pagehelper.PageHelper;
 import com.ssmtest01.bean.Commoditys;
 import com.ssmtest01.bean.Messages;
+import com.ssmtest01.bean.PageInfo;
 import com.ssmtest01.bean.User;
 import com.ssmtest01.service.impl.MessagesServiceImpl;
 import com.ssmtest01.util.DataUtils;
@@ -29,9 +31,18 @@ public class MessagesController {
 
     @RequestMapping("/all")
     public String all(HttpServletRequest request) {
+        String pageNum = request.getParameter("pageNum");
+        PageInfo<Object> pageInfo = new PageInfo<>();
+        if (pageNum != null && pageNum != "") {
+            pageInfo.setPageNum(Integer.parseInt(pageNum));
+        } else {
+            pageInfo.setPageNum(1);
+        }
+        PageHelper.startPage(pageInfo.getPageNum(), pageInfo.getPageSize());
 
         List<Messages> getall = messagesService.getall();
-        request.setAttribute("messages", getall);
+        PageInfo messagesPageInfo = new PageInfo<>(getall);
+        request.setAttribute("messages", messagesPageInfo);
         return "user/message";
 
     }

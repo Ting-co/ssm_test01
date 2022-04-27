@@ -53,6 +53,24 @@
             height: 80px;
             background: #a19f9f;
         }
+        .messagebox{
+            display: flex;
+            flex-wrap:  wrap;
+        }
+
+        .message{
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            border-radius: 15px;
+            margin: 10px;
+            max-width: 500px;
+
+        }
+        #demo7{
+            margin: 0 auto;
+            max-width: 1000px;
+            padding-top: 10px
+        }
+
     </style>
 </head>
 <body>
@@ -69,50 +87,76 @@
                 <legend>始终等比例水平排列</legend>
             </fieldset>
         </div>
+
+
         <div style="margin: 0 auto; max-width: 1000px; padding-top: 10px">
-            <%--留言模拟--%>
-            <div style="border: #beb9b0 solid 1px;margin-top: 30px;border-radius: 5px;">
-                <div style="border-bottom: #beb9b0 solid 1px;height:40px;">
-                    <h2 style="margin:10px 0 10px 15px;">留言区</h2>
-                </div>
-                <div style="padding:20px;">
-                    <table id="demo" lay-filter="demo" style="border:0px ">
-                        <thead>
-                        <tr>
-                            <th lay-data="{field:'sid',align: 'center'}"></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <c:forEach items="${messages}" var="obj">
-                            <tr>
-                                <td>
-                                    <div id="message" style="height: 100px">
-                                        <div class="ds-post-main">
-                                            <div class="ds-avatar">
-                                                <img src="static/images/headImg/${obj.user.himage}">
-                                            </div>
-                                            <div class="ds-comment-body">
-                                                <div class="messgename" style="padding-left: 5px;width: 300px;margin-left: 0px">
-                                                        ${obj.user.username} ${obj.mdate}
-                                                </div>
-                                                <br>
-                                                <div>
-                                                        ${obj.message}
-                                                </div>
-                                            </div>
-                                        </div>
 
-                                    </div>
-                                </td>
-                            </tr>
-                        </c:forEach>
+            <div class="messagebox">
+                <c:forEach items="${messages.list}" var="obj">
+                    <div class="message">
 
-                        </tbody>
-                    </table>
-                </div>
 
+                    <div >
+                        <img style="width: 100px;height: 100px" src="static/images/headImg/${obj.user.himage}">
+                    </div>
+
+                    <div class="messgename" style="padding-left: 5px;width: 300px;margin-left: 0px">
+                            ${obj.user.username} ${obj.mdate}
+                    </div>
+
+                    <div>
+                            ${obj.message}
+                    </div>
+                    </div>
+                </c:forEach>
             </div>
+
+
+            <%--留言模拟--%>
+            <%-- <div style="border: #beb9b0 solid 1px;margin-top: 30px;border-radius: 5px;">
+                 <div style="border-bottom: #beb9b0 solid 1px;height:40px;">
+                     <h2 style="margin:10px 0 10px 15px;">留言区</h2>
+                 </div>
+                 <div style="padding:20px;">
+                     <table id="demo" lay-filter="demo" style="border:0px ">
+                         <thead>
+                         <tr>
+                             <th lay-data="{field:'sid',align: 'center'}"></th>
+                         </tr>
+                         </thead>
+                         <tbody>
+                         <c:forEach items="${messages}" var="obj">
+                             <tr>
+                                 <td>
+                                     <div id="message" style="height: 100px">
+                                         <div class="ds-post-main">
+                                             <div class="ds-avatar">
+                                                 <img src="static/images/headImg/${obj.user.himage}">
+                                             </div>
+                                             <div class="ds-comment-body">
+                                                 <div class="messgename" style="padding-left: 5px;width: 300px;margin-left: 0px">
+                                                         ${obj.user.username} ${obj.mdate}
+                                                 </div>
+                                                 <br>
+                                                 <div>
+                                                         ${obj.message}
+                                                 </div>
+                                             </div>
+                                         </div>
+
+                                     </div>
+                                 </td>
+                             </tr>
+                         </c:forEach>
+
+                         </tbody>
+                     </table>
+                 </div>
+
+             </div>--%>
+
         </div>
+        <div id="demo7"></div>
     </div>
 
     <div style="border:1px solid #eee ;margin: 0 auto;max-width: 1140px;padding-top: 10px;display: none;"
@@ -145,7 +189,7 @@
 </div>
 <script>
 
-    <%--alert("${messages}");--%>
+    <%--console.log('${messages}')--%>
 
     layui.use(['util', 'laypage', 'element'], function () {
         var element = layui.element //导航的hover效果、二级菜单等功能，需要依赖element模块
@@ -159,10 +203,38 @@
             layer.msg(elem.text());
         });
 
+
+
+
+        var curr;
+        if (${messages.pageNum==null}) {
+            curr = 1;
+        } else {
+            curr =${messages.pageNum};
+        }
+        //分页
+        laypage.render({
+            elem: 'demo7'
+            , count: ${messages.total}
+            , limit:${messages.pageSize}
+            , curr: curr
+            , layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
+            , jump: function (obj, first) {
+
+                if (!first) {
+                    var curr = obj.curr;
+                    $.get("messages/all", {"pageNum": curr}, function () {
+                        location.replace("messages/all?pageNum=" + curr);
+                    })
+                }
+            }
+        });
+
         //执行一个laypage实例
         /*laypage.render({
             elem: 'message' //注意，这里的 test1 是 ID，不用加 # 号
             ,count:
+
 
 
 
@@ -222,6 +294,9 @@
                 }
             }
         });
+
+
+
 
     });
 </script>
