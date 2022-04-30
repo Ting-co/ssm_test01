@@ -24,20 +24,6 @@
     <script src="static/jquery/jquery.js"></script>
     <style>
 
-        .ds-post-main {
-            position: relative;
-            width: 500px;
-        }
-
-        .ds-avatar {
-            position: absolute;
-            top: 20px;
-            width: 31px;
-            height: 31px;
-            padding: 5px;
-            background: #fff;
-            border-radius: 50%;
-        }
 
         .ds-avatar img {
             display: block;
@@ -47,28 +33,65 @@
             border-radius: 50%;
         }
 
-        .ds-comment-body {
-            margin-left: 20px;
-            flex: auto;
-            height: 80px;
-            background: #a19f9f;
-        }
-        .messagebox{
+
+        .messagebox {
             display: flex;
-            flex-wrap:  wrap;
+            flex-wrap: wrap;
         }
 
-        .message{
+        .message {
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
             border-radius: 15px;
             margin: 10px;
             max-width: 500px;
 
         }
-        #demo7{
+
+        #demo7 {
             margin: 0 auto;
             max-width: 1000px;
             padding-top: 10px
+        }
+
+
+
+        .content{
+            /* background-color: #bfa; */
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            border-radius: 15px;
+            width: 400px;
+            margin: 10px auto;
+        }
+        .top{
+            font-size: 10px;
+            display: flex;
+            margin-right: 5px;
+            padding: 3px;
+        }
+        .r-top{
+            margin-left: 10px;
+            display: flex;
+            flex-direction: column;
+            color: #aaa;
+        }
+        .username{
+            color: rgb(51, 194, 251);
+        }
+        .center{
+            font-size: 12px;
+            margin-top: 5px;
+            margin-left: 40px;
+        }
+        .bottom{
+            margin-top: 5px;
+            margin-left: 40px;
+        }
+        .bottom .layui-icon{
+            font-size: 12px;
+            margin-right: 3px;
+        }
+        .layui-icon-praise::before,.layui-icon-email::before{
+            font-size: 14px;
         }
 
     </style>
@@ -93,20 +116,42 @@
 
             <div class="messagebox">
                 <c:forEach items="${messages.list}" var="obj">
-                    <div class="message">
+                    <%--<div class="message">
 
 
-                    <div >
-                        <img style="width: 100px;height: 100px" src="static/images/headImg/${obj.user.himage}">
-                    </div>
+                        <div>
+                            <img style="width: 100px;height: 100px" src="static/images/headImg/${obj.user.himage}">
+                        </div>
 
-                    <div class="messgename" style="padding-left: 5px;width: 300px;margin-left: 0px">
-                            ${obj.user.username} ${obj.mdate}
-                    </div>
+                        <div class="messgename" style="padding-left: 5px;width: 300px;margin-left: 0px">
+                                ${obj.user.username} ${obj.mdate}
+                        </div>
 
-                    <div>
-                            ${obj.message}
-                    </div>
+                        <div>
+                                ${obj.message}
+                        </div>
+                    </div>--%>
+                    <div class="content">
+                        <div class="top">
+                            <div class="left">
+                                <img src="static/images/headImg/${obj.user.himage}"
+                                     style="width: 30px;height: 30px;border-radius: 15px;" alt="">
+                            </div>
+                            <div class="right">
+                                <div class="r-top">
+                                    <span class="username">${obj.user.username}</span>
+                                    <span class="comment">${obj.mdate}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 内容 -->
+                        <div class="center">
+                            <span>${obj.message}</span>
+                        </div>
+                        <div class="bottom">
+                            <i class="layui-icon layui-icon-praise">0</i>
+                            <i class="layui-icon layui-icon-email">回复</i>
+                        </div>
                     </div>
                 </c:forEach>
             </div>
@@ -204,8 +249,6 @@
         });
 
 
-
-
         var curr;
         if (${messages.pageNum==null}) {
             curr = 1;
@@ -234,6 +277,7 @@
         /*laypage.render({
             elem: 'message' //注意，这里的 test1 是 ID，不用加 # 号
             ,count:
+
 
 
 
@@ -294,8 +338,6 @@
                 }
             }
         });
-
-
 
 
     });

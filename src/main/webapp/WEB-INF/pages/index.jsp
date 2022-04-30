@@ -40,54 +40,118 @@
             margin-left: 30px;
             position: fixed;
         }
+
+        .content{
+            /* background-color: #bfa; */
+            width: 80%;
+            margin: 30px 0px;
+            display: flex;
+        }
+        .left-content{
+            /* border: 1px solid red; */
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            border-radius: 15px;
+            margin: 5px;
+        }
+        .left-content .left{
+            width: 400px;
+            height: 300px;
+        }
+        .left-content .left img{
+            width: 100%;
+            height: 100%;
+        }
+
+        .left-content .right{
+            width: 48%;
+            display: flex;
+            flex-wrap: wrap;
+            align-content: space-between;
+        }
+        .right{
+            padding: 10px;
+        }
+        .left-content .right .item{
+            width: 100%;
+            display: flex;
+        }
+
+        .right-content{
+            width: 30%;
+        }
+        .content{
+            margin-top: 20px;
+            text-align: center;
+        }
+        .item :first-child{
+            margin-right: 30px;
+        }
+        .left{
+            margin-right: 40px;
+            padding: 7px;
+
+        }
+        .right :nth-child(4) :last-child{
+            font-weight: bold;
+            color: rgb(255, 98, 0);
+        }
+        .right :nth-child(5) :last-child{
+        }
+        .price :last-child{
+            font-weight: bold;
+            color: rgb(255, 98, 0);
+            font-size: 1.3em;
+        }
+
+        .dec{
+            margin-right: -30px;
+        }
+        #lwidth{
+            width: 40px;
+        }
+        .add,.dec{
+            width: 20px;
+        }
+        .cn{
+            width: 70%;
+            display: flex;
+            justify-content: space-around;
+            margin-left: -10px;
+        }
+        .cn span{
+            /* width: 33%; */
+            margin-right: 0 !important;
+            color: red;
+        }
+        .type{
+            margin-top: 30px;
+            width: 180px;
+            display: flex;
+            flex-direction: column;
+            letter-spacing: 2px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            border-radius: 15px;
+            position: fixed;
+        }
+        dl{
+            display: flex;
+            width: 175px;
+            justify-content: space-around;
+        }
     </style>
 </head>
 <body>
 <div class="layui-layout layui-layout-admin">
     <jsp:include page="common/header.jsp"/>
-    <%--头部导航栏--%>
-    <%--<div class="mylayui-index-header">
-        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-            <legend>CO二手商城</legend>
-        </fieldset>
-        <ul class="layui-nav">
-            <li class="layui-nav-item">
-                <a href="javascript:;">返回首页</a>
-            </li>
-            <li class="layui-nav-item">
-                <a href="javascript:;">求物留言区</a>
-            </li>
-            <li class="layui-nav-item"><a href="pagerto/login">演示</a></li>
-        </ul>
-
-
-        &lt;%&ndash;用户头像&ndash;%&gt;
-        <ul class="layui-nav layui-layout-right">
-            <li class="layui-nav-item layui-hide layui-show-md-inline-block">
-                <a href="pagerto/register" >
-                    <cite class="layui-hide-xs" style="color: #fff;margin-left: 5px;"></cite>
-                    <c:if test="${sessionScope.user == null}">
-                        未登录,点击登录
-                    </c:if>
-                    <c:if test="${sessionScope.user != null}">
-                        欢迎管理员：[ ${sessionScope.user.username} ]登录
-                    </c:if>
-                </a>
-                <c:if test="${sessionScope.user != null}">
-                    <dl class="layui-nav-child">
-                        <dd><a href="">个人主页</a></dd>
-                        <dd><a href="">注销</a></dd>
-                    </dl>
-                </c:if>
-            </li>
-        </ul>
-    </div>--%>
 
     <%--主体--%>
     <div class="mylayui-index-body">
 
 
-        <div class="layui-row" style="padding: 50px 25% ">
+        <div class="layui-row" style="padding: 50px 50px 23% 15%">
             <%--搜索框--%>
             <div style="margin-bottom: 50px">
                 <form class="layui-form layui-form-pane" action="index/select">
@@ -102,7 +166,122 @@
                     </div>
                 </form>
             </div>
-            <div class="layui-col-md9">
+
+                <div class="content">
+                    <div style="display: flex;flex-wrap: wrap" >
+
+                    <!-- 左边商品区 -->
+                    <c:forEach items="${commoditys.list}" var="commoditys" varStatus="status">
+                        <div class="left-content">
+
+                            <div class="left" >
+                                <img style="border-radius: 15px;" src="static/images/commoditys/${commoditys.simage}" alt="">
+                            </div>
+                            <div class="right">
+                                <div class="item">
+                                    <h2 class="title">${commoditys.commodity}</h2>
+                                </div>
+                                <div class="item">
+                                    <span>简介</span>
+                                    <span>${commoditys.synopsis}</span>
+                                </div>
+                                <div class="item">
+                                    <div class="price">
+                                        <span>价格</span>
+                                        <span>&yen;${commoditys.price}</span>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <span>月销量</span>
+                                    <span>100+</span>
+                                </div>
+                                <div class="item">
+                                    <span>库存</span>
+                                    <span>${commoditys.amount}</span>
+                                </div>
+                                <div class="item">
+                                    <span>上架时间</span>
+                                    <span>${commoditys.sdate}</span>
+                                </div>
+                                <div class="item">
+                                    <span>数量</span>
+                                    <div>
+                                        <button class="dec" onclick="minus(${status.index})">-</button>
+                                        <input id="lwidth" type="number" min="1" step="1" value="1" class="amount${status.index}"/>
+                                        <button class="add" onclick="plus(${status.index},${commoditys.price},${commoditys.sid},${commoditys.uid})">+</button>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <button class=" layui-btn layui-btn-warm layui-btn-sm"
+                                            onclick="buyCommodity(${status.index},${commoditys.price},${commoditys.sid},${commoditys.uid},${commoditys.amount})" >
+                                        立即购买
+                                    </button>
+                                    <button class=" layui-btn layui-btn-danger layui-btn-sm"
+                                            onclick="addshoping(${status.index})">
+                                        加入购物车
+                                    </button>
+                                </div>
+                                <div class="item">
+                                    <span>承诺</span>
+                                    <div class="cn">
+                                        <span>正品保证</span>
+                                        <span>极速退款</span>
+                                        <span>七天无理由退换</span>
+                                    </div>
+                                </div>
+                                <input style="display: none" class="amounts${status.index}"
+                                       value="${commoditys.amount}"/>
+                                <input style="display: none" class="sid${status.index}" value="${commoditys.sid}"/>
+                            </div>
+                        </div>
+                    </c:forEach>
+                        <c:if test="${commoditys.list!=''}">
+
+                            <div id="demo7" ></div>
+                        </c:if>
+                    </div>
+
+
+                    <div class="right-content">
+                        <%--<div style="width: 47%;
+                                    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                                    border-radius: 15px;">
+                            <h3 style="font-weight: bold;margin-bottom: 8px;">商品热度</h3>
+                            <dl>
+                                <dd>
+                                    <a href="">
+                                        <img style="width: 50px;height: 50px;" src="">
+                                    </a>
+                                </dd>
+                                <dd>
+                                    <a href="">
+                                        <img style="width: 50px;height: 50px;" src="">
+                                    </a>
+                                </dd>
+                                <dd>
+                                    <a href="">
+                                        <img style="width: 50px;height: 50px;" src="">
+                                    </a>
+                                </dd>
+                            </dl>
+                        </div>--%>
+
+                        <!-- 分类 -->
+                        <div class="type">
+                            <h2>商品分类</h2>
+                            <span><a href="index/selectBySort?sort=衣服装扮">衣服装扮</a></span>
+                            <span><a href="index/selectBySort?sort=美妆护肤">美妆护肤</a></span>
+                            <span><a href="index/selectBySort?sort=电子数码">电子数码</a></span>
+                            <span><a href="index/selectBySort?sort=书本文具">书本文具</a></span>
+                            <span><a href="index/selectBySort?sort=零食水果">零食水果</a></span>
+                            <span><a href="index/selectBySort?sort=项链饰品">项链饰品</a></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="demo7" ></div>
+
+            <%--<div class="layui-col-md9">
                 <div class="grid-demo grid-demo-bg1">
                     <div id="pager" style="margin-bottom: 0;">
                         <div >
@@ -120,7 +299,7 @@
                                             <td>&nbsp;<div style="padding-left: 13px">${commoditys.commodity}</div>
                                             </td>
                                         </tr>
-                                        <tr><%--${status.index}--%>
+                                        <tr>&lt;%&ndash;${status.index}&ndash;%&gt;
                                             <td class="price">&nbsp;&nbsp;&nbsp;￥${commoditys.price}
                                                 <div style="padding-left: 10px">
                                                     <hr>
@@ -148,7 +327,7 @@
                                                 <div style="padding-left: 10px"><br/></div>
                                                 &nbsp;&nbsp;&nbsp;${commoditys.synopsis}</td>
                                             </td>
-                                                <%-- <td colspan="3">Row 3 Cell 1</td>--%>
+                                                &lt;%&ndash; <td colspan="3">Row 3 Cell 1</td>&ndash;%&gt;
                                         </tr>
                                         <tr>
 
@@ -160,7 +339,7 @@
                                                            onclick="plus(${status.index},${commoditys.price},${commoditys.sid},${commoditys.uid})">
                                                 </li>
                                             </td>
-                                                <%-- <td colspan="3">Row 3 Cell 1</td>--%>
+                                                &lt;%&ndash; <td colspan="3">Row 3 Cell 1</td>&ndash;%&gt;
                                         </tr>
                                         <tr>
 
@@ -170,7 +349,7 @@
                                                     立即购买
                                                 </BUTTON>
                                             </td>
-                                                <%-- <td colspan="3">Row 3 Cell 1</td>--%>
+                                                &lt;%&ndash; <td colspan="3">Row 3 Cell 1</td>&ndash;%&gt;
                                         </tr>
 
                                     </table>
@@ -187,7 +366,7 @@
                     </div>
                 </div>
             </div>
-            <div class="layui-col-md3" >
+            <div cass="layui-col-md3" >l
                 <div class="grid-demo">
                     <div class="fenlei">
                         <ul style="padding: 20px">
@@ -200,7 +379,7 @@
                         </ul>
                     </div>
                 </div>
-            </div>
+            </div>--%>
         </div>
 
 
