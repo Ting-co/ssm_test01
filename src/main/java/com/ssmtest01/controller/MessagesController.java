@@ -38,7 +38,7 @@ public class MessagesController {
         } else {
             pageInfo.setPageNum(1);
         }
-        PageHelper.startPage(pageInfo.getPageNum(), pageInfo.getPageSize());
+        PageHelper.startPage(pageInfo.getPageNum(), 10);
 
         List<Messages> getall = messagesService.getall();
         PageInfo messagesPageInfo = new PageInfo<>(getall);

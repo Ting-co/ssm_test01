@@ -128,13 +128,14 @@
         }
         .type{
             margin-top: 30px;
+            padding: 9px 10px;
             width: 180px;
+            height:  390px;
             display: flex;
             flex-direction: column;
             letter-spacing: 2px;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
             border-radius: 15px;
-            position: fixed;
         }
         dl{
             display: flex;
@@ -166,7 +167,29 @@
                     </div>
                 </form>
             </div>
+                <div style="display: flex">
 
+
+                <!-- 分类 -->
+                 <div class="type">
+                     <h2>商品分类</h2>
+                     <span><a href="index/selectBySort?sort=衣服装扮">衣服装扮</a></span>
+                     <span><a href="index/selectBySort?sort=美妆护肤">美妆护肤</a></span>
+                     <span><a href="index/selectBySort?sort=电子数码">电子数码</a></span>
+                     <span><a href="index/selectBySort?sort=书本文具">书本文具</a></span>
+                     <span><a href="index/selectBySort?sort=零食水果">零食水果</a></span>
+                     <span><a href="index/selectBySort?sort=项链饰品">项链饰品</a></span>
+                 </div>
+                <div class="layui-carousel" id="test1" style="margin:30px; ">
+                    <div carousel-item >
+                        <div><img  src="static/images/commoditys/1640855649050.jpg" alt=""></div>
+                        <div>条目2</div>
+                        <div>条目3</div>
+                        <div>条目4</div>
+                        <div>条目5</div>
+                    </div>
+                </div>
+                </div>
                 <div class="content">
                     <div style="display: flex;flex-wrap: wrap" >
 
@@ -266,8 +289,8 @@
                             </dl>
                         </div>--%>
 
-                        <!-- 分类 -->
-                        <div class="type">
+                        <%-- 分类 -->
+                       <%-- <div class="type">
                             <h2>商品分类</h2>
                             <span><a href="index/selectBySort?sort=衣服装扮">衣服装扮</a></span>
                             <span><a href="index/selectBySort?sort=美妆护肤">美妆护肤</a></span>
@@ -275,7 +298,7 @@
                             <span><a href="index/selectBySort?sort=书本文具">书本文具</a></span>
                             <span><a href="index/selectBySort?sort=零食水果">零食水果</a></span>
                             <span><a href="index/selectBySort?sort=项链饰品">项链饰品</a></span>
-                        </div>
+                        </div>--%>
                     </div>
                 </div>
 
@@ -464,6 +487,17 @@
             , util = layui.util
             , layer = layui.layer;
 
+        layui.use('carousel', function(){
+            var carousel = layui.carousel;
+            //建造实例
+            carousel.render({
+                elem: '#test1'
+                ,height:'400px'
+                ,width: '60%' //设置容器宽度
+                ,arrow: 'always' //始终显示箭头
+                //,anim: 'updown' //切换动画方式
+            });
+        });
 
         //监听导航点击
         element.on('nav(demo)', function (elem) {

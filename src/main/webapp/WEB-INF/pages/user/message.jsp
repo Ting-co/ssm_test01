@@ -149,7 +149,7 @@
                             <span>${obj.message}</span>
                         </div>
                         <div class="bottom">
-                            <i class="layui-icon layui-icon-praise">0</i>
+                          <i class="layui-icon layui-icon-praise" onclick="buy()">0</i>
                             <i class="layui-icon layui-icon-email">回复</i>
                         </div>
                     </div>
@@ -312,6 +312,9 @@
                 }
             )
         })
+        window.buy = function () {
+            alert('sssss')
+        }
 
 
         //固定块
