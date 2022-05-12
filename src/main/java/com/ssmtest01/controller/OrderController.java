@@ -3,6 +3,7 @@ package com.ssmtest01.controller;
 import com.ssmtest01.bean.Order;
 import com.ssmtest01.bean.User;
 import com.ssmtest01.service.OrderService;
+import com.ssmtest01.service.ShoppingService;
 import com.ssmtest01.util.DataUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,7 +20,8 @@ import java.util.List;
 public class OrderController {
     @Autowired
     private OrderService orderService;
-
+    @Autowired
+    private ShoppingService shoppingService;
 
     @RequestMapping("/add")
     @ResponseBody
@@ -43,6 +45,7 @@ public class OrderController {
         HashMap map = new HashMap();
         if (i>0){
             map.put("msg","购买成功");
+            shoppingService.delshopping(new Integer(request.getParameter("id")));
         }else {
             map.put("msg","购买失败");
         }

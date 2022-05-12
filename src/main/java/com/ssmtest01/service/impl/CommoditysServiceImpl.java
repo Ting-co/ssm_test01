@@ -53,7 +53,10 @@ public class CommoditysServiceImpl implements CommoditysService {
     public List<Commoditys> mselall(){
         return commoditysDao.mselall();
     };
-
+    @Override
+    public List<Commoditys> msgelall(){
+        return commoditysDao.msgelall();
+    };
     @Override
     public void updateMessage( Commoditys commoditys){
         commoditysDao.updateMessage(commoditys);

@@ -32,6 +32,7 @@
 
         .content {
             width: 810px;
+            height: 800px;
             margin: 0 auto;
             font-family: "微软雅黑";
         }
@@ -144,6 +145,7 @@
             line-height: 35px;
             text-align: center;
         }
+
         .cartList ol li:nth-of-type(2) {
             color: #ff0000;
             padding-left: 5px;
@@ -218,11 +220,13 @@
                         <p onclick="delete1(${status.index})">删除</p></li>
                 </ul>
             </c:forEach>
-            <ol>
-                <li >￥:</li>
+
+            <ol >
+                <li>￥:</li>
                 <li id="totalPrice">&nbsp;</li>
                 <li class="clearShopping"><span>结算</span></li>
             </ol>
+
         </div>
 
 
@@ -325,9 +329,10 @@
         }
 
         //把总金额显示再指定的元素中
-        document.getElementById("totalPrice").innerHTML =  sumMoney;
+        document.getElementById("totalPrice").innerHTML = sumMoney;
 
     }
+
 
 
     //加入收藏
@@ -357,29 +362,35 @@
 
     //结算
     $(".clearShopping").click(function () {
-        if (document.getElementById("totalPrice").innerHTML<${user.money}){
+        if (document.getElementById("totalPrice").innerHTML <${user.money}) {
 
             $(".ulid").each(function () {
-                var index =$(this).attr("value");
+                var index = $(this).attr("value");
 
                 //需要卖家id，商品id，数量
-                var uidurl= ".uid" + index;
-                var sidurl= ".sid" + index;
+                var uidurl = ".uid" + index;
+                var sidurl = ".sid" + index;
                 var uid = document.querySelector(uidurl).value;
                 var sid = document.querySelector(sidurl).value;
-
+                var id = document.querySelector(".id" + index).value;
                 //获取当前数量的值
                 var amounts = document.getElementsByName("amount");
 
 
-                var data = {uid: uid + "",sid: sid + "",amount: amounts[index].value + ""};
+                var data = {
+                    uid: uid + "",
+                    sid: sid + "",
+                    amount: amounts[index].value + "",
+                    id:id+"",
+                };
                 $.post("myOrder/add", data, function (date) {
                     alert(date.msg)
+                    location.replace("shopping/all");
                 })
 
 
             })
-        }else {
+        } else {
 
             alert("您的账户金额不足")
         }

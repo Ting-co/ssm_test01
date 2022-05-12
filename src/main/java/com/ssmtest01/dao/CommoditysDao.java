@@ -38,8 +38,11 @@ public interface CommoditysDao {
     List<Commoditys>  mselByIdOrName(@Param("sid") int sid,@Param("name") String name,@Param("uid") int uid);
 
 
-    @Select("select * from commoditys ")
+    @Select("select * from commoditys where state='4'")
     public List<Commoditys> mselall();
+
+    @Select("select * from commoditys")
+    public List<Commoditys> msgelall();
 
     @Update("update commoditys set message=#{message},state=#{state}  where sid=#{sid}")
     void updateMessage(Commoditys commoditys);
@@ -47,9 +50,9 @@ public interface CommoditysDao {
     @Update("update commoditys set message=#{message},state=#{state}  where sid=#{sid}")
     void updPass(@Param("message") String message, @Param("state") int state,@Param("sid") int sid);
 
-    @Select("select * from commoditys where commodity like concat( '%',#{name},'%' )")
+    @Select("select * from commoditys where commodity like concat( '%',#{name},'%' ) and state='4' ")
     List<Commoditys> getByName(String commodity);
 
-    @Select("select * from commoditys where sort=#{sort}")
+    @Select("select * from commoditys where sort=#{sort} and state='4' ")
     List<Commoditys> getBySort(String sort);
 }

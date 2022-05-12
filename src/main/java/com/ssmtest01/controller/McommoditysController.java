@@ -35,7 +35,7 @@ public class McommoditysController {
     @RequestMapping("/all")
     public String all(HttpServletRequest request, HttpSession session) {
 
-        List<Commoditys> selall = commoditysServiceImpl.mselall();
+        List<Commoditys> selall = commoditysServiceImpl.msgelall();
         request.setAttribute("commoditys", selall);
         return "manager/mcommodity";
 
@@ -181,7 +181,7 @@ public class McommoditysController {
     @RequestMapping("/pass")
     @ResponseBody
     public HashMap pass(HttpServletRequest request, HttpServletResponse response,int sid) {
-        String message="通过";
+        String message="通过成功";
         int state=4;
         commoditysServiceImpl.updPass(message, state, sid);
         HashMap hashMap = new HashMap();

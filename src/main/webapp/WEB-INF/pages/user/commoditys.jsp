@@ -370,7 +370,7 @@
                         layer.open({
                             type: 1
                             , title: '添加商品'
-                            , area: ['700px', '720px']
+                            , area: ['700px', '620px']
                             , content: $("#addCommoditys")
                             , success: function (layero) {
                                 //把内容放到遮罩层里
@@ -406,7 +406,7 @@
                     if (res.code > 0) {
                         return layer.msg('上传失败!!!');
                     }
-                    alert("上传头像成功");
+                    alert("上传商品图片成功");
                     document.getElementById("newsimage").value = res.data.src;
                 }
                 , error: function () {
@@ -432,7 +432,7 @@
                     if (res.code > 0) {
                         return layer.msg('上传失败!!!');
                     }
-                    alert("上传头像成功");
+                    alert("上传商品图片成功");
                     document.getElementById("updatenewsimage").value = res.data.src;
                 }
                 , error: function () {
@@ -472,7 +472,7 @@
                     layer.open({
                         type: 1
                         , title: '修改商品信息'
-                        , area: ['700px', '720px']
+                        , area: ['700px', '620px']
 
                         , content: $("#updateCommoditys")
                         , success: function (layero) {

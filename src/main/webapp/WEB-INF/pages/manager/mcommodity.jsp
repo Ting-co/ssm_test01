@@ -427,7 +427,7 @@
                 if (res.code > 0) {
                     return layer.msg('上传失败!!!');
                 }
-                alert("上传头像成功");
+                alert("上传商品图片成功");
                 document.getElementById("updatenewsimage").value = res.data.src;
             }
             , error: function () {
@@ -467,7 +467,7 @@
                 layer.open({
                     type: 1
                     , title: '修改商品信息'
-                    , area: ['800px', '820px']
+                    , area: ['800px', '620px']
 
                     , content: $("#updateCommoditys")
                     , success: function () {
@@ -479,7 +479,7 @@
                             , dataType: "json"
                             , data: {id: id}
                             , success: function (data) {
-                                alert(JSON.stringify(data))
+                                // alert(JSON.stringify(data))
                                 $("#sid").attr("value", id);
                                 $("#state").attr("value", data.state);
                                 $("#sort").attr("value", data.sort);
@@ -535,7 +535,7 @@
                                 document.getElementById("message").value = data.message;
                             }
                             , error: function () {
-                                alert("获取商品数据失败")
+                                alert("通过失败")
                             }
                         });
 
@@ -552,8 +552,14 @@
             if (layEvent == 'pass') {
                 var sid = $(this).attr("objId");
                 $.get('Mcommoditys/pass?sid=' + sid, function (data) {
-                    alert(JSON.stringify(data)+"饭卡"+data.message);
-                    window.location.reload();
+                    layer.msg(data.message, {
+                        icon: 1,
+                        time: 1000 //2秒关闭（如果不配置，默认是3秒）
+                    }, function(){
+                        //do something
+                        window.location.reload();
+                    });
+
                 });
             }
 

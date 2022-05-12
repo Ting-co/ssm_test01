@@ -25,6 +25,7 @@ public interface CommoditysService {
 
 
     List<Commoditys> mselall();
+    List<Commoditys> msgelall();
 
      void updateMessage( Commoditys commoditys);
 
