@@ -74,7 +74,7 @@
 <%--表格主体--%>
         <div style="border: #beb9b0 solid 1px;margin-top: 30px;border-radius: 5px;">
             <div style="border-bottom: #beb9b0 solid 1px;height:40px;">
-                <h2 style="margin:10px 0 10px 15px;">商品列表</h2>
+                <h2 style="margin:10px 0 10px 15px;">用户列表</h2>
             </div>
             <div style="padding:20px;">
                 <table id="demo" lay-filter="demo">
@@ -347,7 +347,7 @@
                     layer.open({
                         type: 1
                         , title: '修改用户信息'
-                        , area: ['800px', '820px']
+                        , area: ['800px', '90%']
 
                         , content: $("#updataUser")
                         , success: function () {
@@ -363,7 +363,7 @@
                                      document.getElementById("username").value = data.sleUser.username;
                                      document.getElementById("phone").value = data.sleUser.phone;
                                      document.getElementById("email").value = data.sleUser.email;
-                                     document.getElementById("image").src = "static/images/commoditys/" + data.sleUser.himage;
+                                     document.getElementById("image").src = "static/images/headImg/" + data.sleUser.himage;
                                      document.getElementById("address").innerHTML = data.sleUser.address;
                                      document.getElementById("text").placeholder = data.sleUser.text;
                                      document.getElementById("uid").value = data.sleUser.uid;

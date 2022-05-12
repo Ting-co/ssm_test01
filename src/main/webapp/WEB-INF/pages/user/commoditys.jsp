@@ -283,7 +283,7 @@
                             <option value="电子数码">电子数码</option>
                             <option value="书本文具">书本文具</option>
                             <option value="零食水果">零食水果</option>
-                            <option value="项链饰品">项链饰品</option>
+                            <option value="项链饰品">生活用品</option>
                         </select>
                     </div>
                 </div>
@@ -406,7 +406,10 @@
                     if (res.code > 0) {
                         return layer.msg('上传失败!!!');
                     }
-                    alert("上传商品图片成功");
+                    layer.msg("上传商品图片成功", {
+                        icon: 1,
+                        time: 1000 //2秒关闭（如果不配置，默认是3秒）
+                    });
                     document.getElementById("newsimage").value = res.data.src;
                 }
                 , error: function () {
@@ -432,7 +435,10 @@
                     if (res.code > 0) {
                         return layer.msg('上传失败!!!');
                     }
-                    alert("上传商品图片成功");
+                    layer.msg("上传商品图片成功", {
+                        icon: 1,
+                        time: 1000 //2秒关闭（如果不配置，默认是3秒）
+                    });
                     document.getElementById("updatenewsimage").value = res.data.src;
                 }
                 , error: function () {

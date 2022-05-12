@@ -178,15 +178,13 @@
                      <span><a href="index/selectBySort?sort=电子数码">电子数码</a></span>
                      <span><a href="index/selectBySort?sort=书本文具">书本文具</a></span>
                      <span><a href="index/selectBySort?sort=零食水果">零食水果</a></span>
-                     <span><a href="index/selectBySort?sort=项链饰品">项链饰品</a></span>
+                     <span><a href="index/selectBySort?sort=项链饰品">生活用品</a></span>
                  </div>
                 <div class="layui-carousel" id="test1" style="margin:30px; ">
                     <div carousel-item >
-                        <div><img  src="static/images/commoditys/1640855649050.jpg" alt=""></div>
-                        <div>条目2</div>
-                        <div>条目3</div>
-                        <div>条目4</div>
-                        <div>条目5</div>
+                        <div><img  src="static/images/ppt/p1.jpg" alt=""></div>
+                        <div><img  src="static/images/ppt/p2.jpg" alt=""></div>
+                        <div><img  src="static/images/ppt/p3.jpg" alt=""></div>
                     </div>
                 </div>
                 </div>
