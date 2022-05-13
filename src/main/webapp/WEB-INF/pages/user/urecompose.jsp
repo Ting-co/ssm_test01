@@ -32,9 +32,9 @@
 
         <div style="margin: 0 auto; max-width: 1140px; padding-top: 10px">
 
-            <blockquote class="layui-elem-quote">注意：下述演示中的颜色只是做一个区分作用，并非栅格内置。</blockquote>
+            <blockquote class="layui-elem-quote"></blockquote>
             <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-                <legend>始终等比例水平排列</legend>
+                <legend></legend>
             </fieldset>
         </div>
         <div style="border:0px solid #eee ;margin: 0 auto;max-width: 1140px;padding-top: 10px;">

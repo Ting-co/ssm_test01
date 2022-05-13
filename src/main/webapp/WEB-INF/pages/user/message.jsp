@@ -105,9 +105,9 @@
     <div class="mylayui-index-body">
         <div class="top-message" style="margin: 0 auto; max-width: 1000px; padding-top: 10px">
 
-            <blockquote class="layui-elem-quote">注意：下述演示中的颜色只是做一个区分作用，并非栅格内置。</blockquote>
+            <blockquote class="layui-elem-quote">注意：请规范发言，拒绝违法违规等发言</blockquote>
             <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-                <legend>始终等比例水平排列</legend>
+                <legend>留言区</legend>
             </fieldset>
         </div>
 
@@ -116,21 +116,6 @@
 
             <div class="messagebox">
                 <c:forEach items="${messages.list}" var="obj">
-                    <%--<div class="message">
-
-
-                        <div>
-                            <img style="width: 100px;height: 100px" src="static/images/headImg/${obj.user.himage}">
-                        </div>
-
-                        <div class="messgename" style="padding-left: 5px;width: 300px;margin-left: 0px">
-                                ${obj.user.username} ${obj.mdate}
-                        </div>
-
-                        <div>
-                                ${obj.message}
-                        </div>
-                    </div>--%>
                     <div class="content">
                         <div class="top">
                             <div class="left">
@@ -149,56 +134,15 @@
                             <span>${obj.message}</span>
                         </div>
                         <div class="bottom">
-                          <i class="layui-icon layui-icon-praise" onclick="buy()">0</i>
-                            <i class="layui-icon layui-icon-email">回复</i>
+                          <i class="layui-icon layui-icon-praise"  onclick="buy()">0</i>
+<%--                            <i class="layui-icon layui-icon-email">回复</i>--%>
                         </div>
                     </div>
                 </c:forEach>
             </div>
 
 
-            <%--留言模拟--%>
-            <%-- <div style="border: #beb9b0 solid 1px;margin-top: 30px;border-radius: 5px;">
-                 <div style="border-bottom: #beb9b0 solid 1px;height:40px;">
-                     <h2 style="margin:10px 0 10px 15px;">留言区</h2>
-                 </div>
-                 <div style="padding:20px;">
-                     <table id="demo" lay-filter="demo" style="border:0px ">
-                         <thead>
-                         <tr>
-                             <th lay-data="{field:'sid',align: 'center'}"></th>
-                         </tr>
-                         </thead>
-                         <tbody>
-                         <c:forEach items="${messages}" var="obj">
-                             <tr>
-                                 <td>
-                                     <div id="message" style="height: 100px">
-                                         <div class="ds-post-main">
-                                             <div class="ds-avatar">
-                                                 <img src="static/images/headImg/${obj.user.himage}">
-                                             </div>
-                                             <div class="ds-comment-body">
-                                                 <div class="messgename" style="padding-left: 5px;width: 300px;margin-left: 0px">
-                                                         ${obj.user.username} ${obj.mdate}
-                                                 </div>
-                                                 <br>
-                                                 <div>
-                                                         ${obj.message}
-                                                 </div>
-                                             </div>
-                                         </div>
 
-                                     </div>
-                                 </td>
-                             </tr>
-                         </c:forEach>
-
-                         </tbody>
-                     </table>
-                 </div>
-
-             </div>--%>
 
         </div>
         <div id="demo7"></div>
@@ -220,7 +164,7 @@
 
 
             <div class="layui-form-item">
-                <input type="submit" class="layui-btn" value="添加">
+                <input type="button" class="layui-btn" value="添加">
                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>
             </div>
         </form>
@@ -306,9 +250,10 @@
             $.post("messages/add", data, function (date) {
                     if (date.msg != null) {
                         alert(date.msg);
-                    }
+                    }else {
 
-                    location.reload();
+                        location.replace("messages/all");
+                    }
                 }
             )
         })
@@ -333,6 +278,7 @@
                         , content: $("#addCommoditys")
                         , end: function () {
                             $("#addCommoditys").css({"display": "none"})
+
                         }
 
                     });
