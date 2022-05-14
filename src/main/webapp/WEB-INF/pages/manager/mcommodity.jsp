@@ -72,8 +72,8 @@
                         <th lay-data="{field:'amount',align: 'center',sort: true}">库存</th>
                         <th lay-data="{field:'sdate',align: 'center',sort: true}">发布时间</th>
                         <th lay-data="{field:'sort',align: 'center',rowspan: 2}">种类</th>
-                        <th lay-data="{field:'state',align: 'center'}">状态</th>
-                        <th lay-data="{field:'message',align: 'center'}">审核留言</th>
+                        <th lay-data="{field:'state',align: 'center',sort: true}">状态</th>
+                        <th lay-data="{field:'message',align: 'center',sort: true}">审核留言</th>
                         <th lay-data="{field:'operate',width:222}">操作</th>
                     </tr>
                     </thead>

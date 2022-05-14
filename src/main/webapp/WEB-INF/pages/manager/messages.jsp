@@ -50,7 +50,7 @@
         <%--表格主体--%>
         <div style="border: #beb9b0 solid 1px;margin-top: 30px;border-radius: 5px;">
             <div style="border-bottom: #beb9b0 solid 1px;height:40px;">
-                <h2 style="margin:10px 0 10px 15px;">商品列表</h2>
+                <h2 style="margin:10px 0 10px 15px;">留言列表</h2>
             </div>
             <div style="padding:20px;">
                 <table id="demo" lay-filter="demo">
@@ -121,13 +121,13 @@
              * 搜索条件数据回显
              * @type {string}
              */
-            var messages = "${messages}";
+           /* var messages = "${messages}";
             if (messages != null || messages != ' ') {
                 //名称文本框回显
                 $("input[name='messagesOrId']").val('${messagesOrId}');
             } else {
                 $("#none").css({"display": "hidden"})
-            }
+            }*/
 
 
             /**

@@ -38,6 +38,17 @@
             <input type="button" class="submit-btn" onclick="logins()" value="登录"/>
 
         </form>
+        <div class="layui-form-item">
+
+            <div class="layui-input-block" style="margin:0;text-align: center">
+                <span>卖家</span>
+                <input type="radio" name="sex" value="男" title="男" checked="">
+                <span>买家</span>
+                <input type="radio" name="sex" value="女" title="女">
+                <span>管理员</span>
+                <input type="radio" name="sex" value="禁" title="禁用" >
+            </div>
+        </div>
         <div class="reg-bar">
             <a class="forget" href="#" target="_blank">忘记密码</a>
         </div>

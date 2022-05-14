@@ -170,7 +170,7 @@
 
     </style>
 </head>
-<body onload="total()">
+<body >
 <div class="layui-layout layui-layout-admin">
 
     <jsp:include page="../common/uheader.jsp"/>
@@ -363,8 +363,7 @@
                     , dataType: "json"
                     , data: {oid: oid, uid: uid}
                     , success: function (data) {
-                        console.log(data);
-                        console.log(data.selMyOrder.phone);
+
 
                         document.getElementById("oid").innerHTML = data.selMyOrder.order[0].oid;
                         document.getElementById("image").src = "static/images/commoditys/" + data.selMyOrder.order[0].commoditys.simage;
